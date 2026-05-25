@@ -699,9 +699,26 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
     <div class="login-logo">CRIMSON<span>CITY</span></div>
     <div class="login-sub">Painel Administrativo</div>
     <div class="login-err" id="login-err">Credenciais incorretas. Tente novamente.</div>
-    <div class="field"><label>Usuário</label><input type="text" id="login-user" placeholder="admin"></div>
-    <div class="field"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
-    <button class="btn btn-primary" style="width:100%;justify-content:center;padding:.75rem" onclick="doLogin()">Entrar</button>
+    <!-- LOGIN NORMAL -->
+    <div id="login-normal-form">
+      <div class="field"><label>Usuário</label><input type="text" id="login-user" placeholder="admin"></div>
+      <div class="field"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:.75rem" onclick="doLogin()">Entrar</button>
+      <div style="text-align:center;margin-top:.85rem">
+        <button onclick="toggleCodeLogin(true)" style="background:none;border:none;color:rgba(255,255,255,.35);font-size:.68rem;cursor:pointer;text-decoration:underline;font-family:var(--fb)">🔑 Entrar com Código de Acesso</button>
+      </div>
+    </div>
+    <!-- LOGIN COM CÓDIGO -->
+    <div id="login-code-form" style="display:none">
+      <div class="field">
+        <label>Cole seu Código de Acesso</label>
+        <textarea id="login-code-input" rows="4" style="width:100%;background:var(--d4);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:.65rem .9rem;color:var(--w);font-size:.75rem;font-family:monospace;outline:none;resize:none;transition:border-color .2s" placeholder="Cole aqui o código enviado pelo administrador..." onkeydown="if(event.key==='Enter'&&event.ctrlKey)doLoginCode()"></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:.75rem" onclick="doLoginCode()">Entrar com Código</button>
+      <div style="text-align:center;margin-top:.85rem">
+        <button onclick="toggleCodeLogin(false)" style="background:none;border:none;color:rgba(255,255,255,.35);font-size:.68rem;cursor:pointer;text-decoration:underline;font-family:var(--fb)">← Voltar ao login normal</button>
+      </div>
+    </div>
     <button class="btn btn-outline" style="width:100%;justify-content:center;padding:.55rem;margin-top:.65rem;font-size:.68rem" onclick="hideAdminLogin()">← Voltar ao site</button>
   </div>
 </div>
@@ -925,7 +942,7 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
           <div style="display:flex;gap:.7rem;margin-top:.5rem"><button class="btn btn-primary btn-sm" onclick="saveUser()">💾 Salvar</button><button class="btn btn-outline btn-sm" onclick="clearUserForm()">✕ Limpar</button></div>
         </div>
         <div class="table-wrap"><div class="table-head"><h3>Usuários</h3><span id="users-count" style="font-size:.7rem;color:rgba(255,255,255,.25)"></span></div>
-          <table><thead><tr><th>Usuário</th><th>Email</th><th>Cargo</th><th>Status</th><th>Ações</th></tr></thead><tbody id="users-table"></tbody></table>
+          <table><thead><tr><th>Usuário</th><th>Email</th><th>Cargo</th><th>Status</th><th>Código</th><th>Ações</th></tr></thead><tbody id="users-table"></tbody></table>
         </div>
       </div>
 
@@ -1446,7 +1463,16 @@ function saveUser(){var id=document.getElementById('edit-user-id').value;var use
 function editUser(id){var u=S.users.find(function(x){return x.id===id;});if(!u)return;document.getElementById('edit-user-id').value=id;document.getElementById('u-username').value=u.username;document.getElementById('u-password').value='';document.getElementById('u-email').value=u.email||'';document.getElementById('u-role').value=u.role;document.getElementById('u-status').value=u.status;adminTab('users');window.scrollTo(0,0);}
 function deleteUser(id){confirmAction('Excluir usuário?',function(){S.users=S.users.filter(function(x){return x.id!==id;});save();renderUsersTable();updateStats();toast('Excluído.','ok');});}
 function clearUserForm(){document.getElementById('edit-user-id').value='';['u-username','u-password','u-email'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('u-role').value='admin';document.getElementById('u-status').value='active';}
-function renderUsersTable(){var tb=document.getElementById('users-table');document.getElementById('users-count').textContent=S.users.length+' usuário(s)';if(!S.users.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhum usuário.</td></tr>';return;}tb.innerHTML=S.users.map(function(u){return '<tr><td><strong>'+esc(u.username)+'</strong></td><td style="color:rgba(255,255,255,.35)">'+esc(u.email||'-')+'</td><td><span class="badge badge-gold">'+esc(u.role)+'</span></td><td><span class="badge '+(u.status==='active'?'badge-green':u.status==='banned'?'badge-red':'badge-gray')+'">'+esc(u.status)+'</span></td><td><button class="action-btn" onclick="editUser('+u.id+')">✏</button><button class="action-btn danger" onclick="deleteUser('+u.id+')">🗑</button></td></tr>';}).join('');}
+function genAccessCode(u){try{return btoa(unescape(encodeURIComponent(JSON.stringify({u:u.username,p:u.password,v:'cc1'}))));}catch(e){return btoa(JSON.stringify({u:u.username,p:u.password,v:'cc1'}));}}
+function showAccessCode(id){var u=S.users.find(function(x){return x.id===id;});if(!u)return;var code=genAccessCode(u);var box=document.getElementById('access-code-modal');if(!box){box=document.createElement('div');box.id='access-code-modal';box.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;display:flex;align-items:center;justify-content:center';box.innerHTML='<div style="background:var(--d3);border:1px solid rgba(196,30,58,.3);border-radius:10px;padding:2rem;width:480px;max-width:95vw">'
+  +'<div style="font-family:var(--fh);font-size:1rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:.5rem">🔑 Código de Acesso — '+esc(u.username)+'</div>'
+  +'<p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:1rem;line-height:1.6">Copie este código e envie para o jogador. Ele deve clicar em <strong style="color:var(--w)">"Entrar com Código de Acesso"</strong> na tela de login e colar este código.</p>'
+  +'<textarea id="acode-text" readonly rows="5" onclick="this.select()" style="width:100%;background:var(--d4);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:.65rem;color:#4ade80;font-size:.7rem;font-family:monospace;resize:none;outline:none;word-break:break-all">'+code+'</textarea>'
+  +'<div style="display:flex;gap:.7rem;margin-top:1rem">'
+  +'<button class="btn btn-primary btn-sm" onclick="navigator.clipboard.writeText(document.getElementById(\"acode-text\").value).then(function(){this.textContent=\"✅ Copiado!\";}.bind(this))">📋 Copiar Código</button>'
+  +'<button class="btn btn-outline btn-sm" onclick="document.getElementById(\"access-code-modal\").remove()">Fechar</button>'
+  +'</div></div>';document.body.appendChild(box);}else{box.style.display='flex';box.querySelector('textarea').value=code;}}
+function renderUsersTable(){var tb=document.getElementById('users-table');document.getElementById('users-count').textContent=S.users.length+' usuário(s)';if(!S.users.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhum usuário.</td></tr>';return;}tb.innerHTML=S.users.map(function(u){return '<tr><td><strong>'+esc(u.username)+'</strong></td><td style="color:rgba(255,255,255,.35)">'+esc(u.email||'-')+'</td><td><span class="badge badge-gold">'+esc(u.role)+'</span></td><td><span class="badge '+(u.status==='active'?'badge-green':u.status==='banned'?'badge-red':'badge-gray')+'">'+esc(u.status)+'</span></td><td><button class="btn btn-primary btn-sm" style="background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3)" onclick="showAccessCode('+u.id+')">🔑 Código</button></td><td><button class="action-btn" onclick="editUser('+u.id+')">✏</button><button class="action-btn danger" onclick="deleteUser('+u.id+')">🗑</button></td></tr>';}).join('');}
 
 // ═══ SETTINGS ═══
 function loadSettings(){document.getElementById('cfg-name').value=S.settings.name||'Crimson City RP';document.getElementById('cfg-discord').value=S.settings.discord||'';document.getElementById('cfg-players').value=S.settings.players||0;document.getElementById('cfg-wl-welcome').value=S.settings.wlWelcome||'';document.getElementById('cfg-wl-end').value=S.settings.wlEnd||'';}
@@ -1457,25 +1483,51 @@ function confirmReset(type){var msgs={wlApps:'Limpar TODAS as candidaturas?',use
 // ═══ ADMIN AUTH ═══
 function showAdminLogin(){document.getElementById('admin-login').classList.add('show');}
 function hideAdminLogin(){document.getElementById('admin-login').classList.remove('show');}
+function toggleCodeLogin(showCode){
+  document.getElementById('login-normal-form').style.display=showCode?'none':'block';
+  document.getElementById('login-code-form').style.display=showCode?'block':'none';
+  document.getElementById('login-err').classList.remove('show');
+}
+function doLoginWithUser(username){
+  document.getElementById('login-err').classList.remove('show');
+  document.getElementById('admin-login').classList.remove('show');
+  document.getElementById('main-nav').style.display='none';
+  document.getElementById('mobile-menu').style.display='none';
+  document.querySelectorAll('.page').forEach(function(el){el.classList.remove('active');});
+  document.getElementById('admin-panel').classList.add('show');
+  document.getElementById('admin-welcome-name').textContent=username;
+  S.loggedIn=true;
+  refreshAdmin();
+}
 function doLogin(){
   var u=document.getElementById('login-user').value.trim();
   var p=document.getElementById('login-pass').value.trim();
-  // Verifica admin master OU qualquer usuário cadastrado com credenciais corretas
   var masterMatch=(u===S.adminUser&&p===S.adminPass);
   var userMatch=S.users.find(function(x){
     return x.username===u && x.password===p && x.status!=='banned';
   });
   if(masterMatch||userMatch){
-    document.getElementById('login-err').classList.remove('show');
-    document.getElementById('admin-login').classList.remove('show');
-    document.getElementById('main-nav').style.display='none';
-    document.getElementById('mobile-menu').style.display='none';
-    document.querySelectorAll('.page').forEach(function(el){el.classList.remove('active');});
-    document.getElementById('admin-panel').classList.add('show');
-    document.getElementById('admin-welcome-name').textContent=u;
-    S.loggedIn=true;
-    refreshAdmin();
+    doLoginWithUser(u);
   }else{
+    document.getElementById('login-err').classList.add('show');
+  }
+}
+function doLoginCode(){
+  var raw=document.getElementById('login-code-input').value.trim();
+  if(!raw){document.getElementById('login-err').classList.add('show');return;}
+  try{
+    var decoded=JSON.parse(decodeURIComponent(escape(atob(raw))));
+    if(decoded&&decoded.v==='cc1'&&decoded.u&&decoded.p){
+      // Registrar localmente para próximos logins normais
+      if(!S.users.find(function(x){return x.username===decoded.u;})){
+        S.users.push({id:S.nextId.users++,username:decoded.u,password:decoded.p,email:'',role:'player',status:'active',date:new Date().toLocaleDateString('pt-BR')});
+        save();
+      }
+      doLoginWithUser(decoded.u);
+    }else{
+      document.getElementById('login-err').classList.add('show');
+    }
+  }catch(e){
     document.getElementById('login-err').classList.add('show');
   }
 }
