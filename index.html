@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><base href="https://d16ilfvy4mv02r.cloudfront.net/workspaces/poZOdfIXDv3ouVswYNaG5dVpwN1CZv9u/1db1663c-0c4e-4021-86ea-ddf2d7272da7/files/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crimson City RP</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cr:#C41E3A;--cr-d:#8B0000;--cr-l:#E8324F;
+  --gold:#C9A84C;--gold-l:#E8C96A;
+  --d:#070709;--d2:#0D0D11;--d3:#13131A;--d4:#1A1A24;--d5:#20202C;
+  --g:rgba(255,255,255,.06);--w:#FFF;
+  --fb:'Space Grotesk',sans-serif;--fd:'Syne',sans-serif;--fh:'Oswald',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--d);color:var(--w);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--d)}::-webkit-scrollbar-thumb{background:var(--cr-d);border-radius:2px}
+.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(196,30,58,.05) 0%,transparent 65%);pointer-events:none;z-index:0;transform:translate(-50%,-50%);transition:left .1s,top .1s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(7,7,9,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,30,58,.1);transition:all .3s}
+nav.scrolled{background:rgba(7,7,9,.98);border-bottom-color:rgba(196,30,58,.22)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:68px;max-width:1400px;margin:0 auto;gap:1rem}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:3px;cursor:pointer;transition:letter-spacing .3s;white-space:nowrap}
+.nav-logo:hover{letter-spacing:5px}.nav-logo span{color:var(--cr)}
+.nav-links{display:flex;align-items:center;gap:1.75rem;flex-wrap:nowrap}
+.nav-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.75rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:all .3s;cursor:pointer;position:relative;padding-bottom:3px;white-space:nowrap}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--cr);transition:width .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--w)}.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+.players-badge{display:flex;align-items:center;gap:.4rem;font-size:.7rem;color:rgba(255,255,255,.3);letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.dot-pulse{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pg 2s infinite}
+@keyframes pg{0%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:68px;left:0;right:0;background:rgba(7,7,9,.98);backdrop-filter:blur(20px);border-bottom:1px solid rgba(196,30,58,.2);padding:1.5rem 2rem;display:none;flex-direction:column;gap:1.1rem;z-index:999}
+.mobile-menu.show{display:flex}
+.mobile-menu a{color:rgba(255,255,255,.6);text-decoration:none;font-size:.85rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.mobile-btns{display:flex;gap:.7rem;margin-top:.5rem;flex-wrap:wrap}
+
+/* BUTTONS */
+.btn{padding:.55rem 1.25rem;border-radius:3px;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;text-decoration:none;border:none;display:inline-flex;align-items:center;gap:.45rem;font-family:var(--fb)}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7)}
+.btn-outline:hover{border-color:var(--cr);color:var(--cr);background:rgba(196,30,58,.06)}
+.btn-primary{background:var(--cr);color:var(--w);box-shadow:0 0 20px rgba(196,30,58,.22)}
+.btn-primary:hover{background:var(--cr-l);box-shadow:0 0 30px rgba(196,30,58,.4);transform:translateY(-1px)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--d);font-weight:700}
+.btn-gold:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-dark{background:var(--d4);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.btn-dark:hover{border-color:var(--cr);color:var(--cr)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5)}
+.btn-ghost:hover{background:rgba(255,255,255,.05);color:var(--w)}
+.btn-sm{padding:.35rem .85rem;font-size:.65rem}
+.btn-danger{background:var(--cr-d);color:var(--w);border:none;padding:.4rem 1rem;border-radius:3px;cursor:pointer;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:.68rem;transition:background .2s;font-family:var(--fb)}
+.btn-danger:hover{background:var(--cr)}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:68px}.page.active{display:block}
+
+/* HERO */
+.hero{position:relative;height:calc(100vh - 68px);display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg-layer{position:absolute;inset:0;z-index:0;transition:all 1s}
+.hero-overlay{position:absolute;inset:0;background:rgba(7,7,9,.45);z-index:1}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(196,30,58,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(196,30,58,.04) 1px,transparent 1px);background-size:80px 80px;animation:grid-drift 20s linear infinite;z-index:2}
+@keyframes grid-drift{0%{background-position:0 0}100%{background-position:80px 80px}}
+.hero-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:2}
+.particle{position:absolute;border-radius:50%;background:rgba(196,30,58,.5);animation:fp linear infinite}
+@keyframes fp{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:.8}90%{opacity:.8}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+.hero-content{position:relative;z-index:5;max-width:1000px;padding:0 2rem}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;background:rgba(196,30,58,.1);border:1px solid rgba(196,30,58,.3);color:#e8a0ac;font-size:.6rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:2px;margin-bottom:1.75rem;animation:fd .8s ease .2s both}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:16px;height:1px;background:var(--cr)}
+@keyframes fd{from{opacity:0;transform:translateY(-15px)}to{opacity:1;transform:translateY(0)}}
+
+/* TITLE & WAVE */
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,12vw,9rem);letter-spacing:6px;line-height:.9;margin-bottom:1.5rem;position:relative}
+.hero-title .word{display:block;overflow:visible}
+.hero-title .letter{display:inline-block;animation:letter-rise .6s cubic-bezier(.22,1,.36,1) both}
+.hero-title .line2{color:var(--cr);text-shadow:0 0 60px rgba(196,30,58,.5)}
+@keyframes letter-rise{from{transform:translateY(110%);opacity:0}to{transform:translateY(0);opacity:1}}
+/* Wave toggle */
+.wave-on .hero-title .letter{animation:letter-wave 1.8s ease-in-out infinite!important}
+@keyframes letter-wave{0%,100%{transform:translateY(0)}30%{transform:translateY(-10px)}60%{transform:translateY(4px)}}
+
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.48);max-width:560px;margin:0 auto 2.5rem;line-height:1.8;animation:fu .8s ease 1.2s both}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fu .8s ease 1.4s both}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.2);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;animation:hs 2.5s ease infinite;z-index:5}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,transparent,rgba(196,30,58,.8),transparent)}
+@keyframes hs{0%,100%{opacity:.3;transform:translateX(-50%) translateY(0)}50%{opacity:.6;transform:translateX(-50%) translateY(8px)}}
+
+/* SECTIONS */
+.sec-head{text-align:center;margin-bottom:3.5rem}
+.sec-label{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--cr);margin-bottom:.6rem}
+.sec-title{font-family:var(--fd);font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1;letter-spacing:-1px}
+.sec-title span{color:var(--cr)}
+.sec-line{width:36px;height:2px;background:var(--cr);margin:.85rem auto 0;border-radius:1px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+
+/* UPDATES */
+.updates-section{padding:6rem 2rem;max-width:1200px;margin:0 auto}
+.updates-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.update-card{background:var(--d3);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:1.75rem;position:relative;overflow:hidden;transition:all .4s}
+.update-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cr),transparent)}
+.update-card:hover{border-color:rgba(196,30,58,.3);transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.update-tag{font-size:.58rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--cr);margin-bottom:.85rem}
+.update-title{font-family:var(--fh);font-size:1.15rem;font-weight:600;margin-bottom:.55rem;letter-spacing:.5px;text-transform:uppercase}
+.update-text{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.7}
+.update-date{font-size:.65rem;color:rgba(255,255,255,.18);margin-top:1.1rem;letter-spacing:1px}
+
+/* FEATURES */
+.features-section{padding:6rem 2rem;background:var(--d2);position:relative}
+.features-section::before,.features-section::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,30,58,.3),transparent)}
+.features-section::before{top:-1px}.features-section::after{bottom:-1px}
+.features-inner{max-width:1200px;margin:0 auto}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.4rem}
+.feature-card{padding:2.25rem 2rem;background:var(--d3);border:1px solid rgba(255,255,255,.05);border-radius:8px;text-align:center;transition:all .4s;position:relative}
+.feature-card::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:1px;background:var(--cr);transition:width .4s}
+.feature-card:hover{border-color:rgba(196,30,58,.25);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.feature-card:hover::before{width:60%}
+.feature-icon{font-size:2.2rem;margin-bottom:1.2rem;display:inline-block;transition:transform .3s}
+.feature-card:hover .feature-icon{transform:scale(1.15) rotate(-5deg)}
+.feature-title{font-family:var(--fh);font-size:.95rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.6rem}
+.feature-text{font-size:.8rem;color:rgba(255,255,255,.38);line-height:1.7}
+
+/* NEWS PAGE */
+.page-wrap{max-width:1200px;margin:0 auto;padding:3rem 2rem}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.75rem}
+.news-card{background:var(--d3);border:1px solid rgba(255,255,255,.05);border-radius:8px;overflow:hidden;transition:all .4s;cursor:pointer}
+.news-card:hover{border-color:rgba(196,30,58,.28);transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,.4)}
+.news-card-img{height:180px;background:var(--d4);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.1)}
+.news-card-img img{width:100%;height:100%;object-fit:cover}
+.news-card-cat{position:absolute;top:.75rem;left:.75rem;background:var(--cr);color:var(--w);font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px}
+.news-card-body{padding:1.4rem}
+.news-card-title{font-family:var(--fh);font-size:1.1rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.55rem;line-height:1.3}
+.news-card-excerpt{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:1rem}
+.news-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:.68rem;color:rgba(255,255,255,.22)}
+.news-read-more{color:var(--cr);font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:color .2s}
+.news-read-more:hover{color:var(--cr-l)}
+/* single post */
+.post-header{margin-bottom:2.5rem}
+.post-cover{width:100%;max-height:420px;object-fit:cover;border-radius:8px;margin-bottom:2rem}
+.post-title{font-family:var(--fd);font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1;letter-spacing:-1px;margin-bottom:1rem}
+.post-meta{display:flex;align-items:center;gap:1rem;font-size:.75rem;color:rgba(255,255,255,.3);margin-bottom:2rem;flex-wrap:wrap}
+.post-cat-badge{background:var(--cr);color:var(--w);font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:2px}
+.post-content{font-size:.92rem;color:rgba(255,255,255,.65);line-height:1.85;max-width:760px}
+.post-content p{margin-bottom:1rem}
+.post-content h2,.post-content h3{font-family:var(--fd);color:var(--w);margin:1.5rem 0 .75rem}
+.post-content strong{color:var(--w)}
+.post-content em{color:rgba(255,255,255,.5)}
+.back-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;color:rgba(255,255,255,.4);cursor:pointer;transition:color .2s;margin-bottom:2rem;letter-spacing:.5px;text-transform:uppercase;font-weight:600}
+.back-link:hover{color:var(--w)}
+
+/* STORE */
+.store-cats{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.store-cat-btn{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);padding:.4rem 1rem;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .25s;font-family:var(--fb)}
+.store-cat-btn:hover,.store-cat-btn.active{background:rgba(196,30,58,.15);border-color:var(--cr);color:var(--w)}
+.store-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+.product-card{background:var(--d3);border:1px solid rgba(255,255,255,.05);border-radius:8px;overflow:hidden;transition:all .4s;position:relative}
+.product-card:hover{border-color:rgba(196,30,58,.28);transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.product-badge{position:absolute;top:.75rem;right:.75rem;font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;z-index:1}
+.badge-popular{background:linear-gradient(135deg,var(--gold),var(--gold-l));color:var(--d)}
+.badge-new{background:var(--cr);color:var(--w)}
+.badge-sale{background:#22c55e;color:var(--d)}
+.product-img{height:160px;background:var(--d4);display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:rgba(255,255,255,.08);position:relative;overflow:hidden}
+.product-img img{width:100%;height:100%;object-fit:cover}
+.product-body{padding:1.3rem}
+.product-cat{font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cr);margin-bottom:.5rem}
+.product-name{font-family:var(--fh);font-size:1.05rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.5rem}
+.product-desc{font-size:.78rem;color:rgba(255,255,255,.38);line-height:1.6;margin-bottom:1.1rem}
+.product-footer{display:flex;align-items:center;justify-content:space-between;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)}
+.product-price{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--gold-l)}
+.product-unavail{color:rgba(255,255,255,.25);font-size:.72rem;font-style:italic}
+
+/* HOW TO PLAY */
+.htp-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.htp-title{font-family:var(--fd);font-size:3rem;font-weight:800;line-height:1;letter-spacing:-1px;margin-bottom:.75rem}
+.htp-title span{color:var(--cr)}
+.htp-desc{color:rgba(255,255,255,.42);font-size:.88rem;line-height:1.8;margin-bottom:2.5rem}
+.htp-steps{display:flex;flex-direction:column;gap:1.2rem}
+.step-item{background:var(--d3);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:1.75rem;position:relative;overflow:hidden;transition:all .3s}
+.step-item:hover{border-color:rgba(196,30,58,.25);transform:translateX(4px)}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:rgba(196,30,58,.07);position:absolute;top:.25rem;right:1rem;line-height:1;transition:color .3s}
+.step-item:hover .step-num{color:rgba(196,30,58,.15)}
+.step-title{font-family:var(--fh);font-weight:600;font-size:1rem;margin-bottom:.5rem;letter-spacing:.5px;text-transform:uppercase}
+.step-text{font-size:.82rem;color:rgba(255,255,255,.42);line-height:1.7;margin-bottom:1.1rem}
+.step-btns{display:flex;gap:.7rem;flex-wrap:wrap}
+.server-info{margin-top:1.5rem;background:var(--d3);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:1.4rem}
+.server-info-head{font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:1rem}
+.srv-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.srv-row:last-child{border-bottom:none}.srv-row span:first-child{color:rgba(255,255,255,.28)}
+.htp-img-box{background:var(--d3);border:1px solid rgba(196,30,58,.15);border-radius:10px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;position:relative}
+.htp-img-box::before{content:'CRIMSON CITY';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-15deg);font-family:'Bebas Neue',sans-serif;font-size:3.5rem;letter-spacing:3px;color:rgba(196,30,58,.04);white-space:nowrap;pointer-events:none}
+.htp-ph{text-align:center;padding:2rem}.htp-ph .bi{font-size:4rem;opacity:.1;display:block;margin-bottom:1rem}
+.htp-ph p{color:rgba(255,255,255,.15);font-size:.75rem}
+
+/* WL CHAT */
+.wl-page-wrap{max-width:760px;margin:0 auto;padding:3rem 1.5rem}
+.wl-header{text-align:center;margin-bottom:2.5rem}
+.wl-header h2{font-family:var(--fd);font-size:2.5rem;font-weight:800;letter-spacing:-1px}
+.wl-header h2 span{color:var(--cr)}
+.wl-header p{color:rgba(255,255,255,.38);margin-top:.6rem;font-size:.85rem;line-height:1.7}
+.chat-window{background:var(--d3);border:1px solid rgba(255,255,255,.06);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-height:500px}
+.chat-header{display:flex;align-items:center;gap:.85rem;padding:1rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.06);background:var(--d4)}
+.chat-bot-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--cr-d),var(--cr));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.chat-bot-name{font-weight:700;font-size:.88rem}.chat-bot-status{font-size:.68rem;color:#4ade80}
+.chat-progress{padding:.65rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.05);background:var(--d4);display:flex;align-items:center;gap:1rem}
+.prog-bar{flex:1;height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--cr-d),var(--cr));border-radius:2px;transition:width .4s}
+.prog-text{font-size:.65rem;color:rgba(255,255,255,.28);white-space:nowrap}
+.chat-msgs{flex:1;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;max-height:400px}
+.chat-msgs::-webkit-scrollbar{width:3px}
+.chat-msg{display:flex;gap:.8rem;animation:msa .4s ease}
+@keyframes msa{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.chat-msg.bot{align-items:flex-start}.chat-msg.user{justify-content:flex-end}
+.chat-msg-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--cr-d),var(--cr));display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;margin-top:2px}
+.chat-bubble{max-width:78%;padding:.8rem 1rem;border-radius:12px;font-size:.83rem;line-height:1.6}
+.chat-msg.bot .chat-bubble{background:var(--d5);border:1px solid rgba(255,255,255,.07);border-top-left-radius:3px;color:rgba(255,255,255,.8)}
+.chat-msg.user .chat-bubble{background:var(--cr);border-top-right-radius:3px;color:var(--w)}
+.chat-time{font-size:.6rem;color:rgba(255,255,255,.2);margin-top:.3rem}.chat-msg.bot .chat-time{text-align:left}.chat-msg.user .chat-time{text-align:right}
+.typing-ind{display:flex;gap:4px;padding:.8rem 1rem;background:var(--d5);border:1px solid rgba(255,255,255,.07);border-radius:12px;border-top-left-radius:3px;width:fit-content}
+.typing-ind span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.35);animation:ti .8s ease infinite}
+.typing-ind span:nth-child(2){animation-delay:.15s}.typing-ind span:nth-child(3){animation-delay:.3s}
+@keyframes ti{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-5px);opacity:1}}
+.chat-choices{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.45rem}
+.chat-choice{background:transparent;border:1px solid rgba(196,30,58,.35);color:rgba(255,255,255,.75);padding:.4rem .85rem;border-radius:20px;font-size:.75rem;cursor:pointer;transition:all .25s;font-family:var(--fb)}
+.chat-choice:hover{background:rgba(196,30,58,.15);border-color:var(--cr);color:var(--w)}
+.chat-input-area{border-top:1px solid rgba(255,255,255,.06);padding:1rem 1.5rem;display:flex;gap:.7rem;align-items:flex-end;background:var(--d4)}
+.chat-input{flex:1;background:var(--d3);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.65rem .95rem;color:var(--w);font-size:.83rem;font-family:var(--fb);outline:none;resize:none;max-height:120px;transition:border-color .2s;line-height:1.5}
+.chat-input:focus{border-color:rgba(196,30,58,.4)}.chat-input::placeholder{color:rgba(255,255,255,.2)}
+.chat-send{background:var(--cr);border:none;color:var(--w);width:38px;height:38px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:all .25s;flex-shrink:0}
+.chat-send:hover{background:var(--cr-l);transform:scale(1.05)}.chat-send:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.wl-success{text-align:center;padding:3rem 2rem;display:none;flex-direction:column;align-items:center;gap:1rem}
+.wl-success.show{display:flex}
+.wl-success-icon{font-size:3.5rem;animation:pop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
+.wl-success h3{font-family:var(--fd);font-size:1.8rem;font-weight:800}
+.wl-success p{color:rgba(255,255,255,.45);font-size:.85rem;max-width:380px;line-height:1.7}
+
+/* RULES */
+.rules-pg-title{font-family:var(--fd);font-size:3.5rem;font-weight:800;letter-spacing:-1px;line-height:1}
+.rules-pg-title span{color:var(--cr)}
+.rules-layout{display:grid;grid-template-columns:240px 1fr;gap:2rem}
+.rules-sidebar{background:var(--d3);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:1.1rem;height:fit-content;position:sticky;top:84px}
+.sb-cat-title{font-size:.58rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cr);padding:0 .5rem;margin:1rem 0 .4rem}
+.sb-cat:first-child .sb-cat-title{margin-top:0}
+.sb-item{display:block;padding:.45rem .7rem;border-radius:4px;font-size:.78rem;color:rgba(255,255,255,.42);cursor:pointer;transition:all .2s;border:none;background:transparent;width:100%;text-align:left;font-family:var(--fb)}
+.sb-item:hover{color:var(--w);background:rgba(255,255,255,.04)}
+.sb-item.active{color:var(--w);background:rgba(196,30,58,.12);border-left:2px solid var(--cr);padding-left:calc(.7rem - 2px)}
+.rules-content{background:var(--d3);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:2.25rem}
+.rules-content-title{font-family:var(--fd);font-size:1.5rem;font-weight:700;margin-bottom:.25rem}
+.rules-content-sub{font-size:.68rem;color:rgba(255,255,255,.22);margin-bottom:1.75rem;letter-spacing:1px;text-transform:uppercase}
+.rule-list{list-style:none;display:flex;flex-direction:column;gap:.85rem}
+.rule-list li{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.7;padding-left:1.2rem;position:relative}
+.rule-list li::before{content:'▸';position:absolute;left:0;color:var(--cr);font-size:.68rem;top:4px}
+.rules-search{background:var(--d4);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:.6rem .95rem;color:var(--w);font-size:.78rem;font-family:var(--fb);width:240px;outline:none;transition:border-color .3s}
+.rules-search:focus{border-color:var(--cr)}.rules-search::placeholder{color:rgba(255,255,255,.2)}
+
+/* TEAM */
+.team-title{font-family:var(--fd);font-size:3.5rem;font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:.75rem}
+.team-title span{color:var(--cr)}
+.team-about{background:var(--d3);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:2.5rem;margin:2.5rem 0;position:relative;overflow:hidden}
+.team-about::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,30,58,.5),transparent)}
+.team-about p{color:rgba(255,255,255,.52);line-height:1.9;margin-bottom:1rem;font-size:.88rem}.team-about p strong{color:var(--w)}.team-about p:last-child{margin-bottom:0}
+.team-sec-label{font-size:.58rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--cr);text-align:center;margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}
+.team-sec-label::before,.team-sec-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(196,30,58,.3),transparent)}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:2rem}
+.member-card{text-align:center;transition:transform .3s}.member-card:hover{transform:translateY(-5px)}
+.member-av{width:86px;height:86px;border-radius:50%;margin:0 auto 1rem;background:var(--d4);border:2px solid rgba(196,30,58,.28);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:1.8rem;transition:all .3s}
+.member-card:hover .member-av{border-color:var(--cr);box-shadow:0 0 20px rgba(196,30,58,.3)}
+.member-av img{width:100%;height:100%;object-fit:cover}
+.member-name{font-weight:700;font-size:.88rem;margin-bottom:.2rem}
+.member-role{font-size:.65rem;color:var(--cr);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.member-desc{font-size:.72rem;color:rgba(255,255,255,.3);margin-top:.5rem;line-height:1.5}
+
+/* FOOTER */
+footer{background:var(--d2);padding:3.5rem 2rem 2rem;position:relative}
+footer::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,30,58,.3),transparent)}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2.5rem;flex-wrap:wrap;gap:2rem}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px}.footer-logo span{color:var(--cr)}
+.footer-tagline{font-size:.7rem;color:rgba(255,255,255,.2);margin-top:.5rem;max-width:280px;line-height:1.6}
+.footer-links{display:flex;flex-direction:column;gap:.5rem}
+.footer-links-title{font-size:.57rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.18);margin-bottom:.25rem}
+.footer-links a{font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;cursor:pointer;transition:color .2s;font-family:var(--fb)}
+.footer-links a:hover{color:var(--w)}
+.footer-socials{display:flex;gap:.55rem;flex-wrap:wrap}
+.social-btn{width:36px;height:36px;border-radius:6px;background:var(--d4);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:.95rem;text-decoration:none}
+.social-btn:hover{border-color:var(--cr);background:rgba(196,30,58,.12);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-size:.68rem;color:rgba(255,255,255,.18)}
+
+/* ADMIN */
+#admin-login{position:fixed;inset:0;background:rgba(7,7,9,.98);display:none;align-items:center;justify-content:center;z-index:9999}
+#admin-login.show{display:flex}
+.login-box{background:var(--d3);border:1px solid rgba(196,30,58,.22);border-radius:12px;padding:2.5rem;width:380px;max-width:95vw}
+.login-logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:3px;text-align:center;margin-bottom:.25rem}.login-logo span{color:var(--cr)}
+.login-sub{text-align:center;font-size:.68rem;color:rgba(255,255,255,.22);margin-bottom:2rem;letter-spacing:2px;text-transform:uppercase}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:.45rem}
+.field input,.field textarea,.field select{width:100%;background:var(--d4);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:.65rem .9rem;color:var(--w);font-size:.85rem;font-family:var(--fb);outline:none;transition:border-color .2s;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--cr)}
+.login-err{background:rgba(196,30,58,.1);border:1px solid rgba(196,30,58,.22);color:#f87185;font-size:.75rem;padding:.55rem .9rem;border-radius:4px;margin-bottom:1rem;display:none}
+.login-err.show{display:block}
+
+#admin-panel{display:none;min-height:100vh;background:var(--d)}
+#admin-panel.show{display:flex}
+.admin-sidebar{width:220px;min-height:100vh;background:var(--d2);border-right:1px solid rgba(255,255,255,.05);padding:1.5rem 0;flex-shrink:0;display:flex;flex-direction:column;overflow-y:auto}
+.admin-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;padding:0 1.25rem;margin-bottom:1.5rem;color:var(--w)}.admin-logo span{color:var(--cr)}
+.admin-sb-group{margin-bottom:.25rem}
+.admin-sb-group-title{font-size:.55rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.18);padding:.75rem 1.25rem .35rem}
+.admin-nav-item{display:flex;align-items:center;gap:.65rem;padding:.55rem 1.25rem;color:rgba(255,255,255,.4);cursor:pointer;transition:all .2s;font-size:.78rem;font-weight:600;letter-spacing:.3px;border:none;background:transparent;width:100%;text-align:left;font-family:var(--fb)}
+.admin-nav-item:hover{color:var(--w);background:rgba(255,255,255,.03)}
+.admin-nav-item.active{color:var(--w);background:rgba(196,30,58,.08);border-left:2px solid var(--cr)}
+.admin-nav-item .ic{font-size:.95rem;width:18px;text-align:center}
+.admin-logout{margin-top:auto;padding:1rem 1.25rem}
+.admin-main{flex:1;overflow:auto;min-width:0}
+.admin-header{padding:1.25rem 2rem;border-bottom:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem}
+.admin-header h1{font-family:var(--fh);font-size:1.3rem;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.admin-body{padding:1.75rem}
+.admin-section{display:none}.admin-section.active{display:block}
+
+/* ADMIN SUB-TABS */
+.sub-tabs{display:flex;gap:0;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:1.75rem}
+.sub-tab{padding:.55rem 1.2rem;font-size:.72rem;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,.4);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;border:none;background:transparent;text-transform:uppercase;font-family:var(--fb)}
+.sub-tab:hover{color:rgba(255,255,255,.7)}
+.sub-tab.active{color:var(--w);border-bottom-color:var(--cr)}
+.sub-panel{display:none}.sub-panel.active{display:block}
+
+/* ADMIN COMMON */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.1rem;margin-bottom:1.75rem}
+.stat-card{background:var(--d3);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:1.1rem}
+.stat-label{font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:.35rem}
+.stat-val{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:1px}
+.stat-val.red{color:var(--cr)}
+.table-wrap{background:var(--d3);border:1px solid rgba(255,255,255,.06);border-radius:6px;overflow:hidden;overflow-x:auto}
+.table-head{padding:.9rem 1.4rem;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between}
+.table-head h3{font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.42)}
+table{width:100%;border-collapse:collapse;min-width:460px}
+th{padding:.65rem 1.4rem;text-align:left;font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2);border-bottom:1px solid rgba(255,255,255,.05)}
+td{padding:.75rem 1.4rem;font-size:.78rem;color:rgba(255,255,255,.65);border-bottom:1px solid rgba(255,255,255,.03)}
+tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015)}
+.badge{display:inline-block;padding:2px 7px;border-radius:2px;font-size:.6rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.badge-red{background:rgba(196,30,58,.15);color:#f87185}
+.badge-green{background:rgba(34,197,94,.12);color:#4ade80}
+.badge-gray{background:rgba(255,255,255,.07);color:rgba(255,255,255,.38)}
+.badge-gold{background:rgba(201,168,76,.15);color:var(--gold-l)}
+.badge-blue{background:rgba(59,130,246,.12);color:#60a5fa}
+.badge-orange{background:rgba(234,88,12,.15);color:#fb923c}
+.action-btn{background:transparent;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);padding:3px 8px;border-radius:3px;font-size:.62rem;cursor:pointer;transition:all .2s;margin:0 2px;font-family:var(--fb)}
+.action-btn:hover{border-color:var(--cr);color:var(--cr)}.action-btn.danger:hover{border-color:#ef4444;color:#ef4444}.action-btn.ok:hover{border-color:#4ade80;color:#4ade80}
+.form-card{background:var(--d3);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:1.6rem;margin-bottom:1.4rem}
+.form-card h3{font-family:var(--fh);font-size:1rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.1rem;color:rgba(255,255,255,.65)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.tag-wrap{display:flex;flex-wrap:wrap;gap:.45rem;background:var(--d4);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:.45rem;min-height:40px;align-items:center;cursor:text}
+.tag-wrap input{border:none;background:transparent;color:var(--w);font-size:.82rem;outline:none;flex:1;min-width:100px;font-family:var(--fb)}
+.tag{background:rgba(196,30,58,.14);border:1px solid rgba(196,30,58,.3);color:#f87185;font-size:.68rem;padding:2px 7px;border-radius:2px;display:flex;align-items:center;gap:3px}
+.tag .rm{cursor:pointer;opacity:.6}
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--d4);border:1px solid rgba(196,30,58,.28);color:var(--w);padding:.8rem 1.1rem;border-radius:6px;font-size:.78rem;z-index:9999;transform:translateY(100px);opacity:0;transition:all .35s;display:flex;align-items:center;gap:.45rem;max-width:300px}
+.toast.show{transform:translateY(0);opacity:1}.toast.success{border-color:rgba(34,197,94,.3)}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:5000;display:none;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal{background:var(--d3);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:2rem;width:520px;max-width:95vw;max-height:90vh;overflow-y:auto}
+.modal h3{font-family:var(--fh);font-size:1.1rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center}
+.modal-close{background:none;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:1.2rem;transition:color .2s}.modal-close:hover{color:var(--w)}
+.confirm-modal p{color:rgba(255,255,255,.5);margin-bottom:1.5rem;font-size:.85rem;text-align:center}
+.confirm-actions{display:flex;gap:1rem;justify-content:center}
+.avatar-preview{width:76px;height:76px;border-radius:50%;background:var(--d4);border:2px solid rgba(196,30,58,.22);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1rem;overflow:hidden}
+.avatar-preview img{width:100%;height:100%;object-fit:cover}
+.empty-state{text-align:center;padding:3rem 2rem;color:rgba(255,255,255,.2)}
+.empty-state .icon{font-size:2.5rem;margin-bottom:.75rem;opacity:.5}
+.empty-state p{font-size:.8rem}
+
+/* Toggle */
+.toggle-wrap{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;background:var(--d4);border:1px solid rgba(255,255,255,.08);border-radius:6px;margin-bottom:1rem}
+.toggle-info{display:flex;flex-direction:column;gap:.2rem}
+.toggle-label{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.8)}
+.toggle-desc{font-size:.7rem;color:rgba(255,255,255,.28)}
+.toggle{position:relative;width:42px;height:22px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-sl{position:absolute;inset:0;background:rgba(255,255,255,.1);border-radius:22px;cursor:pointer;transition:background .3s}
+.toggle-sl::before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:var(--w);border-radius:50%;transition:transform .3s;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.toggle input:checked + .toggle-sl{background:var(--cr)}
+.toggle input:checked + .toggle-sl::before{transform:translateX(20px)}
+
+/* BG grid */
+.bg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem;margin-bottom:1.25rem}
+.bg-swatch{border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid rgba(255,255,255,.06);transition:all .3s;position:relative}
+.bg-swatch:hover{border-color:rgba(196,30,58,.4);transform:scale(1.03)}.bg-swatch.active{border-color:var(--cr);box-shadow:0 0 0 2px rgba(196,30,58,.28)}
+.bg-sw-prev{height:75px;width:100%}
+.bg-sw-info{padding:.55rem .7rem;background:var(--d4)}
+.bg-sw-name{font-size:.68rem;font-weight:600;color:rgba(255,255,255,.6)}
+.bg-sw-del{position:absolute;top:.3rem;right:.3rem;background:rgba(0,0,0,.65);border:none;color:rgba(255,255,255,.5);width:18px;height:18px;border-radius:50%;cursor:pointer;font-size:.65rem;display:none;align-items:center;justify-content:center;transition:all .2s}
+.bg-swatch:hover .bg-sw-del{display:flex}.bg-sw-del:hover{background:var(--cr);color:var(--w)}
+.bg-sw-check{position:absolute;top:.3rem;left:.3rem;background:var(--cr);border:none;color:var(--w);width:16px;height:16px;border-radius:50%;font-size:.6rem;display:none;align-items:center;justify-content:center}
+.bg-swatch.active .bg-sw-check{display:flex}
+
+/* WL admin */
+.wl-q-item{display:flex;align-items:flex-start;justify-content:space-between;padding:.9rem 1.1rem;background:var(--d4);border:1px solid rgba(255,255,255,.07);border-radius:6px;margin-bottom:.6rem;gap:1rem;transition:border-color .2s}
+.wl-q-item:hover{border-color:rgba(196,30,58,.2)}
+.wl-q-main{flex:1}
+.wl-q-text{font-size:.83rem;color:rgba(255,255,255,.72);margin-bottom:.3rem;font-weight:500}
+.wl-q-meta{display:flex;gap:.6rem;align-items:center}
+.wl-q-type{background:rgba(196,30,58,.12);color:#f87185;border-radius:3px;padding:1px 6px;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.wl-q-req{background:rgba(234,179,8,.1);color:#fbbf24;border-radius:3px;padding:1px 6px;font-size:.6rem;font-weight:700}
+.app-answer-item{background:var(--d4);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:.9rem 1rem;margin-bottom:.7rem}
+.app-answer-q{font-size:.65rem;color:rgba(255,255,255,.3);letter-spacing:.5px;margin-bottom:.4rem;text-transform:uppercase;font-weight:700}
+.app-answer-a{font-size:.83rem;color:rgba(255,255,255,.75);line-height:1.6}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .htp-inner{gap:3rem}.rules-layout{grid-template-columns:200px 1fr}
+  .nav-links{gap:1.25rem}
+}
+@media(max-width:900px){
+  .nav-links{display:none}.hamburger{display:flex}
+  .htp-inner{grid-template-columns:1fr}.htp-img{display:none}
+  .rules-layout{grid-template-columns:1fr}.rules-sidebar{position:static}
+  .footer-top{flex-direction:column}.form-row{grid-template-columns:1fr}
+  .admin-sidebar{width:195px}
+}
+@media(max-width:640px){
+  .nav-inner{padding:0 1.1rem}.nav-right .btn:not(.btn-primary){display:none}
+  .hero-title{letter-spacing:3px}
+  .hero-actions{flex-direction:column;align-items:center}
+  .hero-actions .btn{width:100%;max-width:260px;justify-content:center}
+  .news-grid,.store-grid,.updates-grid,.features-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .wl-page-wrap{padding:1.5rem 1rem}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .bg-grid{grid-template-columns:repeat(3,1fr)}
+  .rules-search{width:100%}
+  .admin-sidebar{display:none}
+  #admin-panel.show{display:block}.admin-main{width:100%}.admin-body{padding:1.1rem}
+}
+</style>
+</head>
+<body>
+<div class="cursor-glow" id="cursor-glow"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="showPage('home')">CRIMSON<span>CITY</span></div>
+    <div class="nav-links">
+      <a onclick="showPage('home')" id="nav-home" class="active">Início</a>
+      <a onclick="showPage('news')" id="nav-news">Notícias</a>
+      <a onclick="showPage('store')" id="nav-store">Loja</a>
+      <a onclick="showPage('howtoplay')" id="nav-howtoplay">Como Jogar</a>
+      <a onclick="showPage('whitelist')" id="nav-whitelist">Allowlist</a>
+      <a onclick="showPage('rules')" id="nav-rules">Regras</a>
+      <a onclick="showPage('team')" id="nav-team">Equipe</a>
+    </div>
+    <div class="nav-right">
+      <div class="players-badge"><span class="dot-pulse"></span><span id="nav-players">0 Jogadores</span></div>
+      <button class="btn btn-outline btn-sm" onclick="showAdminLogin()">Admin</button>
+      <button class="btn btn-primary btn-sm" onclick="showPage('whitelist')">Fazer WL</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="showPage('home');closeMobile()">🏠 Início</a>
+  <a onclick="showPage('news');closeMobile()">📰 Notícias</a>
+  <a onclick="showPage('store');closeMobile()">🛍️ Loja</a>
+  <a onclick="showPage('howtoplay');closeMobile()">🎮 Como Jogar</a>
+  <a onclick="showPage('whitelist');closeMobile()">📝 Allowlist</a>
+  <a onclick="showPage('rules');closeMobile()">📋 Regras</a>
+  <a onclick="showPage('team');closeMobile()">👥 Equipe</a>
+  <div class="mobile-btns">
+    <button class="btn btn-primary btn-sm" onclick="showPage('whitelist');closeMobile()">Fazer WL</button>
+    <button class="btn btn-outline btn-sm" onclick="showAdminLogin();closeMobile()">Admin</button>
+  </div>
+</div>
+
+<!-- ===== HOME ===== -->
+<div id="page-home" class="page active">
+  <section class="hero" id="main-hero">
+    <div class="hero-bg-layer" id="hero-bg-layer"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-particles" id="hero-particles"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">🇧🇷 Experiência de Roleplay Americana</div>
+      <h1 class="hero-title">
+        <span class="word line1" id="hero-line1" data-text="CRIMSON">CRIMSON</span>
+        <span class="word line2" id="hero-line2">CITY</span>
+      </h1>
+      <p class="hero-sub">Construa sua história do zero em uma cidade onde cada decisão molda a sua identidade. Seja quem você quiser e deixe sua marca na cidade mais perigosa do país.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" style="font-size:.8rem;padding:.85rem 2rem" onclick="showPage('whitelist')">✦ Fazer Allowlist</button>
+        <button class="btn btn-gold" style="font-size:.8rem;padding:.85rem 2rem" onclick="openDiscord()">💬 Entrar no Discord</button>
+      </div>
+    </div>
+    <div class="hero-scroll"><div class="scroll-line"></div>SCROLL</div>
+  </section>
+
+  <section class="updates-section">
+    <div class="sec-head reveal">
+      <div class="sec-label">Últimas Atualizações</div>
+      <h2 class="sec-title">O que há de <span>novo</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="updates-grid" id="updates-grid"></div>
+  </section>
+
+  <section class="features-section">
+    <div class="features-inner">
+      <div class="sec-head reveal">
+        <div class="sec-label">Por que Crimson City</div>
+        <h2 class="sec-title">Tudo que você <span>precisa</span></h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal"><div class="feature-icon">🌆</div><div class="feature-title">Mundo Vivo</div><div class="feature-text">Cidade dinâmica que respira e evolui. Cada esquina guarda uma história.</div></div>
+        <div class="feature-card reveal" style="transition-delay:.08s"><div class="feature-icon">⚖️</div><div class="feature-title">RP Profundo</div><div class="feature-text">Ambiente sério com admins dedicados e regras rigorosas para imersão total.</div></div>
+        <div class="feature-card reveal" style="transition-delay:.16s"><div class="feature-icon">🏢</div><div class="feature-title">Economia Real</div><div class="feature-text">Abra negócios, controle territórios ou suba na vida corporativa.</div></div>
+        <div class="feature-card reveal" style="transition-delay:.24s"><div class="feature-icon">🚔</div><div class="feature-title">Lei & Crime</div><div class="feature-text">Seja policial, criminoso ou advogado. Você decide sua história.</div></div>
+        <div class="feature-card reveal" style="transition-delay:.32s"><div class="feature-icon">🎭</div><div class="feature-title">Facções Únicas</div><div class="feature-text">Crie ou entre em facções com roteiros e conteúdo exclusivos.</div></div>
+        <div class="feature-card reveal" style="transition-delay:.40s"><div class="feature-icon">🛡️</div><div class="feature-title">Anti-Cheat</div><div class="feature-text">Sistemas avançados para garantir uma experiência justa para todos.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">CRIMSON<span>CITY</span></div>
+          <p class="footer-tagline">Servidor independente de RP no MTA. GTA e marcas pertencem à Take-Two Interactive.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-title">Navegação</div>
+          <a onclick="showPage('home')">Início</a>
+          <a onclick="showPage('news')">Notícias</a>
+          <a onclick="showPage('store')">Loja</a>
+          <a onclick="showPage('rules')">Regras</a>
+          <a onclick="showPage('team')">Equipe</a>
+        </div>
+        <div>
+          <div class="footer-links-title" style="margin-bottom:.7rem">Redes Sociais</div>
+          <div class="footer-socials">
+            <a class="social-btn" onclick="openDiscord()" title="Discord">💬</a>
+            <a class="social-btn" title="YouTube">▶</a>
+            <a class="social-btn" title="Instagram">📷</a>
+            <a class="social-btn" title="TikTok">♪</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Crimson City RP. Todos os direitos reservados.</div>
+        <div class="footer-copy">Feito com ❤ pela Equipe Crimson City</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== NOTÍCIAS ===== -->
+<div id="page-news" class="page">
+  <div class="page-wrap">
+    <div class="sec-head reveal">
+      <div class="sec-label">Blog & Atualizações</div>
+      <h2 class="sec-title">Últimas <span>Notícias</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="news-grid" id="news-grid"></div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">© 2026 Crimson City RP.</div></div></div></footer>
+</div>
+
+<!-- Post único -->
+<div id="page-newspost" class="page">
+  <div class="page-wrap" style="max-width:860px">
+    <div class="back-link" onclick="showPage('news')">← Voltar às Notícias</div>
+    <div id="post-content-area"></div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">© 2026 Crimson City RP.</div></div></div></footer>
+</div>
+
+<!-- ===== LOJA ===== -->
+<div id="page-store" class="page">
+  <div class="page-wrap">
+    <div class="sec-head reveal">
+      <div class="sec-label">Itens & Vantagens</div>
+      <h2 class="sec-title">Nossa <span>Loja</span></h2>
+      <div class="sec-line"></div>
+      <p style="color:rgba(255,255,255,.38);font-size:.85rem;margin-top:.75rem">Adquira itens exclusivos e suporte o servidor</p>
+    </div>
+    <div class="store-cats" id="store-cats"></div>
+    <div class="store-grid" id="store-grid"></div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">© 2026 Crimson City RP.</div></div></div></footer>
+</div>
+
+<!-- ===== COMO JOGAR ===== -->
+<div id="page-howtoplay" class="page">
+  <div style="max-width:1100px;margin:0 auto;padding:3rem 2rem">
+    <div class="htp-inner">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:.6rem;background:rgba(196,30,58,.1);border:1px solid rgba(196,30,58,.25);color:#f87185;font-size:.6rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:.4rem 1rem;border-radius:2px;margin-bottom:1.25rem">🎮 Primeiros Passos</div>
+        <h2 class="htp-title">Comece sua <span>jornada</span></h2>
+        <p class="htp-desc">Siga os passos abaixo para se conectar ao servidor e criar sua própria história. O único limite é a sua criatividade!</p>
+        <div class="htp-steps">
+          <div class="step-item"><div class="step-num">01</div><div class="step-title">Instale GTA & MTA</div><div class="step-text">Você precisa do <strong>GTA: San Andreas</strong> e <strong>MTA: San Andreas</strong> instalados no computador.</div><div class="step-btns"><button class="btn btn-dark btn-sm" onclick="window.open('https://store.steampowered.com/app/12120','_blank')">⬇ GTA</button><button class="btn btn-dark btn-sm" onclick="window.open('https://multitheftauto.com','_blank')">⬇ MTA</button></div></div>
+          <div class="step-item"><div class="step-num">02</div><div class="step-title">Faça o Allowlist</div><div class="step-text">Responda ao questionário para garantir seu acesso à <strong style="color:var(--cr)">Crimson City</strong>.</div><div class="step-btns"><button class="btn btn-primary btn-sm" onclick="showPage('whitelist')">✦ Fazer Allowlist</button></div></div>
+          <div class="step-item"><div class="step-num">03</div><div class="step-title">Entre no Servidor</div><div class="step-text">Clique para abrir o <strong style="color:var(--cr)">MTA</strong> direto no servidor e faça login.</div><div class="step-btns"><button class="btn btn-gold btn-sm">↗ Abrir MTA</button></div></div>
+        </div>
+      </div>
+      <div class="htp-img">
+        <div class="htp-img-box"><div class="htp-ph"><span class="bi">🏙️</span><p>Arte em breve</p></div></div>
+        <div class="server-info">
+          <div class="server-info-head">Informações do Servidor</div>
+          <div class="srv-row"><span>Status</span><span style="color:#4ade80;font-weight:700">🟢 Online</span></div>
+          <div class="srv-row"><span>Jogadores</span><span id="htp-players">0 / 100</span></div>
+          <div class="srv-row"><span>Modo</span><span>Roleplay</span></div>
+          <div class="srv-row"><span>Idioma</span><span>🇧🇷 Português</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">© 2026 Crimson City RP.</div></div></div></footer>
+</div>
+
+<!-- ===== ALLOWLIST CHAT ===== -->
+<div id="page-whitelist" class="page">
+  <div class="wl-page-wrap">
+    <div class="wl-header reveal">
+      <div class="sec-label">Candidatura</div>
+      <h2>Allowlist <span>Crimson City</span></h2>
+      <p>Responda às perguntas do nosso assistente. Após aprovação você receberá acesso ao servidor.</p>
+    </div>
+    <div class="chat-window" id="chat-window">
+      <div class="chat-progress" id="chat-progress" style="display:none">
+        <span class="prog-text" id="prog-text">0 de 0</span>
+        <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+      </div>
+      <div class="chat-header">
+        <div class="chat-bot-av">🤖</div>
+        <div><div class="chat-bot-name">Crimson Bot</div><div class="chat-bot-status">● Online</div></div>
+      </div>
+      <div class="chat-msgs" id="chat-msgs"></div>
+      <div class="wl-success" id="wl-success">
+        <div class="wl-success-icon">✅</div>
+        <h3>Candidatura Enviada!</h3>
+        <p>Sua candidatura foi registrada. Nossa equipe irá analisá-la em breve. Fique de olho no nosso Discord!</p>
+        <button class="btn btn-gold" onclick="openDiscord()">💬 Entrar no Discord</button>
+        <button class="btn btn-ghost btn-sm" onclick="showPage('home')" style="margin-top:.3rem">← Voltar ao início</button>
+      </div>
+      <div class="chat-input-area" id="chat-input-area">
+        <textarea class="chat-input" id="chat-input" placeholder="Digite sua resposta..." rows="1" onkeydown="handleChatKey(event)" oninput="autoResizeTA(this)"></textarea>
+        <button class="chat-send" id="chat-send" onclick="sendChatAnswer()">➤</button>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">© 2026 Crimson City RP.</div></div></div></footer>
+</div>
+
+<!-- ===== REGRAS ===== -->
+<div id="page-rules" class="page">
+  <div style="max-width:1200px;margin:0 auto;padding:3rem 2rem">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1.5rem">
+      <div>
+        <h1 class="rules-pg-title">Nossas <span>Regras</span></h1>
+        <p style="color:rgba(255,255,255,.3);max-width:440px;margin-top:.7rem;font-size:.82rem;line-height:1.7">Leia com atenção. O descumprimento pode resultar em punições.</p>
+      </div>
+      <input class="rules-search" type="text" placeholder="Buscar regras..." oninput="filterRules(this.value)">
+    </div>
+    <div class="rules-layout">
+      <div class="rules-sidebar" id="rules-sidebar"></div>
+      <div class="rules-content" id="rules-content-area"><div class="empty-state"><div class="icon">📋</div><p>Selecione uma categoria.</p></div></div>
+    </div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">As regras podem ser atualizadas a qualquer momento.</div></div></div></footer>
+</div>
+
+<!-- ===== EQUIPE ===== -->
+<div id="page-team" class="page">
+  <div style="max-width:1200px;margin:0 auto;padding:3rem 2rem">
+    <h1 class="team-title">Nossa <span>Equipe</span></h1>
+    <p style="color:rgba(255,255,255,.4);font-size:.88rem;line-height:1.8;max-width:580px">Conheça quem constrói, protege e evolui a Crimson City diariamente.</p>
+    <div class="team-about">
+      <p>A equipe é formada por <strong>administradores, moderadores, desenvolvedores e assistentes</strong> comprometidos com um ambiente <strong>sério, organizado e imersivo</strong>.</p>
+      <p>Todos passam por <strong>rigoroso processo de seleção</strong>, garantindo um ambiente <strong>justo e respeitoso</strong> para toda a comunidade.</p>
+    </div>
+    <div class="team-sec-label">👥 EQUIPE ADMINISTRATIVA</div>
+    <div class="team-grid" id="team-grid"><div class="empty-state" style="grid-column:1/-1"><div class="icon">👥</div><p>Membros aparecerão aqui.</p></div></div>
+  </div>
+  <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">© 2026 Crimson City RP.</div></div></div></footer>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div id="admin-login">
+  <div class="login-box">
+    <div class="login-logo">CRIMSON<span>CITY</span></div>
+    <div class="login-sub">Painel Administrativo</div>
+    <div class="login-err" id="login-err">Credenciais incorretas. Tente novamente.</div>
+    <div class="field"><label>Usuário</label><input type="text" id="login-user" placeholder="admin"></div>
+    <div class="field"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;padding:.75rem" onclick="doLogin()">Entrar</button>
+    <button class="btn btn-outline" style="width:100%;justify-content:center;padding:.55rem;margin-top:.65rem;font-size:.68rem" onclick="hideAdminLogin()">← Voltar ao site</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div class="admin-sidebar">
+    <div class="admin-logo">CRIMSON<span>CITY</span></div>
+
+    <div class="admin-sb-group">
+      <div class="admin-sb-group-title">Geral</div>
+      <button class="admin-nav-item active" onclick="adminTab('dashboard')" id="atab-dashboard"><span class="ic">📊</span>Dashboard</button>
+    </div>
+
+    <div class="admin-sb-group">
+      <div class="admin-sb-group-title">Conteúdo</div>
+      <button class="admin-nav-item" onclick="adminTab('news')" id="atab-news"><span class="ic">📰</span>Notícias</button>
+      <button class="admin-nav-item" onclick="adminTab('store')" id="atab-store"><span class="ic">🛍️</span>Loja</button>
+      <button class="admin-nav-item" onclick="adminTab('updates')" id="atab-updates"><span class="ic">📢</span>Atualizações</button>
+      <button class="admin-nav-item" onclick="adminTab('rules')" id="atab-rules"><span class="ic">📋</span>Regras</button>
+    </div>
+
+    <div class="admin-sb-group">
+      <div class="admin-sb-group-title">Comunidade</div>
+      <button class="admin-nav-item" onclick="adminTab('wl')" id="atab-wl"><span class="ic">📝</span>Allowlist</button>
+      <button class="admin-nav-item" onclick="adminTab('team')" id="atab-team"><span class="ic">👥</span>Equipe</button>
+      <button class="admin-nav-item" onclick="adminTab('users')" id="atab-users"><span class="ic">👤</span>Usuários</button>
+    </div>
+
+    <div class="admin-sb-group">
+      <div class="admin-sb-group-title">Sistema</div>
+      <button class="admin-nav-item" onclick="adminTab('appearance')" id="atab-appearance"><span class="ic">🎨</span>Aparência</button>
+      <button class="admin-nav-item" onclick="adminTab('settings')" id="atab-settings"><span class="ic">⚙️</span>Configurações</button>
+    </div>
+
+    <div class="admin-logout"><button class="btn btn-outline btn-sm" style="width:100%;justify-content:center" onclick="adminLogout()">⬅ Sair</button></div>
+  </div>
+
+  <div class="admin-main">
+    <div class="admin-header">
+      <h1 id="admin-section-title">Dashboard</h1>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.28)">Bem-vindo, <strong style="color:var(--w)" id="admin-welcome-name">Admin</strong></div>
+    </div>
+    <div class="admin-body">
+
+      <!-- DASHBOARD -->
+      <div class="admin-section active" id="asec-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-label">Candidaturas WL</div><div class="stat-val red" id="stat-wl">0</div></div>
+          <div class="stat-card"><div class="stat-label">Pendentes WL</div><div class="stat-val red" id="stat-wl-p">0</div></div>
+          <div class="stat-card"><div class="stat-label">Posts</div><div class="stat-val red" id="stat-posts">0</div></div>
+          <div class="stat-card"><div class="stat-label">Produtos</div><div class="stat-val red" id="stat-prods">0</div></div>
+          <div class="stat-card"><div class="stat-label">Regras</div><div class="stat-val red" id="stat-rules">0</div></div>
+          <div class="stat-card"><div class="stat-label">Membros</div><div class="stat-val red" id="stat-team">0</div></div>
+        </div>
+        <div class="table-wrap">
+          <div class="table-head"><h3>Candidaturas Recentes</h3><button class="action-btn" onclick="adminTab('wl')">Ver todas →</button></div>
+          <table><thead><tr><th>Resposta inicial</th><th>Data</th><th>Status</th><th>Ação</th></tr></thead>
+          <tbody id="dash-wl-table"><tr><td colspan="4" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhuma candidatura.</td></tr></tbody></table>
+        </div>
+      </div>
+
+      <!-- NOTÍCIAS -->
+      <div class="admin-section" id="asec-news">
+        <div class="sub-tabs">
+          <button class="sub-tab active" onclick="switchSubTab('news','lista',this)">📋 Lista de Posts</button>
+          <button class="sub-tab" onclick="switchSubTab('news','add',this)">➕ Adicionar Post</button>
+        </div>
+        <div class="sub-panel active" id="news-lista">
+          <div class="table-wrap">
+            <div class="table-head"><h3>Posts Publicados</h3><span id="posts-count" style="font-size:.7rem;color:rgba(255,255,255,.25)"></span></div>
+            <table><thead><tr><th>Título</th><th>Categoria</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="posts-table"></tbody></table>
+          </div>
+        </div>
+        <div class="sub-panel" id="news-add">
+          <div class="form-card">
+            <h3>📰 Criar / Editar Post</h3>
+            <input type="hidden" id="edit-post-id">
+            <div class="form-row">
+              <div class="field"><label>Título</label><input type="text" id="post-title" placeholder="Título do post..."></div>
+              <div class="field"><label>Categoria</label><input type="text" id="post-cat" placeholder="Ex: Atualização, Evento..."></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>URL da Imagem</label><input type="text" id="post-img" placeholder="https://..."></div>
+              <div class="field"><label>Data</label><input type="text" id="post-date" placeholder="Ex: 25 Mai 2026"></div>
+            </div>
+            <div class="field"><label>Resumo (aparece no card)</label><textarea id="post-excerpt" rows="2" placeholder="Breve descrição do post..."></textarea></div>
+            <div class="field"><label>Conteúdo completo (HTML aceito)</label><textarea id="post-content" rows="7" placeholder="&lt;p&gt;Conteúdo do post aqui...&lt;/p&gt;"></textarea></div>
+            <div class="field"><label>Publicado</label><select id="post-published"><option value="1">Sim - Visível no site</option><option value="0">Não - Rascunho</option></select></div>
+            <div style="display:flex;gap:.7rem;margin-top:.5rem">
+              <button class="btn btn-primary btn-sm" onclick="savePost()">💾 Salvar Post</button>
+              <button class="btn btn-outline btn-sm" onclick="clearPostForm()">✕ Limpar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOJA -->
+      <div class="admin-section" id="asec-store">
+        <div class="sub-tabs">
+          <button class="sub-tab active" onclick="switchSubTab('store','produtos',this)">🛍️ Produtos</button>
+          <button class="sub-tab" onclick="switchSubTab('store','addprod',this)">➕ Adicionar</button>
+        </div>
+        <div class="sub-panel active" id="store-produtos">
+          <div class="table-wrap">
+            <div class="table-head"><h3>Produtos da Loja</h3><span id="prods-count" style="font-size:.7rem;color:rgba(255,255,255,.25)"></span></div>
+            <table><thead><tr><th>Nome</th><th>Categoria</th><th>Preço</th><th>Badge</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="prods-table"></tbody></table>
+          </div>
+        </div>
+        <div class="sub-panel" id="store-addprod">
+          <div class="form-card">
+            <h3>🛍️ Criar / Editar Produto</h3>
+            <input type="hidden" id="edit-prod-id">
+            <div class="form-row">
+              <div class="field"><label>Nome</label><input type="text" id="prod-name" placeholder="VIP Gold"></div>
+              <div class="field"><label>Categoria</label><input type="text" id="prod-cat" placeholder="VIP, Items, Veículos..."></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label>Preço (ex: R$ 29,90)</label><input type="text" id="prod-price" placeholder="R$ 29,90"></div>
+              <div class="field"><label>Badge</label><select id="prod-badge"><option value="">Nenhum</option><option value="POPULAR">POPULAR</option><option value="NOVO">NOVO</option><option value="PROMOÇÃO">PROMOÇÃO</option></select></div>
+            </div>
+            <div class="field"><label>URL da Imagem</label><input type="text" id="prod-img" placeholder="https://..."></div>
+            <div class="field"><label>Descrição</label><textarea id="prod-desc" rows="2" placeholder="Descrição do produto..."></textarea></div>
+            <div class="form-row">
+              <div class="field"><label>Link de Compra</label><input type="text" id="prod-link" placeholder="https://discord.gg/..."></div>
+              <div class="field"><label>Disponível</label><select id="prod-avail"><option value="1">Sim</option><option value="0">Não</option></select></div>
+            </div>
+            <div style="display:flex;gap:.7rem;margin-top:.5rem">
+              <button class="btn btn-primary btn-sm" onclick="saveProduct()">💾 Salvar Produto</button>
+              <button class="btn btn-outline btn-sm" onclick="clearProdForm()">✕ Limpar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ATUALIZAÇÕES -->
+      <div class="admin-section" id="asec-updates">
+        <div class="form-card"><h3>➕ Adicionar / Editar</h3>
+          <input type="hidden" id="edit-upd-id">
+          <div class="form-row"><div class="field"><label>Tag</label><input type="text" id="upd-tag" placeholder="🔴 NOVIDADE"></div><div class="field"><label>Data</label><input type="text" id="upd-date" placeholder="Maio 2026"></div></div>
+          <div class="field"><label>Título</label><input type="text" id="upd-title" placeholder="Título..."></div>
+          <div class="field"><label>Descrição</label><textarea id="upd-text" rows="2" placeholder="O que mudou?"></textarea></div>
+          <div style="display:flex;gap:.7rem;margin-top:.5rem"><button class="btn btn-primary btn-sm" onclick="saveUpdate()">💾 Salvar</button><button class="btn btn-outline btn-sm" onclick="clearUpdForm()">✕ Limpar</button></div>
+        </div>
+        <div class="table-wrap"><div class="table-head"><h3>Atualizações</h3></div>
+          <table><thead><tr><th>Tag</th><th>Título</th><th>Data</th><th>Ações</th></tr></thead><tbody id="updates-table"></tbody></table>
+        </div>
+      </div>
+
+      <!-- REGRAS -->
+      <div class="admin-section" id="asec-rules">
+        <div class="form-card"><h3>➕ Adicionar / Editar Regra</h3>
+          <input type="hidden" id="edit-rule-id">
+          <div class="form-row"><div class="field"><label>Categoria</label><input type="text" id="r-cat" placeholder="Regras Gerais" list="r-cats-list"><datalist id="r-cats-list"></datalist></div><div class="field"><label>Subcategoria</label><input type="text" id="r-subcat" placeholder="Áreas Seguras"></div></div>
+          <div class="field"><label>Texto da Regra</label><textarea id="r-text" rows="3" placeholder="Descreva claramente..."></textarea></div>
+          <div style="display:flex;gap:.7rem;margin-top:.5rem"><button class="btn btn-primary btn-sm" onclick="saveRule()">💾 Salvar</button><button class="btn btn-outline btn-sm" onclick="clearRuleForm()">✕ Limpar</button></div>
+        </div>
+        <div class="table-wrap"><div class="table-head"><h3>Regras</h3><span id="rules-count" style="font-size:.7rem;color:rgba(255,255,255,.25)"></span></div>
+          <table><thead><tr><th>Categoria</th><th>Subcategoria</th><th>Regra</th><th>Ações</th></tr></thead><tbody id="rules-table"></tbody></table>
+        </div>
+      </div>
+
+      <!-- ALLOWLIST -->
+      <div class="admin-section" id="asec-wl">
+        <div class="sub-tabs">
+          <button class="sub-tab active" onclick="switchSubTab('wl','perguntas',this)">❓ Perguntas</button>
+          <button class="sub-tab" onclick="switchSubTab('wl','candidaturas',this)">📋 Candidaturas <span id="wl-pending-badge" style="background:var(--cr);color:var(--w);border-radius:10px;padding:0 5px;font-size:.6rem;margin-left:3px"></span></button>
+        </div>
+        <!-- Perguntas -->
+        <div class="sub-panel active" id="wl-perguntas">
+          <div class="form-card">
+            <h3>Adicionar / Editar Pergunta</h3>
+            <input type="hidden" id="edit-q-id">
+            <div class="field" style="grid-column:1/-1"><label>Texto da Pergunta</label><input type="text" id="q-text" placeholder="Ex: Qual é o seu nickname no MTA?"></div>
+            <div class="form-row">
+              <div class="field"><label>Tipo</label><select id="q-type" onchange="toggleQOptions()"><option value="text">Texto livre</option><option value="textarea">Texto longo</option><option value="choice">Múltipla escolha</option></select></div>
+              <div class="field"><label>Obrigatória</label><select id="q-required"><option value="1">Sim</option><option value="0">Não</option></select></div>
+            </div>
+            <div class="field" id="q-options-field" style="display:none">
+              <label>Opções (Enter para adicionar)</label>
+              <div class="tag-wrap" id="q-opts-wrap"><input type="text" id="q-opts-input" placeholder="Digite e pressione Enter" onkeydown="addQOpt(event)"></div>
+            </div>
+            <div style="display:flex;gap:.7rem;margin-top:.5rem"><button class="btn btn-primary btn-sm" onclick="saveQuestion()">💾 Salvar</button><button class="btn btn-outline btn-sm" onclick="clearQForm()">✕ Limpar</button></div>
+          </div>
+          <div class="form-card"><h3 style="display:flex;align-items:center;justify-content:space-between">Perguntas Ativas<span id="q-count" style="font-size:.68rem;color:rgba(255,255,255,.28);font-weight:400;text-transform:none;letter-spacing:0"></span></h3><div id="questions-list"></div></div>
+        </div>
+        <!-- Candidaturas -->
+        <div class="sub-panel" id="wl-candidaturas">
+          <div class="table-wrap">
+            <div class="table-head"><h3>Candidaturas</h3><span id="wl-apps-count" style="font-size:.7rem;color:rgba(255,255,255,.25)"></span></div>
+            <table><thead><tr><th>#</th><th>Data</th><th>1ª Resposta</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody id="wl-apps-table"></tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- EQUIPE -->
+      <div class="admin-section" id="asec-team">
+        <div class="form-card"><h3>➕ Adicionar / Editar Membro</h3>
+          <input type="hidden" id="edit-member-id">
+          <div style="text-align:center;margin-bottom:1rem"><div class="avatar-preview" id="member-av-prev">👤</div><div style="font-size:.65rem;color:rgba(255,255,255,.2)">URL do avatar abaixo</div></div>
+          <div class="form-row"><div class="field"><label>Nome / Nick</label><input type="text" id="m-name" placeholder="Luccas"></div><div class="field"><label>URL Avatar</label><input type="text" id="m-avatar" placeholder="https://..." oninput="previewAv(this.value)"></div></div>
+          <div class="form-row"><div class="field"><label>Cargo</label><input type="text" id="m-role" placeholder="Fundador"></div><div class="field"><label>Categoria</label><select id="m-cat"><option>Equipe Administrativa</option><option>Equipe de Moderação</option><option>Equipe de Desenvolvimento</option><option>Equipe de Suporte</option></select></div></div>
+          <div class="field"><label>Descrição</label><textarea id="m-desc" rows="2" placeholder="Breve descrição..."></textarea></div>
+          <div style="display:flex;gap:.7rem;margin-top:.5rem"><button class="btn btn-primary btn-sm" onclick="saveMember()">💾 Salvar</button><button class="btn btn-outline btn-sm" onclick="clearMemberForm()">✕ Limpar</button></div>
+        </div>
+        <div class="table-wrap"><div class="table-head"><h3>Membros</h3></div>
+          <table><thead><tr><th>Av.</th><th>Nome</th><th>Cargo</th><th>Categoria</th><th>Ações</th></tr></thead><tbody id="team-table"></tbody></table>
+        </div>
+      </div>
+
+      <!-- USUÁRIOS -->
+      <div class="admin-section" id="asec-users">
+        <div class="form-card"><h3>➕ Adicionar / Editar Usuário</h3>
+          <input type="hidden" id="edit-user-id">
+          <div class="form-row"><div class="field"><label>Usuário</label><input type="text" id="u-username" placeholder="usuario123"></div><div class="field"><label>Senha</label><input type="password" id="u-password" placeholder="Mínimo 6 chars"></div></div>
+          <div class="form-row"><div class="field"><label>Email</label><input type="text" id="u-email" placeholder="email@..."></div><div class="field"><label>Cargo</label><select id="u-role"><option value="admin">Admin</option><option value="moderator">Moderador</option><option value="vip">VIP</option><option value="player">Jogador</option></select></div></div>
+          <div class="field"><label>Status</label><select id="u-status"><option value="active">Ativo</option><option value="pending">Pendente</option><option value="banned">Banido</option></select></div>
+          <div style="display:flex;gap:.7rem;margin-top:.5rem"><button class="btn btn-primary btn-sm" onclick="saveUser()">💾 Salvar</button><button class="btn btn-outline btn-sm" onclick="clearUserForm()">✕ Limpar</button></div>
+        </div>
+        <div class="table-wrap"><div class="table-head"><h3>Usuários</h3><span id="users-count" style="font-size:.7rem;color:rgba(255,255,255,.25)"></span></div>
+          <table><thead><tr><th>Usuário</th><th>Email</th><th>Cargo</th><th>Status</th><th>Ações</th></tr></thead><tbody id="users-table"></tbody></table>
+        </div>
+      </div>
+
+      <!-- APARÊNCIA -->
+      <div class="admin-section" id="asec-appearance">
+        <div class="form-card">
+          <h3>✨ Animação das Letras</h3>
+          <div class="toggle-wrap">
+            <div class="toggle-info">
+              <span class="toggle-label">Balançadinha nas Letras</span>
+              <span class="toggle-desc">Ativa animação de onda suave nas letras do título CRIMSON CITY</span>
+            </div>
+            <label class="toggle"><input type="checkbox" id="toggle-wave" onchange="toggleWave(this.checked)"><span class="toggle-sl"></span></label>
+          </div>
+        </div>
+        <div class="form-card">
+          <h3 style="display:flex;align-items:center;justify-content:space-between">🖼️ Fundo do Hero<span id="active-bg-label" style="font-size:.7rem;color:var(--cr);font-weight:400;text-transform:none;letter-spacing:0"></span></h3>
+          <div class="bg-grid" id="bg-grid"></div>
+          <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:1.2rem">
+            <div style="font-size:.68rem;color:rgba(255,255,255,.3);margin-bottom:.8rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase">+ Fundo Personalizado</div>
+            <div class="form-row">
+              <div class="field"><label>Nome</label><input type="text" id="new-bg-name" placeholder="Meu Fundo"></div>
+              <div class="field"><label>Tipo</label><select id="new-bg-type" onchange="toggleBgInputs()"><option value="gradient">Gradiente CSS</option><option value="image">URL de Imagem</option><option value="color">Cor Sólida</option></select></div>
+            </div>
+            <div class="field" id="new-bg-css-field"><label id="new-bg-css-label">CSS do Gradiente</label><input type="text" id="new-bg-css" placeholder="linear-gradient(135deg,#0a0005,#1a0010)" oninput="updateBgPreview()"></div>
+            <div class="field" id="new-bg-img-field" style="display:none"><label>URL da Imagem</label><input type="text" id="new-bg-img" placeholder="https://..." oninput="updateBgPreview()"></div>
+            <div style="height:55px;border-radius:6px;border:1px solid rgba(255,255,255,.08);margin-bottom:1rem;transition:all .3s" id="bg-preview-bar"></div>
+            <button class="btn btn-primary btn-sm" onclick="addCustomBg()">➕ Adicionar Fundo</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONFIGURAÇÕES -->
+      <div class="admin-section" id="asec-settings">
+        <div class="form-card"><h3>⚙️ Configurações Gerais</h3>
+          <div class="form-row"><div class="field"><label>Nome do Servidor</label><input type="text" id="cfg-name" value="Crimson City RP"></div><div class="field"><label>Link do Discord</label><input type="text" id="cfg-discord" placeholder="https://discord.gg/..."></div></div>
+          <div class="field"><label>Contagem de Jogadores</label><input type="number" id="cfg-players" value="0" min="0"></div>
+          <div class="field"><label>Mensagem de Boas-vindas do Bot WL</label><textarea id="cfg-wl-welcome" rows="3" placeholder="Olá! Bem-vindo ao processo de allowlist..."></textarea></div>
+          <div class="field"><label>Mensagem Final do Bot WL</label><textarea id="cfg-wl-end" rows="2" placeholder="Perfeito! Respostas registradas..."></textarea></div>
+          <button class="btn btn-primary btn-sm" onclick="saveSettings()" style="margin-top:.5rem">💾 Salvar Configurações</button>
+        </div>
+        <div class="form-card"><h3>🔐 Alterar Senha</h3>
+          <div class="form-row"><div class="field"><label>Nova Senha</label><input type="password" id="new-pass" placeholder="Nova senha"></div><div class="field"><label>Confirmar</label><input type="password" id="conf-pass" placeholder="Confirmar"></div></div>
+          <button class="btn btn-primary btn-sm" onclick="changePass()" style="margin-top:.5rem">🔒 Alterar</button>
+        </div>
+        <div class="form-card"><h3>🗑️ Zona de Perigo</h3>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.28);margin-bottom:1rem">Ações irreversíveis.</p>
+          <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+            <button class="btn btn-danger" onclick="confirmReset('wlApps')">Limpar WL</button>
+            <button class="btn btn-danger" onclick="confirmReset('users')">Excluir Usuários</button>
+            <button class="btn btn-danger" onclick="confirmReset('posts')">Excluir Posts</button>
+            <button class="btn btn-danger" onclick="confirmReset('products')">Excluir Produtos</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL VER CANDIDATURA -->
+<div class="modal-overlay" id="modal-app">
+  <div class="modal">
+    <h3>📋 Candidatura <button class="modal-close" onclick="closeModal('modal-app')">✕</button></h3>
+    <div id="modal-app-content"></div>
+    <div style="display:flex;gap:.7rem;margin-top:1.5rem;flex-wrap:wrap" id="modal-app-actions"></div>
+  </div>
+</div>
+
+<!-- CONFIRM MODAL -->
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal" style="max-width:420px">
+    <h3>⚠️ Confirmar <button class="modal-close" onclick="closeModal('confirm-modal')">✕</button></h3>
+    <p id="confirm-msg" style="text-align:center;color:rgba(255,255,255,.5);margin-bottom:1.5rem;font-size:.85rem">Tem certeza?</p>
+    <div class="confirm-actions">
+      <button class="btn btn-danger" id="confirm-yes">Confirmar</button>
+      <button class="btn btn-outline" onclick="closeModal('confirm-modal')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══ STATE ═══
+var S={
+  users:[],team:[],rules:[],
+  updates:[
+    {id:1,tag:'🔴 NOVIDADE',title:'Crimson City está no AR!',text:'Servidores abertos. Escreva sua história nas ruas.',date:'Maio 2026'},
+    {id:2,tag:'🚔 POLICIAL',title:'Facção LSPD Aberta',text:'Candidaturas para o LSPD abertas. Proteja a cidade.',date:'Maio 2026'},
+    {id:3,tag:'🏙️ MUNDO',title:'Novos Distritos Liberados',text:'Centro, Porto e Zona Leste com novos negócios.',date:'Maio 2026'}
+  ],
+  posts:[
+    {id:1,title:'Bem-vindo à Crimson City!',excerpt:'O servidor mais imersivo de roleplay acabou de abrir as portas.',content:'<p>É com grande prazer que anunciamos a abertura oficial dos servidores da <strong>Crimson City</strong>!</p><p>Após meses de desenvolvimento e testes, estamos prontos para receber jogadores apaixonados por roleplay. Nossa cidade foi construída com atenção a cada detalhe para proporcionar a melhor experiência.</p><p>Venha escrever a sua história!</p>',cat:'Anúncio',image:'',date:'25 Mai 2026',published:true},
+    {id:2,title:'Sistema de Facções Atualizado',excerpt:'Novidades no sistema de facções com hierarquia e cargos personalizados.',content:'<p>O sistema de facções da Crimson City recebeu uma atualização completa.</p><p>Agora é possível criar <strong>hierarquias personalizadas</strong>, definir cargos e permissões, e gerenciar território de forma mais estratégica.</p>',cat:'Atualização',image:'',date:'20 Mai 2026',published:true}
+  ],
+  products:[
+    {id:1,name:'VIP Gold',desc:'Acesso a empregos exclusivos, veículos VIP e área privada no Discord.',price:'R$ 29,90',cat:'VIP',image:'',badge:'POPULAR',available:true,buyLink:''},
+    {id:2,name:'VIP Diamond',desc:'Todos os benefícios Gold + skin exclusiva, casa premium e tag especial.',price:'R$ 59,90',cat:'VIP',image:'',badge:'',available:true,buyLink:''},
+    {id:3,name:'Kit Policial',desc:'Uniforme exclusivo, viatura personalizada e arma especial.',price:'R$ 19,90',cat:'Items',image:'',badge:'NOVO',available:true,buyLink:''}
+  ],
+  wlQuestions:[
+    {id:1,text:'Qual é o seu nickname no MTA?',type:'text',required:true,options:[]},
+    {id:2,text:'Qual a sua idade?',type:'text',required:true,options:[]},
+    {id:3,text:'Você já jogou em algum servidor de RP? Qual?',type:'textarea',required:false,options:[]},
+    {id:4,text:'O que você entende por Roleplay?',type:'textarea',required:true,options:[]},
+    {id:5,text:'Por que quer jogar na Crimson City?',type:'textarea',required:true,options:[]},
+    {id:6,text:'Você concorda com as regras do servidor?',type:'choice',required:true,options:['Sim, li e concordo','Preciso ler as regras primeiro']}
+  ],
+  wlApps:[],
+  settings:{name:'Crimson City RP',discord:'',players:0,
+    wlWelcome:'Olá! 👋 Bem-vindo(a) ao processo de **Allowlist** da Crimson City!\n\nSou o **Crimson Bot** e vou te guiar pelo questionário. Responda com sinceridade!',
+    wlEnd:'Perfeito! ✅ Todas as respostas foram registradas.\n\nNossa equipe irá analisar sua candidatura em breve. Acesse nosso **Discord** para acompanhar!'
+  },
+  appearance:{wave:false,activeBg:'default'},
+  backgrounds:[
+    {id:'default',name:'Padrão',type:'gradient',css:'radial-gradient(ellipse 80% 60% at 50% 40%,rgba(196,30,58,0.15) 0%,transparent 65%)',del:false},
+    {id:'midnight',name:'Meia-noite',type:'gradient',css:'linear-gradient(135deg,#000000,#0a0014)',del:false},
+    {id:'blood',name:'Sangue',type:'gradient',css:'linear-gradient(135deg,#0a0005,#200008,#1a0003)',del:false},
+    {id:'ocean',name:'Oceano',type:'gradient',css:'linear-gradient(135deg,#000814,#001529,#000d1a)',del:false},
+    {id:'ember',name:'Brasa',type:'gradient',css:'linear-gradient(135deg,#0a0500,#1a0800,#0f1400)',del:false},
+    {id:'purple',name:'Roxo',type:'gradient',css:'linear-gradient(135deg,#08000f,#140020,#0a000a)',del:false},
+    {id:'black',name:'Preto',type:'color',css:'#000000',del:false},
+    {id:'matrix',name:'Matrix',type:'gradient',css:'linear-gradient(135deg,#000800,#001200,#000500)',del:false}
+  ],
+  adminUser:'admin',adminPass:'admin123',loggedIn:false,
+  nextId:{users:1,team:1,rules:1,updates:4,posts:3,products:4,wlQ:7,wlA:1,bg:100}
+};
+
+function save(){try{localStorage.setItem('cc3',JSON.stringify(S))}catch(e){}}
+function load(){
+  try{
+    var d=localStorage.getItem('cc3');
+    if(d){
+      var p=JSON.parse(d);
+      var keys=['users','team','rules','updates','posts','products','wlQuestions','wlApps','settings','appearance','backgrounds','adminUser','adminPass','nextId'];
+      keys.forEach(function(k){if(p[k]!==undefined)S[k]=p[k];});
+    }
+  }catch(e){}
+}
+load();
+
+// ═══ HELPERS ═══
+function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function now(){return new Date().toLocaleString('pt-BR');}
+function getTime(){var d=new Date();return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');}
+function toast(msg,type){var t=document.getElementById('toast');t.textContent=(type==='ok'?'✅ ':'❌ ')+msg;t.className='toast '+(type==='ok'?'success':'')+' show';setTimeout(function(){t.classList.remove('show')},3000);}
+function confirmAction(msg,cb){document.getElementById('confirm-msg').textContent=msg;document.getElementById('confirm-modal').classList.add('show');document.getElementById('confirm-yes').onclick=function(){closeModal('confirm-modal');cb();};}
+function closeModal(id){document.getElementById(id).classList.remove('show');}
+
+// ═══ CURSOR ═══
+document.addEventListener('mousemove',function(e){var g=document.getElementById('cursor-glow');if(g){g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';}});
+window.addEventListener('scroll',function(){var n=document.getElementById('main-nav');if(n)n.classList.toggle('scrolled',scrollY>40);});
+
+// ═══ MOBILE ═══
+function toggleMobile(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobile-menu').classList.toggle('show');}
+function closeMobile(){document.getElementById('hamburger').classList.remove('open');document.getElementById('mobile-menu').classList.remove('show');}
+
+// ═══ LETTER ANIMATION ═══
+function animateLetters(){
+  ['hero-line1','hero-line2'].forEach(function(id,li){
+    var el=document.getElementById(id);if(!el)return;
+    var t=el.textContent;el.innerHTML='';
+    t.split('').forEach(function(ch,i){
+      var s=document.createElement('span');s.className='letter';s.textContent=ch;
+      s.style.animationDelay=(li*.4+i*.06+.5)+'s';
+      if(S.appearance.wave)s.style.animationDelay=(li*.2+i*.12)+'s';
+      el.appendChild(s);
+    });
+  });
+}
+animateLetters();
+
+// ═══ WAVE TOGGLE ═══
+function toggleWave(on){
+  S.appearance.wave=on;
+  var body=document.body;
+  if(on)body.classList.add('wave-on');
+  else body.classList.remove('wave-on');
+  // re-set delays for wave stagger
+  var letters=document.querySelectorAll('.hero-title .letter');
+  letters.forEach(function(el,i){
+    el.style.animationDelay=on?(i*.1)+'s':(Math.floor(i/7)*.4+(i%7)*.06+.5)+'s';
+  });
+  save();toast(on?'Balançadinha ativada! 🌊':'Balançadinha desativada.','ok');
+}
+
+// ═══ PARTICLES ═══
+(function(){
+  var c=document.getElementById('hero-particles');if(!c)return;
+  for(var i=0;i<26;i++){
+    var p=document.createElement('div');p.className='particle';
+    var sz=Math.random()*3+1;
+    p.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+Math.random()*100+'%;animation-duration:'+(8+Math.random()*12)+'s;animation-delay:'+Math.random()*10+'s;opacity:'+(Math.random()*.5+.15);
+    c.appendChild(p);
+  }
+})();
+
+// ═══ REVEAL ═══
+var rvObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+function initReveal(){document.querySelectorAll('.reveal,.reveal-left').forEach(function(el){rvObs.observe(el);});}
+initReveal();
+
+// ═══ BACKGROUND ═══
+function applyBg(id){
+  S.appearance.activeBg=id;
+  var bg=S.backgrounds.find(function(b){return b.id===id;});
+  if(!bg)return;
+  var layer=document.getElementById('hero-bg-layer');if(!layer)return;
+  if(bg.type==='image')layer.style.background='url('+bg.css+') center/cover no-repeat';
+  else layer.style.background=bg.css;
+  save();
+}
+function renderBgGrid(){
+  var g=document.getElementById('bg-grid');if(!g)return;
+  var active=S.appearance.activeBg||'default';
+  g.innerHTML=S.backgrounds.map(function(bg){
+    var pr=bg.type==='image'?'background:url('+bg.css+') center/cover':'background:'+bg.css;
+    return '<div class="bg-swatch'+(bg.id===active?' active':'')+'" onclick="selectBg(\''+bg.id+'\')">'
+      +'<div class="bg-sw-check">✓</div>'
+      +'<div class="bg-sw-prev" style="'+pr+'"></div>'
+      +'<div class="bg-sw-info"><div class="bg-sw-name">'+esc(bg.name)+'</div></div>'
+      +(bg.del?'<button class="bg-sw-del" onclick="event.stopPropagation();deleteBg(\''+bg.id+'\')">×</button>':'')
+      +'</div>';
+  }).join('');
+  var lbl=document.getElementById('active-bg-label');
+  var ab=S.backgrounds.find(function(b){return b.id===active;});
+  if(lbl&&ab)lbl.textContent='Ativo: '+ab.name;
+}
+window.selectBg=function(id){applyBg(id);renderBgGrid();toast('Fundo aplicado!','ok');};
+window.deleteBg=function(id){confirmAction('Remover fundo?',function(){S.backgrounds=S.backgrounds.filter(function(b){return b.id!==id;});if(S.appearance.activeBg===id)applyBg('default');save();renderBgGrid();toast('Fundo removido.','ok');});};
+function toggleBgInputs(){var t=document.getElementById('new-bg-type').value;document.getElementById('new-bg-css-field').style.display=t!=='image'?'':'none';document.getElementById('new-bg-img-field').style.display=t==='image'?'':'none';if(t==='gradient')document.getElementById('new-bg-css-label').textContent='CSS Gradiente';if(t==='color')document.getElementById('new-bg-css-label').textContent='Cor Hex';updateBgPreview();}
+function updateBgPreview(){var t=document.getElementById('new-bg-type').value;var css=t==='image'?document.getElementById('new-bg-img').value:document.getElementById('new-bg-css').value;var bar=document.getElementById('bg-preview-bar');if(bar&&css){if(t==='image')bar.style.background='url('+css+') center/cover';else bar.style.background=css;}}
+function addCustomBg(){var name=document.getElementById('new-bg-name').value.trim();var type=document.getElementById('new-bg-type').value;var css=type==='image'?document.getElementById('new-bg-img').value.trim():document.getElementById('new-bg-css').value.trim();if(!name||!css){toast('Preencha nome e CSS/URL.','err');return;}var id='c'+(S.nextId.bg++);S.backgrounds.push({id:id,name:name,type:type,css:css,del:true});save();renderBgGrid();document.getElementById('new-bg-name').value='';document.getElementById('new-bg-css').value='';document.getElementById('new-bg-img').value='';document.getElementById('bg-preview-bar').style.background='';toast('Fundo "'+name+'" adicionado!','ok');}
+
+// ═══ NAVIGATION ═══
+function showPage(p){
+  document.querySelectorAll('.page').forEach(function(el){el.classList.remove('active');});
+  var pg=document.getElementById('page-'+p);if(pg)pg.classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
+  var na=document.getElementById('nav-'+p);if(na)na.classList.add('active');
+  window.scrollTo(0,0);setTimeout(initReveal,80);
+  if(p==='home')renderPublicUpdates();
+  if(p==='news')renderPublicNews();
+  if(p==='store')renderPublicStore();
+  if(p==='rules')renderPublicRules();
+  if(p==='team')renderPublicTeam();
+  if(p==='whitelist')initChatWL();
+}
+
+// ═══ DISCORD ═══
+function openDiscord(){window.open(S.settings.discord||'https://discord.gg','_blank');}
+
+// ═══ PUBLIC UPDATES ═══
+function renderPublicUpdates(){
+  var g=document.getElementById('updates-grid');if(!g)return;
+  if(!S.updates.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="icon">📰</div><p>Nenhuma atualização.</p></div>';return;}
+  g.innerHTML=S.updates.map(function(u,i){return '<div class="update-card reveal" style="transition-delay:'+(i*.1)+'s"><div class="update-tag">'+esc(u.tag)+'</div><div class="update-title">'+esc(u.title)+'</div><div class="update-text">'+esc(u.text)+'</div><div class="update-date">'+esc(u.date)+'</div></div>';}).join('');
+  setTimeout(initReveal,50);
+}
+renderPublicUpdates();
+
+// ═══ PUBLIC NEWS ═══
+function renderPublicNews(){
+  var g=document.getElementById('news-grid');if(!g)return;
+  var pub=S.posts.filter(function(p){return p.published;});
+  if(!pub.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="icon">📰</div><p>Nenhum post publicado ainda.</p></div>';return;}
+  g.innerHTML=pub.map(function(p){
+    var imgHTML=p.image?'<img src="'+esc(p.image)+'" onerror="this.style.display=\'none\'">':'📰';
+    return '<div class="news-card reveal" onclick="openPost('+p.id+')">'
+      +'<div class="news-card-img"><div class="news-card-cat">'+esc(p.cat)+'</div>'+imgHTML+'</div>'
+      +'<div class="news-card-body"><div class="news-card-title">'+esc(p.title)+'</div>'
+      +'<div class="news-card-excerpt">'+esc(p.excerpt)+'</div>'
+      +'<div class="news-card-meta"><span>'+esc(p.date)+'</span><span class="news-read-more">Ler mais →</span></div>'
+      +'</div></div>';
+  }).join('');
+  setTimeout(initReveal,50);
+}
+window.openPost=function(id){
+  var post=S.posts.find(function(p){return p.id===id;});if(!post)return;
+  var area=document.getElementById('post-content-area');
+  var imgHTML=post.image?'<img src="'+esc(post.image)+'" class="post-cover" onerror="this.style.display=\'none\'">':'';
+  area.innerHTML=imgHTML
+    +'<div class="post-header">'
+    +'<h1 class="post-title">'+esc(post.title)+'</h1>'
+    +'<div class="post-meta"><span class="post-cat-badge">'+esc(post.cat)+'</span><span>'+esc(post.date)+'</span></div>'
+    +'</div>'
+    +'<div class="post-content">'+post.content+'</div>';
+  showPage('newspost');
+};
+
+// ═══ PUBLIC STORE ═══
+var activeStoreCat='Todos';
+function renderPublicStore(){
+  var cats=['Todos',...new Set(S.products.map(function(p){return p.cat;}))];
+  var catsEl=document.getElementById('store-cats');
+  if(catsEl)catsEl.innerHTML=cats.map(function(c){return '<button class="store-cat-btn'+(c===activeStoreCat?' active':'')+'" onclick="filterStore(\''+esc(c)+'\')">'+esc(c)+'</button>';}).join('');
+  renderStoreGrid();
+}
+function filterStore(cat){activeStoreCat=cat;renderPublicStore();}
+function renderStoreGrid(){
+  var g=document.getElementById('store-grid');if(!g)return;
+  var prods=activeStoreCat==='Todos'?S.products:S.products.filter(function(p){return p.cat===activeStoreCat;});
+  if(!prods.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="icon">🛍️</div><p>Nenhum produto nesta categoria.</p></div>';return;}
+  g.innerHTML=prods.map(function(p){
+    var badgeCls={POPULAR:'badge-popular',NOVO:'badge-new','PROMOÇÃO':'badge-sale'}[p.badge]||'';
+    var badgeHTML=p.badge?'<div class="product-badge '+badgeCls+'">'+esc(p.badge)+'</div>':'';
+    var imgHTML=p.image?'<img src="'+esc(p.image)+'" onerror="this.parentNode.innerHTML=\'🛍️\'">':'🛍️';
+    var buyBtn=p.available
+      ?'<button class="btn btn-primary btn-sm" '+(p.buyLink?'onclick="window.open(\''+esc(p.buyLink)+'\',\'_blank\')"':'onclick="openDiscord()"')+'>Comprar</button>'
+      :'<span class="product-unavail">Indisponível</span>';
+    return '<div class="product-card reveal">'
+      +badgeHTML
+      +'<div class="product-img">'+imgHTML+'</div>'
+      +'<div class="product-body">'
+      +'<div class="product-cat">'+esc(p.cat)+'</div>'
+      +'<div class="product-name">'+esc(p.name)+'</div>'
+      +'<div class="product-desc">'+esc(p.desc)+'</div>'
+      +'<div class="product-footer"><div class="product-price">'+esc(p.price)+'</div>'+buyBtn+'</div>'
+      +'</div></div>';
+  }).join('');
+  setTimeout(initReveal,50);
+}
+
+// ═══ PUBLIC TEAM ═══
+function renderPublicTeam(){
+  var g=document.getElementById('team-grid');if(!g)return;
+  if(!S.team.length){g.innerHTML='<div class="empty-state" style="grid-column:1/-1"><div class="icon">👥</div><p>Membros aparecerão aqui.</p></div>';return;}
+  g.innerHTML=S.team.map(function(m){var av=m.avatar?'<img src="'+esc(m.avatar)+'" onerror="this.parentNode.innerHTML=\'👤\'">':'👤';return '<div class="member-card"><div class="member-av">'+av+'</div><div class="member-name">'+esc(m.name)+'</div><div class="member-role">'+esc(m.role)+'</div>'+(m.desc?'<div class="member-desc">'+esc(m.desc)+'</div>':'')+'</div>';}).join('');
+}
+
+// ═══ PUBLIC RULES ═══
+function renderPublicRules(){
+  var sb=document.getElementById('rules-sidebar');var cnt=document.getElementById('rules-content-area');
+  if(!sb||!cnt)return;
+  if(!S.rules.length){sb.innerHTML='<div style="font-size:.75rem;color:rgba(255,255,255,.2);padding:.5rem">Nenhuma regra.</div>';cnt.innerHTML='<div class="empty-state"><div class="icon">📋</div><p>Nenhuma regra ainda.</p></div>';return;}
+  var cats={};S.rules.forEach(function(r){if(!cats[r.cat])cats[r.cat]={};if(!cats[r.cat][r.subcat])cats[r.cat][r.subcat]=[];cats[r.cat][r.subcat].push(r);});
+  var cks=Object.keys(cats);
+  sb.innerHTML=cks.map(function(cat){var subs=Object.keys(cats[cat]);return '<div class="sb-cat"><div class="sb-cat-title">'+esc(cat)+'</div>'+subs.map(function(sub){return '<button class="sb-item" onclick="showRuleSec(\''+encodeURIComponent(cat)+'\',\''+encodeURIComponent(sub)+'\',this)">'+esc(sub)+'</button>';}).join('')+'</div>';}).join('');
+  if(cks.length)showRuleSec(encodeURIComponent(cks[0]),encodeURIComponent(Object.keys(cats[cks[0]])[0]));
+}
+window.showRuleSec=function(ce,se,btn){
+  var cat=decodeURIComponent(ce),sub=decodeURIComponent(se);
+  document.querySelectorAll('.sb-item').forEach(function(b){b.classList.remove('active');});
+  if(btn)btn.classList.add('active');else document.querySelectorAll('.sb-item').forEach(function(b){if(b.textContent.trim()===sub)b.classList.add('active');});
+  var cats={};S.rules.forEach(function(r){if(!cats[r.cat])cats[r.cat]={};if(!cats[r.cat][r.subcat])cats[r.cat][r.subcat]=[];cats[r.cat][r.subcat].push(r);});
+  var rules=(cats[cat]&&cats[cat][sub])||[];
+  document.getElementById('rules-content-area').innerHTML='<div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.25rem"><div style="color:var(--cr)">🛡</div><div class="rules-content-title">'+esc(cat)+'</div></div><div class="rules-content-sub">'+esc(sub)+'</div><ul class="rule-list">'+rules.map(function(r){return '<li>'+esc(r.text)+'</li>';}).join('')+'</ul>';
+};
+window.filterRules=function(q){q=q.toLowerCase();document.querySelectorAll('.sb-item').forEach(function(b){b.style.display=(!q||b.textContent.toLowerCase().includes(q))?'':'none';});};
+
+// ═══ WHITELIST CHAT ═══
+var CS={step:-1,answers:[],done:false};
+var qOptTags=[];
+function initChatWL(){
+  CS={step:-1,answers:[],done:false};
+  var msgs=document.getElementById('chat-msgs');
+  var suc=document.getElementById('wl-success');
+  var inp=document.getElementById('chat-input-area');
+  var prog=document.getElementById('chat-progress');
+  if(msgs)msgs.innerHTML='';if(msgs)msgs.style.display='';
+  if(suc)suc.classList.remove('show');
+  if(inp)inp.style.display='flex';if(prog)prog.style.display='none';
+  var ci=document.getElementById('chat-input');if(ci){ci.value='';ci.disabled=false;ci.placeholder='Digite sua resposta...';}
+  var cs=document.getElementById('chat-send');if(cs)cs.disabled=false;
+  if(!S.wlQuestions.length){addBotMsg('O questionário ainda não foi configurado. Tente mais tarde.');return;}
+  var welcome=S.settings.wlWelcome||'Olá! Bem-vindo à Crimson City!';
+  setTimeout(function(){addBotMsg(welcome,true);setTimeout(nextQ,1200);},600);
+}
+function nextQ(){
+  CS.step++;var qs=S.wlQuestions;
+  if(CS.step>=qs.length){finishWL();return;}
+  var q=qs[CS.step];updateProg();
+  showTyping(function(){
+    addBotMsg(q.text+(q.required?'':' <em style="font-size:.75rem;color:rgba(255,255,255,.3)">(opcional)</em>'));
+    if(q.type==='choice'&&q.options&&q.options.length){addChoiceBtns(q.options);disableChatInp(true);}
+    else{disableChatInp(false);var ci=document.getElementById('chat-input');if(ci)setTimeout(function(){ci.focus();},100);}
+  });
+}
+function addBotMsg(text){var msgs=document.getElementById('chat-msgs');if(!msgs)return;var d=document.createElement('div');d.className='chat-msg bot';d.innerHTML='<div class="chat-msg-av">🤖</div><div><div class="chat-bubble">'+text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')+'</div><div class="chat-time">'+getTime()+'</div></div>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;}
+function addUserMsg(text){var msgs=document.getElementById('chat-msgs');if(!msgs)return;var d=document.createElement('div');d.className='chat-msg user';d.innerHTML='<div><div class="chat-bubble">'+esc(text)+'</div><div class="chat-time">'+getTime()+'</div></div>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;}
+function addChoiceBtns(opts){var msgs=document.getElementById('chat-msgs');if(!msgs)return;var d=document.createElement('div');d.className='chat-msg bot';d.innerHTML='<div class="chat-msg-av" style="opacity:0">🤖</div><div><div class="chat-choices">'+opts.map(function(o){return '<button class="chat-choice" onclick="selectChoice(\''+o.replace(/'/g,"\\'")+'\')">'+esc(o)+'</button>';}).join('')+'</div></div>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;}
+function selectChoice(val){document.querySelectorAll('.chat-choice').forEach(function(b){b.disabled=true;b.style.opacity='.4';});CS.answers.push({q:S.wlQuestions[CS.step].text,a:val});addUserMsg(val);disableChatInp(false);setTimeout(nextQ,600);}
+function sendChatAnswer(){var ci=document.getElementById('chat-input');if(!ci)return;var val=ci.value.trim();var q=S.wlQuestions[CS.step];if(q&&q.required&&!val){ci.style.borderColor='rgba(196,30,58,.6)';setTimeout(function(){ci.style.borderColor='';},1500);return;}if(!val&&q&&!q.required)val='(pulou)';if(!val)return;CS.answers.push({q:q?q.text:'',a:val});addUserMsg(val);ci.value='';ci.style.height='auto';setTimeout(nextQ,600);}
+function showTyping(cb){var msgs=document.getElementById('chat-msgs');if(!msgs){cb&&cb();return;}var d=document.createElement('div');d.className='chat-msg bot';d.id='typing-bbl';d.innerHTML='<div class="chat-msg-av">🤖</div><div><div class="typing-ind"><span></span><span></span><span></span></div></div>';msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;setTimeout(function(){var tb=document.getElementById('typing-bbl');if(tb)tb.remove();cb&&cb();},900);}
+function finishWL(){var endMsg=S.settings.wlEnd||'Perfeito! Suas respostas foram registradas.';showTyping(function(){addBotMsg(endMsg);setTimeout(function(){var app={id:S.nextId.wlA++,date:now(),answers:CS.answers,status:'pending'};S.wlApps.unshift(app);save();var msgs=document.getElementById('chat-msgs');var suc=document.getElementById('wl-success');var inp=document.getElementById('chat-input-area');var prog=document.getElementById('chat-progress');if(msgs)msgs.style.display='none';if(inp)inp.style.display='none';if(prog)prog.style.display='none';if(suc)suc.classList.add('show');CS.done=true;},1800);});}
+function updateProg(){var prog=document.getElementById('chat-progress');var fill=document.getElementById('prog-fill');var text=document.getElementById('prog-text');var total=S.wlQuestions.length;if(!prog||!total)return;prog.style.display='flex';if(fill)fill.style.width=Math.round((CS.step/total)*100)+'%';if(text)text.textContent='Pergunta '+(CS.step+1)+' de '+total;}
+function disableChatInp(d){var ci=document.getElementById('chat-input');var cs=document.getElementById('chat-send');if(ci){ci.disabled=d;ci.placeholder=d?'Selecione uma opção acima...':'Digite sua resposta...';}if(cs)cs.disabled=d;}
+function handleChatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChatAnswer();}}
+function autoResizeTA(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
+
+// ═══ ADMIN WL QUESTIONS ═══
+function toggleQOptions(){document.getElementById('q-options-field').style.display=document.getElementById('q-type').value==='choice'?'block':'none';}
+function addQOpt(e){if(e.key!=='Enter')return;e.preventDefault();var i=document.getElementById('q-opts-input');var v=i.value.trim();if(!v)return;qOptTags.push(v);i.value='';renderQOpts();}
+function removeQOpt(i){qOptTags.splice(i,1);renderQOpts();}
+function renderQOpts(){var w=document.getElementById('q-opts-wrap');if(!w)return;var i=document.getElementById('q-opts-input');w.innerHTML='';qOptTags.forEach(function(o,idx){var t=document.createElement('div');t.className='tag';t.innerHTML=esc(o)+'<span class="rm" onclick="removeQOpt('+idx+')">×</span>';w.appendChild(t);});w.appendChild(i);}
+function saveQuestion(){var id=document.getElementById('edit-q-id').value;var text=document.getElementById('q-text').value.trim();var type=document.getElementById('q-type').value;var req=document.getElementById('q-required').value==='1';if(!text){toast('Informe o texto.','err');return;}if(type==='choice'&&!qOptTags.length){toast('Adicione opções.','err');return;}if(id){var q=S.wlQuestions.find(function(x){return x.id==id;});if(q){q.text=text;q.type=type;q.required=req;q.options=qOptTags.slice();}toast('Pergunta atualizada!','ok');}else{S.wlQuestions.push({id:S.nextId.wlQ++,text:text,type:type,required:req,options:qOptTags.slice()});toast('Pergunta adicionada!','ok');}save();clearQForm();renderQList();updateStats();}
+function editQuestion(id){var q=S.wlQuestions.find(function(x){return x.id===id;});if(!q)return;document.getElementById('edit-q-id').value=id;document.getElementById('q-text').value=q.text;document.getElementById('q-type').value=q.type;document.getElementById('q-required').value=q.required?'1':'0';qOptTags=q.options?q.options.slice():[];renderQOpts();toggleQOptions();switchSubTab('wl','perguntas',document.querySelector('#asec-wl .sub-tab'));window.scrollTo(0,0);}
+function deleteQuestion(id){confirmAction('Excluir pergunta?',function(){S.wlQuestions=S.wlQuestions.filter(function(x){return x.id!==id;});save();renderQList();updateStats();toast('Pergunta excluída.','ok');});}
+function clearQForm(){document.getElementById('edit-q-id').value='';document.getElementById('q-text').value='';document.getElementById('q-type').value='text';document.getElementById('q-required').value='1';qOptTags=[];renderQOpts();toggleQOptions();}
+function renderQList(){
+  var list=document.getElementById('questions-list');if(!list)return;
+  var cnt=document.getElementById('q-count');if(cnt)cnt.textContent=S.wlQuestions.length+' pergunta(s)';
+  if(!S.wlQuestions.length){list.innerHTML='<div class="empty-state" style="padding:2rem"><div class="icon">❓</div><p>Nenhuma pergunta.</p></div>';return;}
+  list.innerHTML=S.wlQuestions.map(function(q,i){
+    var tl={text:'Texto',textarea:'Texto longo',choice:'Múltipla escolha'}[q.type]||q.type;
+    return '<div class="wl-q-item"><div style="font-size:.95rem;color:rgba(255,255,255,.18);font-weight:700;min-width:22px">'+(i+1)+'</div>'
+      +'<div class="wl-q-main"><div class="wl-q-text">'+esc(q.text)+'</div>'
+      +'<div class="wl-q-meta"><span class="wl-q-type">'+tl+'</span>'+(q.required?'<span class="wl-q-req">obrigatória</span>':'')+(q.options&&q.options.length?' <span style="color:rgba(255,255,255,.22);font-size:.65rem">'+q.options.length+' opções</span>':'')+'</div></div>'
+      +'<div style="display:flex;gap:.3rem"><button class="action-btn" onclick="editQuestion('+q.id+')">✏</button><button class="action-btn danger" onclick="deleteQuestion('+q.id+')">🗑</button></div>'
+      +'</div>';
+  }).join('');
+}
+
+// ═══ ADMIN WL APPLICATIONS ═══
+function renderWLApps(){
+  var tb=document.getElementById('wl-apps-table');if(!tb)return;
+  var cnt=document.getElementById('wl-apps-count');if(cnt)cnt.textContent=S.wlApps.length+' candidatura(s)';
+  var badge=document.getElementById('wl-pending-badge');
+  var pend=S.wlApps.filter(function(a){return a.status==='pending';}).length;
+  if(badge)badge.textContent=pend>0?pend:'';
+  if(!S.wlApps.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhuma candidatura.</td></tr>';return;}
+  tb.innerHTML=S.wlApps.map(function(app){
+    var fa=app.answers&&app.answers[0]?app.answers[0].a:'-';if(fa.length>28)fa=fa.slice(0,28)+'…';
+    var sc={pending:'badge-gold',approved:'badge-green',rejected:'badge-red'}[app.status]||'badge-gray';
+    var sl={pending:'Pendente',approved:'Aprovado',rejected:'Rejeitado'}[app.status]||app.status;
+    return '<tr><td style="color:rgba(255,255,255,.28)">#'+app.id+'</td><td style="color:rgba(255,255,255,.35);font-size:.72rem;white-space:nowrap">'+esc(app.date)+'</td><td>'+esc(fa)+'</td><td><span class="badge '+sc+'">'+sl+'</span></td>'
+      +'<td><button class="action-btn" onclick="viewApp('+app.id+')">👁</button><button class="action-btn ok" onclick="setAppSt('+app.id+',\'approved\')">✓</button><button class="action-btn danger" onclick="setAppSt('+app.id+',\'rejected\')">✗</button></td></tr>';
+  }).join('');
+}
+window.viewApp=function(id){
+  var app=S.wlApps.find(function(x){return x.id===id;});if(!app)return;
+  var sc={pending:'badge-gold',approved:'badge-green',rejected:'badge-red'}[app.status]||'badge-gray';
+  var sl={pending:'Pendente',approved:'Aprovado',rejected:'Rejeitado'}[app.status]||app.status;
+  document.getElementById('modal-app-content').innerHTML='<div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem"><div style="font-size:.68rem;color:rgba(255,255,255,.28)">#'+app.id+' · '+esc(app.date)+'</div><span class="badge '+sc+'">'+sl+'</span></div>'
+    +(app.answers||[]).map(function(a){return '<div class="app-answer-item"><div class="app-answer-q">'+esc(a.q)+'</div><div class="app-answer-a">'+esc(a.a)+'</div></div>';}).join('');
+  document.getElementById('modal-app-actions').innerHTML='<button class="btn btn-primary btn-sm" style="background:#22c55e;box-shadow:none" onclick="setAppSt('+id+',\'approved\');closeModal(\'modal-app\')">✓ Aprovar</button><button class="btn btn-danger btn-sm" onclick="setAppSt('+id+',\'rejected\');closeModal(\'modal-app\')">✗ Rejeitar</button><button class="btn btn-ghost btn-sm" onclick="setAppSt('+id+',\'pending\');closeModal(\'modal-app\')">↺ Pendente</button>';
+  document.getElementById('modal-app').classList.add('show');
+};
+window.setAppSt=function(id,st){var app=S.wlApps.find(function(x){return x.id===id;});if(app){app.status=st;save();renderWLApps();renderDashWL();updateStats();}var l={approved:'Aprovada! ✅',rejected:'Rejeitada.',pending:'Marcada como pendente.'}[st]||'Atualizado.';toast(l,st==='approved'?'ok':'');};
+
+// ═══ ADMIN NEWS ═══
+function savePost(){
+  var id=document.getElementById('edit-post-id').value;
+  var title=document.getElementById('post-title').value.trim();
+  var cat=document.getElementById('post-cat').value.trim();
+  var img=document.getElementById('post-img').value.trim();
+  var date=document.getElementById('post-date').value.trim();
+  var excerpt=document.getElementById('post-excerpt').value.trim();
+  var content=document.getElementById('post-content').value.trim();
+  var published=document.getElementById('post-published').value==='1';
+  if(!title||!content){toast('Título e conteúdo obrigatórios.','err');return;}
+  if(id){var p=S.posts.find(function(x){return x.id==id;});if(p){p.title=title;p.cat=cat||'Geral';p.image=img;p.date=date||now();p.excerpt=excerpt;p.content=content;p.published=published;}toast('Post atualizado!','ok');}
+  else{S.posts.unshift({id:S.nextId.posts++,title:title,cat:cat||'Geral',image:img,date:date||now(),excerpt:excerpt,content:content,published:published});toast('Post criado!','ok');}
+  save();clearPostForm();renderPostsTable();updateStats();
+}
+function editPost(id){var p=S.posts.find(function(x){return x.id===id;});if(!p)return;document.getElementById('edit-post-id').value=id;document.getElementById('post-title').value=p.title;document.getElementById('post-cat').value=p.cat;document.getElementById('post-img').value=p.image||'';document.getElementById('post-date').value=p.date;document.getElementById('post-excerpt').value=p.excerpt||'';document.getElementById('post-content').value=p.content;document.getElementById('post-published').value=p.published?'1':'0';switchSubTab('news','add',null);adminTab('news');window.scrollTo(0,0);}
+function deletePost(id){confirmAction('Excluir post?',function(){S.posts=S.posts.filter(function(x){return x.id!==id;});save();renderPostsTable();updateStats();toast('Post excluído.','ok');});}
+function clearPostForm(){document.getElementById('edit-post-id').value='';['post-title','post-cat','post-img','post-date','post-excerpt','post-content'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('post-published').value='1';}
+function renderPostsTable(){
+  var tb=document.getElementById('posts-table');if(!tb)return;
+  var cnt=document.getElementById('posts-count');if(cnt)cnt.textContent=S.posts.length+' post(s)';
+  if(!S.posts.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhum post.</td></tr>';return;}
+  tb.innerHTML=S.posts.map(function(p){return '<tr><td><strong>'+esc(p.title)+'</strong></td><td><span class="badge badge-blue">'+esc(p.cat)+'</span></td><td style="color:rgba(255,255,255,.35);font-size:.75rem">'+esc(p.date)+'</td><td><span class="badge '+(p.published?'badge-green':'badge-gray')+'">'+(p.published?'Publicado':'Rascunho')+'</span></td><td><button class="action-btn" onclick="editPost('+p.id+')">✏</button><button class="action-btn danger" onclick="deletePost('+p.id+')">🗑</button></td></tr>';}).join('');
+}
+
+// ═══ ADMIN STORE ═══
+function saveProduct(){
+  var id=document.getElementById('edit-prod-id').value;
+  var name=document.getElementById('prod-name').value.trim();
+  var cat=document.getElementById('prod-cat').value.trim();
+  var price=document.getElementById('prod-price').value.trim();
+  var badge=document.getElementById('prod-badge').value;
+  var img=document.getElementById('prod-img').value.trim();
+  var desc=document.getElementById('prod-desc').value.trim();
+  var link=document.getElementById('prod-link').value.trim();
+  var avail=document.getElementById('prod-avail').value==='1';
+  if(!name){toast('Nome obrigatório.','err');return;}
+  if(id){var p=S.products.find(function(x){return x.id==id;});if(p){p.name=name;p.cat=cat||'Geral';p.price=price;p.badge=badge;p.image=img;p.desc=desc;p.buyLink=link;p.available=avail;}toast('Produto atualizado!','ok');}
+  else{S.products.push({id:S.nextId.products++,name:name,cat:cat||'Geral',price:price,badge:badge,image:img,desc:desc,buyLink:link,available:avail});toast('Produto adicionado!','ok');}
+  save();clearProdForm();renderProdsTable();updateStats();
+}
+function editProduct(id){var p=S.products.find(function(x){return x.id===id;});if(!p)return;document.getElementById('edit-prod-id').value=id;document.getElementById('prod-name').value=p.name;document.getElementById('prod-cat').value=p.cat;document.getElementById('prod-price').value=p.price;document.getElementById('prod-badge').value=p.badge||'';document.getElementById('prod-img').value=p.image||'';document.getElementById('prod-desc').value=p.desc||'';document.getElementById('prod-link').value=p.buyLink||'';document.getElementById('prod-avail').value=p.available?'1':'0';switchSubTab('store','addprod',null);adminTab('store');window.scrollTo(0,0);}
+function deleteProduct(id){confirmAction('Excluir produto?',function(){S.products=S.products.filter(function(x){return x.id!==id;});save();renderProdsTable();updateStats();toast('Produto excluído.','ok');});}
+function clearProdForm(){document.getElementById('edit-prod-id').value='';['prod-name','prod-cat','prod-price','prod-img','prod-desc','prod-link'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('prod-badge').value='';document.getElementById('prod-avail').value='1';}
+function renderProdsTable(){
+  var tb=document.getElementById('prods-table');if(!tb)return;
+  var cnt=document.getElementById('prods-count');if(cnt)cnt.textContent=S.products.length+' produto(s)';
+  if(!S.products.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhum produto.</td></tr>';return;}
+  tb.innerHTML=S.products.map(function(p){var badgeClass={POPULAR:'badge-gold',NOVO:'badge-blue',PROMOÇÃO:'badge-green'}[p.badge]||'badge-gray';return '<tr><td><strong>'+esc(p.name)+'</strong></td><td style="color:rgba(255,255,255,.4)">'+esc(p.cat)+'</td><td style="color:var(--gold-l);font-weight:600">'+esc(p.price)+'</td><td>'+(p.badge?'<span class="badge '+badgeClass+'">'+esc(p.badge)+'</span>':'-')+'</td><td><span class="badge '+(p.available?'badge-green':'badge-gray')+'">'+(p.available?'Disponível':'Indisponível')+'</span></td><td><button class="action-btn" onclick="editProduct('+p.id+')">✏</button><button class="action-btn danger" onclick="deleteProduct('+p.id+')">🗑</button></td></tr>';}).join('');
+}
+
+// ═══ RULES ═══
+function saveRule(){var id=document.getElementById('edit-rule-id').value;var cat=document.getElementById('r-cat').value.trim();var sub=document.getElementById('r-subcat').value.trim();var text=document.getElementById('r-text').value.trim();if(!cat||!sub||!text){toast('Todos os campos obrigatórios.','err');return;}if(id){var r=S.rules.find(function(x){return x.id==id;});if(r){r.cat=cat;r.subcat=sub;r.text=text;}toast('Regra atualizada!','ok');}else{S.rules.push({id:S.nextId.rules++,cat:cat,subcat:sub,text:text});toast('Regra adicionada!','ok');}save();clearRuleForm();renderRulesTable();renderRulesCatList();renderPublicRules();updateStats();}
+function editRule(id){var r=S.rules.find(function(x){return x.id===id;});if(!r)return;document.getElementById('edit-rule-id').value=id;document.getElementById('r-cat').value=r.cat;document.getElementById('r-subcat').value=r.subcat;document.getElementById('r-text').value=r.text;adminTab('rules');window.scrollTo(0,0);}
+function deleteRule(id){confirmAction('Excluir regra?',function(){S.rules=S.rules.filter(function(x){return x.id!==id;});save();renderRulesTable();renderRulesCatList();renderPublicRules();updateStats();toast('Regra excluída.','ok');});}
+function clearRuleForm(){document.getElementById('edit-rule-id').value='';['r-cat','r-subcat','r-text'].forEach(function(i){document.getElementById(i).value='';});}
+function renderRulesTable(){var tb=document.getElementById('rules-table');document.getElementById('rules-count').textContent=S.rules.length+' regra(s)';if(!S.rules.length){tb.innerHTML='<tr><td colspan="4" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhuma regra.</td></tr>';return;}tb.innerHTML=S.rules.map(function(r){return '<tr><td><span class="badge badge-red">'+esc(r.cat)+'</span></td><td style="color:rgba(255,255,255,.35)">'+esc(r.subcat)+'</td><td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(r.text)+'</td><td><button class="action-btn" onclick="editRule('+r.id+')">✏</button><button class="action-btn danger" onclick="deleteRule('+r.id+')">🗑</button></td></tr>';}).join('');}
+function renderRulesCatList(){var cats=[...new Set(S.rules.map(function(r){return r.cat;}))];var dl=document.getElementById('r-cats-list');if(dl)dl.innerHTML=cats.map(function(c){return '<option value="'+esc(c)+'">';}).join('');}
+
+// ═══ UPDATES ═══
+function saveUpdate(){var id=document.getElementById('edit-upd-id').value;var tag=document.getElementById('upd-tag').value.trim();var title=document.getElementById('upd-title').value.trim();var text=document.getElementById('upd-text').value.trim();var date=document.getElementById('upd-date').value.trim();if(!title||!text){toast('Título e descrição obrigatórios.','err');return;}if(id){var u=S.updates.find(function(x){return x.id==id;});if(u){u.tag=tag;u.title=title;u.text=text;u.date=date;}toast('Atualizado!','ok');}else{S.updates.unshift({id:S.nextId.updates++,tag:tag||'📢 UPDATE',title:title,text:text,date:date||now()});toast('Adicionado!','ok');}save();clearUpdForm();renderUpdatesTable();renderPublicUpdates();}
+function editUpdate(id){var u=S.updates.find(function(x){return x.id===id;});if(!u)return;document.getElementById('edit-upd-id').value=id;document.getElementById('upd-tag').value=u.tag||'';document.getElementById('upd-title').value=u.title;document.getElementById('upd-text').value=u.text;document.getElementById('upd-date').value=u.date||'';adminTab('updates');window.scrollTo(0,0);}
+function deleteUpdate(id){confirmAction('Excluir?',function(){S.updates=S.updates.filter(function(x){return x.id!==id;});save();renderUpdatesTable();renderPublicUpdates();toast('Excluído.','ok');});}
+function clearUpdForm(){document.getElementById('edit-upd-id').value='';['upd-tag','upd-title','upd-text','upd-date'].forEach(function(i){document.getElementById(i).value='';});}
+function renderUpdatesTable(){var tb=document.getElementById('updates-table');if(!S.updates.length){tb.innerHTML='<tr><td colspan="4" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhuma atualização.</td></tr>';return;}tb.innerHTML=S.updates.map(function(u){return '<tr><td>'+esc(u.tag||'')+'</td><td><strong>'+esc(u.title)+'</strong></td><td style="color:rgba(255,255,255,.3);font-size:.75rem">'+esc(u.date||'-')+'</td><td><button class="action-btn" onclick="editUpdate('+u.id+')">✏</button><button class="action-btn danger" onclick="deleteUpdate('+u.id+')">🗑</button></td></tr>';}).join('');}
+
+// ═══ TEAM ═══
+window.previewAv=function(url){var p=document.getElementById('member-av-prev');if(url)p.innerHTML='<img src="'+esc(url)+'" onerror="this.parentNode.innerHTML=\'👤\'">';else p.innerHTML='👤';};
+function saveMember(){var id=document.getElementById('edit-member-id').value;var name=document.getElementById('m-name').value.trim();var avatar=document.getElementById('m-avatar').value.trim();var role=document.getElementById('m-role').value.trim();var cat=document.getElementById('m-cat').value;var desc=document.getElementById('m-desc').value.trim();if(!name||!role){toast('Nome e cargo obrigatórios.','err');return;}if(id){var m=S.team.find(function(x){return x.id==id;});if(m){m.name=name;m.avatar=avatar;m.role=role;m.cat=cat;m.desc=desc;}toast('Membro atualizado!','ok');}else{S.team.push({id:S.nextId.team++,name:name,avatar:avatar,role:role,cat:cat,desc:desc});toast('Membro adicionado!','ok');}save();clearMemberForm();renderTeamTable();renderPublicTeam();updateStats();}
+function editMember(id){var m=S.team.find(function(x){return x.id===id;});if(!m)return;document.getElementById('edit-member-id').value=id;document.getElementById('m-name').value=m.name;document.getElementById('m-avatar').value=m.avatar||'';document.getElementById('m-role').value=m.role;document.getElementById('m-cat').value=m.cat;document.getElementById('m-desc').value=m.desc||'';previewAv(m.avatar||'');adminTab('team');window.scrollTo(0,0);}
+function deleteMember(id){confirmAction('Remover membro?',function(){S.team=S.team.filter(function(x){return x.id!==id;});save();renderTeamTable();renderPublicTeam();updateStats();toast('Removido.','ok');});}
+function clearMemberForm(){document.getElementById('edit-member-id').value='';['m-name','m-avatar','m-role','m-desc'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('member-av-prev').innerHTML='👤';}
+function renderTeamTable(){var tb=document.getElementById('team-table');if(!S.team.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhum membro.</td></tr>';return;}tb.innerHTML=S.team.map(function(m){var av=m.avatar?'<img src="'+esc(m.avatar)+'" style="width:30px;height:30px;border-radius:50%;object-fit:cover" onerror="this.outerHTML=\'👤\'">':'👤';return '<tr><td>'+av+'</td><td><strong>'+esc(m.name)+'</strong></td><td style="color:var(--cr)">'+esc(m.role)+'</td><td><span class="badge badge-gray">'+esc(m.cat)+'</span></td><td><button class="action-btn" onclick="editMember('+m.id+')">✏</button><button class="action-btn danger" onclick="deleteMember('+m.id+')">🗑</button></td></tr>';}).join('');}
+
+// ═══ USERS ═══
+function saveUser(){var id=document.getElementById('edit-user-id').value;var username=document.getElementById('u-username').value.trim();var password=document.getElementById('u-password').value.trim();var email=document.getElementById('u-email').value.trim();var role=document.getElementById('u-role').value;var status=document.getElementById('u-status').value;if(!username){toast('Usuário obrigatório.','err');return;}if(!id&&!password){toast('Senha obrigatória.','err');return;}if(id){var u=S.users.find(function(x){return x.id==id;});if(u){u.username=username;if(password)u.password=password;u.email=email;u.role=role;u.status=status;}toast('Usuário atualizado!','ok');}else{if(S.users.find(function(x){return x.username===username;})){toast('Usuário já existe.','err');return;}S.users.push({id:S.nextId.users++,username:username,password:password,email:email,role:role,status:status,date:new Date().toLocaleDateString('pt-BR')});toast('Usuário criado!','ok');}save();clearUserForm();renderUsersTable();updateStats();}
+function editUser(id){var u=S.users.find(function(x){return x.id===id;});if(!u)return;document.getElementById('edit-user-id').value=id;document.getElementById('u-username').value=u.username;document.getElementById('u-password').value='';document.getElementById('u-email').value=u.email||'';document.getElementById('u-role').value=u.role;document.getElementById('u-status').value=u.status;adminTab('users');window.scrollTo(0,0);}
+function deleteUser(id){confirmAction('Excluir usuário?',function(){S.users=S.users.filter(function(x){return x.id!==id;});save();renderUsersTable();updateStats();toast('Excluído.','ok');});}
+function clearUserForm(){document.getElementById('edit-user-id').value='';['u-username','u-password','u-email'].forEach(function(i){document.getElementById(i).value='';});document.getElementById('u-role').value='admin';document.getElementById('u-status').value='active';}
+function renderUsersTable(){var tb=document.getElementById('users-table');document.getElementById('users-count').textContent=S.users.length+' usuário(s)';if(!S.users.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhum usuário.</td></tr>';return;}tb.innerHTML=S.users.map(function(u){return '<tr><td><strong>'+esc(u.username)+'</strong></td><td style="color:rgba(255,255,255,.35)">'+esc(u.email||'-')+'</td><td><span class="badge badge-gold">'+esc(u.role)+'</span></td><td><span class="badge '+(u.status==='active'?'badge-green':u.status==='banned'?'badge-red':'badge-gray')+'">'+esc(u.status)+'</span></td><td><button class="action-btn" onclick="editUser('+u.id+')">✏</button><button class="action-btn danger" onclick="deleteUser('+u.id+')">🗑</button></td></tr>';}).join('');}
+
+// ═══ SETTINGS ═══
+function loadSettings(){document.getElementById('cfg-name').value=S.settings.name||'Crimson City RP';document.getElementById('cfg-discord').value=S.settings.discord||'';document.getElementById('cfg-players').value=S.settings.players||0;document.getElementById('cfg-wl-welcome').value=S.settings.wlWelcome||'';document.getElementById('cfg-wl-end').value=S.settings.wlEnd||'';}
+function saveSettings(){S.settings.name=document.getElementById('cfg-name').value.trim()||'Crimson City RP';S.settings.discord=document.getElementById('cfg-discord').value.trim();S.settings.players=parseInt(document.getElementById('cfg-players').value)||0;S.settings.wlWelcome=document.getElementById('cfg-wl-welcome').value.trim();S.settings.wlEnd=document.getElementById('cfg-wl-end').value.trim();var pc=S.settings.players;var nEl=document.getElementById('nav-players');if(nEl)nEl.textContent=pc+' Jogador'+(pc!==1?'es':'');var hEl=document.getElementById('htp-players');if(hEl)hEl.textContent=pc+' / 100';save();toast('Configurações salvas!','ok');}
+function changePass(){var np=document.getElementById('new-pass').value;var cp=document.getElementById('conf-pass').value;if(np.length<6){toast('Mínimo 6 caracteres.','err');return;}if(np!==cp){toast('Senhas não coincidem.','err');return;}S.adminPass=np;save();document.getElementById('new-pass').value='';document.getElementById('conf-pass').value='';toast('Senha alterada!','ok');}
+function confirmReset(type){var msgs={wlApps:'Limpar TODAS as candidaturas?',users:'Excluir TODOS os usuários?',posts:'Excluir TODOS os posts?',products:'Excluir TODOS os produtos?'};confirmAction(msgs[type]||'Confirmar?',function(){if(type==='wlApps')S.wlApps=[];if(type==='users')S.users=[];if(type==='posts')S.posts=[];if(type==='products')S.products=[];save();if(type==='wlApps'){renderWLApps();renderDashWL();}if(type==='users')renderUsersTable();if(type==='posts')renderPostsTable();if(type==='products')renderProdsTable();updateStats();toast('Dados excluídos.','ok');});}
+
+// ═══ ADMIN AUTH ═══
+function showAdminLogin(){document.getElementById('admin-login').classList.add('show');}
+function hideAdminLogin(){document.getElementById('admin-login').classList.remove('show');}
+function doLogin(){
+  var u=document.getElementById('login-user').value.trim();
+  var p=document.getElementById('login-pass').value.trim();
+  // Verifica admin master OU qualquer usuário cadastrado com credenciais corretas
+  var masterMatch=(u===S.adminUser&&p===S.adminPass);
+  var userMatch=S.users.find(function(x){
+    return x.username===u && x.password===p && x.status!=='banned';
+  });
+  if(masterMatch||userMatch){
+    document.getElementById('login-err').classList.remove('show');
+    document.getElementById('admin-login').classList.remove('show');
+    document.getElementById('main-nav').style.display='none';
+    document.getElementById('mobile-menu').style.display='none';
+    document.querySelectorAll('.page').forEach(function(el){el.classList.remove('active');});
+    document.getElementById('admin-panel').classList.add('show');
+    document.getElementById('admin-welcome-name').textContent=u;
+    S.loggedIn=true;
+    refreshAdmin();
+  }else{
+    document.getElementById('login-err').classList.add('show');
+  }
+}
+function adminLogout(){document.getElementById('admin-panel').classList.remove('show');document.getElementById('main-nav').style.display='';showPage('home');S.loggedIn=false;}
+
+// ═══ ADMIN TABS ═══
+var adminTitles={dashboard:'Dashboard',news:'Notícias',store:'Loja',updates:'Atualizações',rules:'Regras',wl:'Allowlist',team:'Equipe',users:'Usuários',appearance:'Aparência',settings:'Configurações'};
+function adminTab(t){
+  document.querySelectorAll('.admin-nav-item').forEach(function(b){b.classList.remove('active');});
+  var el=document.getElementById('atab-'+t);if(el)el.classList.add('active');
+  document.querySelectorAll('.admin-section').forEach(function(s){s.classList.remove('active');});
+  var sec=document.getElementById('asec-'+t);if(sec)sec.classList.add('active');
+  document.getElementById('admin-section-title').textContent=adminTitles[t]||t;
+  if(t==='dashboard'){renderDashWL();updateStats();}
+  if(t==='news'){renderPostsTable();}
+  if(t==='store'){renderProdsTable();}
+  if(t==='updates')renderUpdatesTable();
+  if(t==='rules'){renderRulesTable();renderRulesCatList();}
+  if(t==='wl'){renderQList();renderWLApps();}
+  if(t==='team')renderTeamTable();
+  if(t==='users')renderUsersTable();
+  if(t==='appearance'){renderBgGrid();syncAppearance();}
+  if(t==='settings')loadSettings();
+}
+
+// ═══ SUB-TABS ═══
+function switchSubTab(section,panel,clickedBtn){
+  var sec=document.getElementById('asec-'+section);if(!sec)return;
+  sec.querySelectorAll('.sub-tab').forEach(function(b){b.classList.remove('active');});
+  sec.querySelectorAll('.sub-panel').forEach(function(p){p.classList.remove('active');});
+  var p=document.getElementById(section+'-'+panel);if(p)p.classList.add('active');
+  if(clickedBtn)clickedBtn.classList.add('active');
+  else{var tabs=sec.querySelectorAll('.sub-tab');tabs.forEach(function(b,i){if(i===0&&panel==='perguntas'||i===0&&panel==='lista'||i===0&&panel==='produtos')b.classList.add('active');});}
+}
+
+function syncAppearance(){var tw=document.getElementById('toggle-wave');if(tw)tw.checked=S.appearance.wave||false;}
+function updateStats(){
+  var m={'stat-wl':S.wlApps.length,'stat-wl-p':S.wlApps.filter(function(a){return a.status==='pending';}).length,'stat-posts':S.posts.length,'stat-prods':S.products.length,'stat-rules':S.rules.length,'stat-team':S.team.length};
+  Object.keys(m).forEach(function(k){var el=document.getElementById(k);if(el)el.textContent=m[k];});
+  var b=document.getElementById('wl-pending-badge');var pend=S.wlApps.filter(function(a){return a.status==='pending';}).length;if(b)b.textContent=pend>0?pend:'';
+}
+function renderDashWL(){var tb=document.getElementById('dash-wl-table');if(!tb)return;var r=S.wlApps.slice(0,5);if(!r.length){tb.innerHTML='<tr><td colspan="4" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhuma candidatura.</td></tr>';return;}tb.innerHTML=r.map(function(app){var fa=app.answers&&app.answers[0]?app.answers[0].a:'-';if(fa.length>25)fa=fa.slice(0,25)+'…';var sc={pending:'badge-gold',approved:'badge-green',rejected:'badge-red'}[app.status]||'badge-gray';var sl={pending:'Pendente',approved:'Aprovado',rejected:'Rejeitado'}[app.status]||app.status;return '<tr><td><strong>'+esc(fa)+'</strong></td><td style="color:rgba(255,255,255,.3);font-size:.72rem">'+esc(app.date)+'</td><td><span class="badge '+sc+'">'+sl+'</span></td><td><button class="action-btn" onclick="viewApp('+app.id+')">Ver →</button></td></tr>';}).join('');}
+function refreshAdmin(){updateStats();renderDashWL();}
+
+// ═══ INIT ═══
+(function(){
+  if(S.appearance.wave)document.body.classList.add('wave-on');
+  applyBg(S.appearance.activeBg||'default');
+  var pc=S.settings.players||0;
+  var nEl=document.getElementById('nav-players');if(nEl)nEl.textContent=pc+' Jogador'+(pc!==1?'es':'');
+  var hEl=document.getElementById('htp-players');if(hEl)hEl.textContent=pc+' / 100';
+})();
+</script>
+</body>
+</html>
