@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head><base href="https://d16ilfvy4mv02r.cloudfront.net/workspaces/poZOdfIXDv3ouVswYNaG5dVpwN1CZv9u/1db1663c-0c4e-4021-86ea-ddf2d7272da7/files/">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crimson City RP</title>
+<title id="site-title">Crimson City RP</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -450,34 +450,34 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
 <!-- NAV -->
 <nav id="main-nav">
   <div class="nav-inner">
-    <div class="nav-logo" onclick="showPage('home')">CRIMSON<span>CITY</span></div>
+    <div class="nav-logo" onclick="location.hash='#home'">CRIMSON<span>CITY</span></div>
     <div class="nav-links">
-      <a onclick="showPage('home')" id="nav-home" class="active">Início</a>
-      <a onclick="showPage('news')" id="nav-news">Notícias</a>
-      <a onclick="showPage('store')" id="nav-store">Loja</a>
-      <a onclick="showPage('howtoplay')" id="nav-howtoplay">Como Jogar</a>
-      <a onclick="showPage('whitelist')" id="nav-whitelist">Allowlist</a>
-      <a onclick="showPage('rules')" id="nav-rules">Regras</a>
-      <a onclick="showPage('team')" id="nav-team">Equipe</a>
+      <a href="#home" id="nav-home" class="active">Início</a>
+      <a href="#news" id="nav-news">Notícias</a>
+      <a href="#store" id="nav-store">Loja</a>
+      <a href="#howtoplay" id="nav-howtoplay">Como Jogar</a>
+      <a href="#whitelist" id="nav-whitelist">Allowlist</a>
+      <a href="#rules" id="nav-rules">Regras</a>
+      <a href="#team" id="nav-team">Equipe</a>
     </div>
     <div class="nav-right">
       <div class="players-badge"><span class="dot-pulse"></span><span id="nav-players">0 Jogadores</span></div>
       <button class="btn btn-outline btn-sm" onclick="showAdminLogin()">Admin</button>
-      <button class="btn btn-primary btn-sm" onclick="showPage('whitelist')">Fazer WL</button>
+      <a href="#whitelist" class="btn btn-primary btn-sm">Fazer WL</a>
       <button class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
-  <a onclick="showPage('home');closeMobile()">🏠 Início</a>
-  <a onclick="showPage('news');closeMobile()">📰 Notícias</a>
-  <a onclick="showPage('store');closeMobile()">🛍️ Loja</a>
-  <a onclick="showPage('howtoplay');closeMobile()">🎮 Como Jogar</a>
-  <a onclick="showPage('whitelist');closeMobile()">📝 Allowlist</a>
-  <a onclick="showPage('rules');closeMobile()">📋 Regras</a>
-  <a onclick="showPage('team');closeMobile()">👥 Equipe</a>
+  <a href="#home" onclick="closeMobile()">🏠 Início</a>
+  <a href="#news" onclick="closeMobile()">📰 Notícias</a>
+  <a href="#store" onclick="closeMobile()">🛍️ Loja</a>
+  <a href="#howtoplay" onclick="closeMobile()">🎮 Como Jogar</a>
+  <a href="#whitelist" onclick="closeMobile()">📝 Allowlist</a>
+  <a href="#rules" onclick="closeMobile()">📋 Regras</a>
+  <a href="#team" onclick="closeMobile()">👥 Equipe</a>
   <div class="mobile-btns">
-    <button class="btn btn-primary btn-sm" onclick="showPage('whitelist');closeMobile()">Fazer WL</button>
+    <a href="#whitelist" class="btn btn-primary btn-sm" onclick="closeMobile()">Fazer WL</a>
     <button class="btn btn-outline btn-sm" onclick="showAdminLogin();closeMobile()">Admin</button>
   </div>
 </div>
@@ -490,15 +490,15 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
     <div class="hero-grid"></div>
     <div class="hero-particles" id="hero-particles"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">🇧🇷 Experiência de Roleplay Americana</div>
+      <div class="hero-eyebrow"><span id="hero-eyebrow-text">🇧🇷 Experiência de Roleplay Americana</span></div>
       <h1 class="hero-title">
         <span class="word line1" id="hero-line1" data-text="CRIMSON">CRIMSON</span>
         <span class="word line2" id="hero-line2">CITY</span>
       </h1>
-      <p class="hero-sub">Construa sua história do zero em uma cidade onde cada decisão molda a sua identidade. Seja quem você quiser e deixe sua marca na cidade mais perigosa do país.</p>
+      <p class="hero-sub" id="hero-sub-text">Construa sua história do zero em uma cidade onde cada decisão molda a sua identidade. Seja quem você quiser e deixe sua marca na cidade mais perigosa do país.</p>
       <div class="hero-actions">
-        <button class="btn btn-primary" style="font-size:.8rem;padding:.85rem 2rem" onclick="showPage('whitelist')">✦ Fazer Allowlist</button>
-        <button class="btn btn-gold" style="font-size:.8rem;padding:.85rem 2rem" onclick="openDiscord()">💬 Entrar no Discord</button>
+        <a href="#whitelist" class="btn btn-primary" id="hero-btn-wl" style="font-size:.8rem;padding:.85rem 2rem">✦ Fazer Allowlist</a>
+        <button class="btn btn-gold" id="hero-btn-discord" style="font-size:.8rem;padding:.85rem 2rem" onclick="openDiscord()">💬 Entrar no Discord</button>
       </div>
     </div>
     <div class="hero-scroll"><div class="scroll-line"></div>SCROLL</div>
@@ -520,7 +520,7 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
         <h2 class="sec-title">Tudo que você <span>precisa</span></h2>
         <div class="sec-line"></div>
       </div>
-      <div class="features-grid">
+      <div class="features-grid" id="features-grid">
         <div class="feature-card reveal"><div class="feature-icon">🌆</div><div class="feature-title">Mundo Vivo</div><div class="feature-text">Cidade dinâmica que respira e evolui. Cada esquina guarda uma história.</div></div>
         <div class="feature-card reveal" style="transition-delay:.08s"><div class="feature-icon">⚖️</div><div class="feature-title">RP Profundo</div><div class="feature-text">Ambiente sério com admins dedicados e regras rigorosas para imersão total.</div></div>
         <div class="feature-card reveal" style="transition-delay:.16s"><div class="feature-icon">🏢</div><div class="feature-title">Economia Real</div><div class="feature-text">Abra negócios, controle territórios ou suba na vida corporativa.</div></div>
@@ -536,28 +536,28 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
       <div class="footer-top">
         <div>
           <div class="footer-logo">CRIMSON<span>CITY</span></div>
-          <p class="footer-tagline">Servidor independente de RP no MTA. GTA e marcas pertencem à Take-Two Interactive.</p>
+          <p class="footer-tagline" id="footer-tagline">Servidor independente de RP no MTA. GTA e marcas pertencem à Take-Two Interactive.</p>
         </div>
         <div class="footer-links">
           <div class="footer-links-title">Navegação</div>
-          <a onclick="showPage('home')">Início</a>
-          <a onclick="showPage('news')">Notícias</a>
-          <a onclick="showPage('store')">Loja</a>
-          <a onclick="showPage('rules')">Regras</a>
-          <a onclick="showPage('team')">Equipe</a>
+          <a href="#home">Início</a>
+          <a href="#news">Notícias</a>
+          <a href="#store">Loja</a>
+          <a href="#rules">Regras</a>
+          <a href="#team">Equipe</a>
         </div>
         <div>
           <div class="footer-links-title" style="margin-bottom:.7rem">Redes Sociais</div>
           <div class="footer-socials">
-            <a class="social-btn" onclick="openDiscord()" title="Discord">💬</a>
-            <a class="social-btn" title="YouTube">▶</a>
-            <a class="social-btn" title="Instagram">📷</a>
-            <a class="social-btn" title="TikTok">♪</a>
+            <a class="social-btn" id="social-discord" onclick="openDiscord()" title="Discord">💬</a>
+            <a class="social-btn" id="social-youtube" title="YouTube">▶</a>
+            <a class="social-btn" id="social-instagram" title="Instagram">📷</a>
+            <a class="social-btn" id="social-tiktok" title="TikTok">♪</a>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <div class="footer-copy">© 2026 Crimson City RP. Todos os direitos reservados.</div>
+        <div class="footer-copy footer-copy-main">© 2026 Crimson City RP. Todos os direitos reservados.</div>
         <div class="footer-copy">Feito com ❤ pela Equipe Crimson City</div>
       </div>
     </div>
@@ -580,7 +580,7 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
 <!-- Post único -->
 <div id="page-newspost" class="page">
   <div class="page-wrap" style="max-width:860px">
-    <div class="back-link" onclick="showPage('news')">← Voltar às Notícias</div>
+    <a href="#news" class="back-link">← Voltar às Notícias</a>
     <div id="post-content-area"></div>
   </div>
   <footer><div class="footer-inner"><div class="footer-bottom"><div class="footer-copy">© 2026 Crimson City RP.</div></div></div></footer>
@@ -611,7 +611,7 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
         <p class="htp-desc">Siga os passos abaixo para se conectar ao servidor e criar sua própria história. O único limite é a sua criatividade!</p>
         <div class="htp-steps">
           <div class="step-item"><div class="step-num">01</div><div class="step-title">Instale GTA & MTA</div><div class="step-text">Você precisa do <strong>GTA: San Andreas</strong> e <strong>MTA: San Andreas</strong> instalados no computador.</div><div class="step-btns"><button class="btn btn-dark btn-sm" onclick="window.open('https://store.steampowered.com/app/12120','_blank')">⬇ GTA</button><button class="btn btn-dark btn-sm" onclick="window.open('https://multitheftauto.com','_blank')">⬇ MTA</button></div></div>
-          <div class="step-item"><div class="step-num">02</div><div class="step-title">Faça o Allowlist</div><div class="step-text">Responda ao questionário para garantir seu acesso à <strong style="color:var(--cr)">Crimson City</strong>.</div><div class="step-btns"><button class="btn btn-primary btn-sm" onclick="showPage('whitelist')">✦ Fazer Allowlist</button></div></div>
+          <div class="step-item"><div class="step-num">02</div><div class="step-title">Faça o Allowlist</div><div class="step-text">Responda ao questionário para garantir seu acesso à <strong style="color:var(--cr)">Crimson City</strong>.</div><div class="step-btns"><a href="#whitelist" class="btn btn-primary btn-sm">✦ Fazer Allowlist</a></div></div>
           <div class="step-item"><div class="step-num">03</div><div class="step-title">Entre no Servidor</div><div class="step-text">Clique para abrir o <strong style="color:var(--cr)">MTA</strong> direto no servidor e faça login.</div><div class="step-btns"><button class="btn btn-gold btn-sm">↗ Abrir MTA</button></div></div>
         </div>
       </div>
@@ -653,7 +653,7 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
         <h3>Candidatura Enviada!</h3>
         <p>Sua candidatura foi registrada. Nossa equipe irá analisá-la em breve. Fique de olho no nosso Discord!</p>
         <button class="btn btn-gold" onclick="openDiscord()">💬 Entrar no Discord</button>
-        <button class="btn btn-ghost btn-sm" onclick="showPage('home')" style="margin-top:.3rem">← Voltar ao início</button>
+        <a href="#home" class="btn btn-ghost btn-sm" style="margin-top:.3rem">← Voltar ao início</a>
       </div>
       <div class="chat-input-area" id="chat-input-area">
         <textarea class="chat-input" id="chat-input" placeholder="Digite sua resposta..." rows="1" onkeydown="handleChatKey(event)" oninput="autoResizeTA(this)"></textarea>
@@ -988,6 +988,57 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
           <div class="field"><label>Mensagem Final do Bot WL</label><textarea id="cfg-wl-end" rows="2" placeholder="Perfeito! Respostas registradas..."></textarea></div>
           <button class="btn btn-primary btn-sm" onclick="saveSettings()" style="margin-top:.5rem">💾 Salvar Configurações</button>
         </div>
+
+        <div class="form-card"><h3>🌐 Redes Sociais</h3>
+          <div class="form-row">
+            <div class="field"><label>Discord (URL)</label><input type="text" id="cfg-social-discord" placeholder="https://discord.gg/..."></div>
+            <div class="field"><label>YouTube (URL)</label><input type="text" id="cfg-social-youtube" placeholder="https://youtube.com/@..."></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label>Instagram (URL)</label><input type="text" id="cfg-social-instagram" placeholder="https://instagram.com/..."></div>
+            <div class="field"><label>TikTok (URL)</label><input type="text" id="cfg-social-tiktok" placeholder="https://tiktok.com/@..."></div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="saveSettings()" style="margin-top:.5rem">💾 Salvar</button>
+        </div>
+
+        <div class="form-card"><h3>🖊️ Textos da Hero (Início)</h3>
+          <div class="field"><label>Eyebrow (texto em cima do título)</label><input type="text" id="cfg-hero-eyebrow" placeholder="🇧🇷 Experiência de Roleplay Americana"></div>
+          <div class="form-row">
+            <div class="field"><label>Título — Linha 1</label><input type="text" id="cfg-hero-line1" placeholder="CRIMSON" maxlength="20"></div>
+            <div class="field"><label>Título — Linha 2 (vermelho)</label><input type="text" id="cfg-hero-line2" placeholder="CITY" maxlength="20"></div>
+          </div>
+          <div class="field"><label>Subtítulo</label><textarea id="cfg-hero-sub" rows="3" placeholder="Construa sua história do zero..."></textarea></div>
+          <div class="form-row">
+            <div class="field"><label>Texto botão Allowlist</label><input type="text" id="cfg-hero-btn-wl" placeholder="✦ Fazer Allowlist"></div>
+            <div class="field"><label>Texto botão Discord</label><input type="text" id="cfg-hero-btn-discord" placeholder="💬 Entrar no Discord"></div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="saveSettings()" style="margin-top:.5rem">💾 Salvar</button>
+        </div>
+
+        <div class="form-card"><h3>✨ Features (Cards de destaque)</h3>
+          <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-bottom:1.25rem">6 cards na seção "Por que <span style="color:var(--cr)">Crimson City</span>" da página inicial.</p>
+          <div id="features-editor">
+            <div style="display:grid;gap:1rem">
+              ${[0,1,2,3,4,5].map(function(i){return ''}).join('')}
+            </div>
+          </div>
+          <div id="feat-rows-container">
+            <div style="border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:1rem;margin-bottom:.75rem"><div style="font-size:.65rem;color:var(--cr);font-weight:700;letter-spacing:1px;margin-bottom:.75rem">CARD 1</div><div class="form-row"><div class="field"><label>Ícone</label><input type="text" id="cfg-feat-icon-0" placeholder="🌆" style="max-width:80px"></div><div class="field"><label>Título</label><input type="text" id="cfg-feat-title-0" placeholder="Mundo Vivo"></div></div><div class="field"><label>Descrição</label><input type="text" id="cfg-feat-text-0" placeholder="..."></div></div>
+            <div style="border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:1rem;margin-bottom:.75rem"><div style="font-size:.65rem;color:var(--cr);font-weight:700;letter-spacing:1px;margin-bottom:.75rem">CARD 2</div><div class="form-row"><div class="field"><label>Ícone</label><input type="text" id="cfg-feat-icon-1" placeholder="⚖️" style="max-width:80px"></div><div class="field"><label>Título</label><input type="text" id="cfg-feat-title-1" placeholder="RP Profundo"></div></div><div class="field"><label>Descrição</label><input type="text" id="cfg-feat-text-1" placeholder="..."></div></div>
+            <div style="border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:1rem;margin-bottom:.75rem"><div style="font-size:.65rem;color:var(--cr);font-weight:700;letter-spacing:1px;margin-bottom:.75rem">CARD 3</div><div class="form-row"><div class="field"><label>Ícone</label><input type="text" id="cfg-feat-icon-2" placeholder="🏢" style="max-width:80px"></div><div class="field"><label>Título</label><input type="text" id="cfg-feat-title-2" placeholder="Economia Real"></div></div><div class="field"><label>Descrição</label><input type="text" id="cfg-feat-text-2" placeholder="..."></div></div>
+            <div style="border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:1rem;margin-bottom:.75rem"><div style="font-size:.65rem;color:var(--cr);font-weight:700;letter-spacing:1px;margin-bottom:.75rem">CARD 4</div><div class="form-row"><div class="field"><label>Ícone</label><input type="text" id="cfg-feat-icon-3" placeholder="🚔" style="max-width:80px"></div><div class="field"><label>Título</label><input type="text" id="cfg-feat-title-3" placeholder="Lei & Crime"></div></div><div class="field"><label>Descrição</label><input type="text" id="cfg-feat-text-3" placeholder="..."></div></div>
+            <div style="border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:1rem;margin-bottom:.75rem"><div style="font-size:.65rem;color:var(--cr);font-weight:700;letter-spacing:1px;margin-bottom:.75rem">CARD 5</div><div class="form-row"><div class="field"><label>Ícone</label><input type="text" id="cfg-feat-icon-4" placeholder="🎭" style="max-width:80px"></div><div class="field"><label>Título</label><input type="text" id="cfg-feat-title-4" placeholder="Facções Únicas"></div></div><div class="field"><label>Descrição</label><input type="text" id="cfg-feat-text-4" placeholder="..."></div></div>
+            <div style="border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:1rem;margin-bottom:.75rem"><div style="font-size:.65rem;color:var(--cr);font-weight:700;letter-spacing:1px;margin-bottom:.75rem">CARD 6</div><div class="form-row"><div class="field"><label>Ícone</label><input type="text" id="cfg-feat-icon-5" placeholder="🛡️" style="max-width:80px"></div><div class="field"><label>Título</label><input type="text" id="cfg-feat-title-5" placeholder="Anti-Cheat"></div></div><div class="field"><label>Descrição</label><input type="text" id="cfg-feat-text-5" placeholder="..."></div></div>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="saveSettings()">💾 Salvar Features</button>
+        </div>
+
+        <div class="form-card"><h3>📄 Textos do Rodapé</h3>
+          <div class="field"><label>Tagline</label><input type="text" id="cfg-footer-tagline" placeholder="Servidor independente de RP no MTA..."></div>
+          <div class="field"><label>Copyright</label><input type="text" id="cfg-footer-copy" placeholder="© 2026 Crimson City RP..."></div>
+          <button class="btn btn-primary btn-sm" onclick="saveSettings()" style="margin-top:.5rem">💾 Salvar</button>
+        </div>
+
         <div class="form-card"><h3>🔐 Alterar Senha</h3>
           <div class="form-row"><div class="field"><label>Nova Senha</label><input type="password" id="new-pass" placeholder="Nova senha"></div><div class="field"><label>Confirmar</label><input type="password" id="conf-pass" placeholder="Confirmar"></div></div>
           <button class="btn btn-primary btn-sm" onclick="changePass()" style="margin-top:.5rem">🔒 Alterar</button>
@@ -1058,7 +1109,22 @@ var S = {
   settings:{
     name:'Crimson City RP', discord:'', players:0,
     wlWelcome:'Olá! 👋 Bem-vindo(a) ao processo de **Allowlist** da Crimson City!\n\nSou o **Crimson Bot** e vou te guiar pelo questionário. Responda com sinceridade!',
-    wlEnd:'Perfeito! ✅ Todas as respostas foram registradas.\n\nNossa equipe irá analisar sua candidatura em breve. Acesse nosso **Discord** para acompanhar!'
+    wlEnd:'Perfeito! ✅ Todas as respostas foram registradas.\n\nNossa equipe irá analisar sua candidatura em breve. Acesse nosso **Discord** para acompanhar!',
+    heroEyebrow:'🇧🇷 Experiência de Roleplay Americana',
+    heroLine1:'CRIMSON', heroLine2:'CITY',
+    heroSub:'Construa sua história do zero em uma cidade onde cada decisão molda a sua identidade. Seja quem você quiser e deixe sua marca na cidade mais perigosa do país.',
+    heroBtnWL:'✦ Fazer Allowlist', heroBtnDiscord:'💬 Entrar no Discord',
+    footerTagline:'Servidor independente de RP no MTA. GTA e marcas pertencem à Take-Two Interactive.',
+    footerCopy:'© 2026 Crimson City RP. Todos os direitos reservados.',
+    socialDiscord:'', socialYoutube:'', socialInstagram:'', socialTiktok:'',
+    features:[
+      {icon:'🌆',title:'Mundo Vivo',text:'Cidade dinâmica que respira e evolui. Cada esquina guarda uma história.'},
+      {icon:'⚖️',title:'RP Profundo',text:'Ambiente sério com admins dedicados e regras rigorosas para imersão total.'},
+      {icon:'🏢',title:'Economia Real',text:'Abra negócios, controle territórios ou suba na vida corporativa.'},
+      {icon:'🚔',title:'Lei & Crime',text:'Seja policial, criminoso ou advogado. Você decide sua história.'},
+      {icon:'🎭',title:'Facções Únicas',text:'Crie ou entre em facções com roteiros e conteúdo exclusivos.'},
+      {icon:'🛡️',title:'Anti-Cheat',text:'Sistemas avançados para garantir uma experiência justa para todos.'}
+    ]
   },
   appearance:{wave:false, activeBg:'default'},
   backgrounds:[
@@ -1110,7 +1176,7 @@ function showLoading(msg){
   if(!el){
     el=document.createElement('div');el.id='fs-loading';
     el.style.cssText='position:fixed;inset:0;background:rgba(7,7,9,.97);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem';
-    el.innerHTML='<div style="font-family:\'Bebas Neue\',sans-serif;font-size:2.2rem;letter-spacing:4px">CRIMSON<span style="color:#C41E3A">CITY</span></div>'
+    el.innerHTML='<div id="fs-load-logo" style="font-family:\'Bebas Neue\',sans-serif;font-size:2.2rem;letter-spacing:4px">CRIMSON<span style="color:#C41E3A">CITY</span></div>'
       +'<div id="fs-load-msg" style="font-size:.7rem;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;text-align:center;max-width:280px"></div>'
       +'<div style="width:220px;height:2px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden"><div id="fs-load-bar" style="height:100%;background:linear-gradient(90deg,#8B0000,#C41E3A);width:0;transition:width .4s;border-radius:2px"></div></div>';
     document.body.appendChild(el);
@@ -1188,27 +1254,51 @@ async function loadAll(){
       if(S.appearance.wave)document.body.classList.add('wave-on');
       applyBg(S.appearance.activeBg||'default');
       updatePlayerCount();
-      renderPublicUpdates();
+      applySiteTexts();
       animateLetters();
+      routeHash();
     },300);
   }catch(e){
     console.error(e);
     document.getElementById('fs-load-msg').textContent='Erro ao conectar. Verifique o Firebase Config no código.';
-    setTimeout(function(){hideLoading();applyBg('default');renderPublicUpdates();animateLetters();},3000);
+    setTimeout(function(){hideLoading();applyBg('default');applySiteTexts();routeHash();animateLetters();},3000);
   }
 }
 
 async function saveSettings(){
+  var gv=function(id){var el=document.getElementById(id);return el?el.value.trim():'';};
+  var feats=[];
+  for(var i=0;i<6;i++){
+    feats.push({
+      icon:gv('cfg-feat-icon-'+i),
+      title:gv('cfg-feat-title-'+i),
+      text:gv('cfg-feat-text-'+i)
+    });
+  }
   var cfg={
-    name:document.getElementById('cfg-name').value.trim()||'Crimson City RP',
-    discord:document.getElementById('cfg-discord').value.trim(),
+    name:gv('cfg-name')||'Crimson City RP',
+    discord:gv('cfg-discord'),
     players:parseInt(document.getElementById('cfg-players').value)||0,
-    wlWelcome:document.getElementById('cfg-wl-welcome').value.trim(),
-    wlEnd:document.getElementById('cfg-wl-end').value.trim()
+    wlWelcome:gv('cfg-wl-welcome'),
+    wlEnd:gv('cfg-wl-end'),
+    heroEyebrow:gv('cfg-hero-eyebrow'),
+    heroLine1:gv('cfg-hero-line1'),
+    heroLine2:gv('cfg-hero-line2'),
+    heroSub:gv('cfg-hero-sub'),
+    heroBtnWL:gv('cfg-hero-btn-wl'),
+    heroBtnDiscord:gv('cfg-hero-btn-discord'),
+    footerTagline:gv('cfg-footer-tagline'),
+    footerCopy:gv('cfg-footer-copy'),
+    socialDiscord:gv('cfg-social-discord'),
+    socialYoutube:gv('cfg-social-youtube'),
+    socialInstagram:gv('cfg-social-instagram'),
+    socialTiktok:gv('cfg-social-tiktok'),
+    features:feats
   };
   Object.assign(S.settings,cfg);
   await fsSet('_config','settings',S.settings);
   updatePlayerCount();
+  applySiteTexts();
   toast('Configurações salvas!','ok');
 }
 
@@ -1335,7 +1425,12 @@ function addCustomBg(){
   toast('Fundo "'+name+'" adicionado!','ok');
 }
 
-// ═══ NAVIGATION ═══
+// ═══ NAVIGATION (Hash Router) ═══
+var PAGE_MAP = {
+  'home':'home','news':'news','store':'store','rules':'rules',
+  'team':'team','howtoplay':'howtoplay','whitelist':'whitelist','newspost':'newspost'
+};
+
 function showPage(p){
   document.querySelectorAll('.page').forEach(function(el){el.classList.remove('active');});
   var pg=document.getElementById('page-'+p);if(pg)pg.classList.add('active');
@@ -1348,13 +1443,95 @@ function showPage(p){
   if(p==='rules')renderPublicRules();
   if(p==='team')renderPublicTeam();
   if(p==='whitelist')initChatWL();
+  // update hash without triggering hashchange again
+  if(location.hash !== '#'+p) history.pushState(null,null,'#'+p);
+  // update page title
+  var titles={home:'Início',news:'Notícias',store:'Loja',rules:'Regras',team:'Equipe',howtoplay:'Como Jogar',whitelist:'Allowlist',newspost:'Post'};
+  var sname = S.settings.name || 'Crimson City RP';
+  document.title = (titles[p]?titles[p]+' — ':'')+sname;
+  // close mobile if open
+  closeMobile();
 }
+
+function routeHash(){
+  var hash = location.hash.replace('#','') || 'home';
+  if(PAGE_MAP[hash]) showPage(hash);
+  else showPage('home');
+}
+
+window.addEventListener('hashchange', function(){
+  var hash = location.hash.replace('#','') || 'home';
+  if(PAGE_MAP[hash]){
+    // Just show the page without pushing new history
+    document.querySelectorAll('.page').forEach(function(el){el.classList.remove('active');});
+    var pg=document.getElementById('page-'+hash);if(pg)pg.classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(function(a){a.classList.remove('active');});
+    var na=document.getElementById('nav-'+hash);if(na)na.classList.add('active');
+    window.scrollTo(0,0);setTimeout(initReveal,80);
+    if(hash==='home')renderPublicUpdates();
+    if(hash==='news')renderPublicNews();
+    if(hash==='store')renderPublicStore();
+    if(hash==='rules')renderPublicRules();
+    if(hash==='team')renderPublicTeam();
+    if(hash==='whitelist')initChatWL();
+    closeMobile();
+  }
+});
 
 function openDiscord(){window.open(S.settings.discord||'https://discord.gg','_blank');}
 function updatePlayerCount(){
   var pc=S.settings.players||0;
   var nEl=document.getElementById('nav-players');if(nEl)nEl.textContent=pc+' Jogador'+(pc!==1?'es':'');
   var hEl=document.getElementById('htp-players');if(hEl)hEl.textContent=pc+' / 100';
+}
+
+function applySiteTexts(){
+  var s=S.settings;
+  // Title
+  var sn=s.name||'Crimson City RP';
+  document.title=sn;
+  var st=document.getElementById('site-title');if(st)st.textContent=sn;
+  // Nav logo
+  document.querySelectorAll('.nav-logo').forEach(function(el){
+    var parts=sn.split(' ');if(parts.length>1){var last=parts.pop();el.innerHTML=parts.join(' ')+'<span> '+last+'</span>';}
+    else el.innerHTML='<span>'+sn+'</span>';
+  });
+  // Footer logos
+  document.querySelectorAll('.footer-logo').forEach(function(el){
+    var parts=sn.split(' ');if(parts.length>1){var last=parts.pop();el.innerHTML=parts.join(' ')+'<span>'+last+'</span>';}
+    else el.innerHTML='<span>'+sn+'</span>';
+  });
+  // Hero
+  var ey=document.getElementById('hero-eyebrow-text');if(ey)ey.textContent=s.heroEyebrow||'';
+  var hl1=document.getElementById('hero-line1');if(hl1){hl1.setAttribute('data-text',s.heroLine1||'CRIMSON');hl1.textContent=s.heroLine1||'CRIMSON';}
+  var hl2=document.getElementById('hero-line2');if(hl2)hl2.textContent=s.heroLine2||'CITY';
+  var hs=document.getElementById('hero-sub-text');if(hs)hs.textContent=s.heroSub||'';
+  var hwl=document.getElementById('hero-btn-wl');if(hwl)hwl.textContent=s.heroBtnWL||'✦ Fazer Allowlist';
+  var hd=document.getElementById('hero-btn-discord');if(hd)hd.textContent=s.heroBtnDiscord||'💬 Entrar no Discord';
+  // Footer
+  var ft=document.getElementById('footer-tagline');if(ft)ft.textContent=s.footerTagline||'';
+  document.querySelectorAll('.footer-copy-main').forEach(function(el){el.textContent=s.footerCopy||'';});
+  // Social buttons
+  if(s.socialDiscord!==undefined){var sd=document.getElementById('social-discord');if(sd)sd.onclick=function(){if(s.socialDiscord)window.open(s.socialDiscord,'_blank');else openDiscord();};}
+  if(s.socialYoutube!==undefined){var sy=document.getElementById('social-youtube');if(sy)sy.onclick=function(){if(s.socialYoutube)window.open(s.socialYoutube,'_blank');};}
+  if(s.socialInstagram!==undefined){var si=document.getElementById('social-instagram');if(si)si.onclick=function(){if(s.socialInstagram)window.open(s.socialInstagram,'_blank');};}
+  if(s.socialTiktok!==undefined){var sk=document.getElementById('social-tiktok');if(sk)sk.onclick=function(){if(s.socialTiktok)window.open(s.socialTiktok,'_blank');};}
+  // Features
+  if(s.features&&s.features.length){
+    var fg=document.getElementById('features-grid');
+    if(fg){
+      fg.innerHTML=s.features.map(function(f,i){
+        return '<div class="feature-card reveal" style="transition-delay:'+(i*.08)+'s">'
+          +'<div class="feature-icon">'+esc(f.icon)+'</div>'
+          +'<div class="feature-title">'+esc(f.title)+'</div>'
+          +'<div class="feature-text">'+esc(f.text)+'</div>'
+          +'</div>';
+      }).join('');
+      setTimeout(initReveal,50);
+    }
+  }
+  // Re-animate letters after text change
+  animateLetters();
 }
 
 // ═══ PUBLIC UPDATES ═══
@@ -1392,6 +1569,7 @@ window.openPost=function(id){
     +'</div>'
     +'<div class="post-content">'+post.content+'</div>';
   showPage('newspost');
+  PAGE_MAP['newspost']='newspost';
 };
 
 // ═══ PUBLIC STORE ═══
@@ -2025,11 +2203,35 @@ function renderUsersTable(){
 
 // ═══ SETTINGS ═══
 function loadSettings(){
-  document.getElementById('cfg-name').value=S.settings.name||'Crimson City RP';
-  document.getElementById('cfg-discord').value=S.settings.discord||'';
-  document.getElementById('cfg-players').value=S.settings.players||0;
-  document.getElementById('cfg-wl-welcome').value=S.settings.wlWelcome||'';
-  document.getElementById('cfg-wl-end').value=S.settings.wlEnd||'';
+  var s=S.settings;
+  document.getElementById('cfg-name').value=s.name||'Crimson City RP';
+  document.getElementById('cfg-discord').value=s.discord||'';
+  document.getElementById('cfg-players').value=s.players||0;
+  document.getElementById('cfg-wl-welcome').value=s.wlWelcome||'';
+  document.getElementById('cfg-wl-end').value=s.wlEnd||'';
+  // Textos do site
+  var f=function(id,val){var el=document.getElementById(id);if(el)el.value=val||'';};
+  f('cfg-hero-eyebrow',s.heroEyebrow);
+  f('cfg-hero-line1',s.heroLine1);
+  f('cfg-hero-line2',s.heroLine2);
+  f('cfg-hero-sub',s.heroSub);
+  f('cfg-hero-btn-wl',s.heroBtnWL);
+  f('cfg-hero-btn-discord',s.heroBtnDiscord);
+  f('cfg-footer-tagline',s.footerTagline);
+  f('cfg-footer-copy',s.footerCopy);
+  f('cfg-social-discord',s.socialDiscord);
+  f('cfg-social-youtube',s.socialYoutube);
+  f('cfg-social-instagram',s.socialInstagram);
+  f('cfg-social-tiktok',s.socialTiktok);
+  // Features
+  if(s.features){
+    for(var i=0;i<6;i++){
+      var ft=s.features[i]||{icon:'',title:'',text:''};
+      f('cfg-feat-icon-'+i,ft.icon);
+      f('cfg-feat-title-'+i,ft.title);
+      f('cfg-feat-text-'+i,ft.text);
+    }
+  }
 }
 async function changePass(){
   var np=document.getElementById('new-pass').value;
