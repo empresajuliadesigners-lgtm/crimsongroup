@@ -54,6 +54,31 @@ nav.scrolled{background:rgba(7,7,9,.98);border-bottom-color:rgba(196,30,58,.22)}
 .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5)}
 .btn-ghost:hover{background:rgba(255,255,255,.05);color:var(--w)}
 .btn-sm{padding:.35rem .85rem;font-size:.65rem}
+/* DISCORD PROFILE */
+.discord-profile-btn{display:flex;align-items:center;gap:.5rem;background:rgba(88,101,242,.15);border:1px solid rgba(88,101,242,.35);border-radius:20px;padding:.3rem .75rem .3rem .3rem;cursor:pointer;transition:all .25s;text-decoration:none;color:var(--w);font-size:.72rem;font-weight:600}
+.discord-profile-btn:hover{background:rgba(88,101,242,.28);border-color:rgba(88,101,242,.6)}
+.discord-profile-av{width:26px;height:26px;border-radius:50%;object-fit:cover;background:rgba(88,101,242,.4)}
+.discord-profile-av-placeholder{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#5865F2,#7289DA);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#fff;flex-shrink:0}
+.btn-discord-login{background:#5865F2;color:#fff;border:none;padding:.45rem 1.1rem;border-radius:3px;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .25s;font-family:var(--fb);display:inline-flex;align-items:center;gap:.4rem}
+.btn-discord-login:hover{background:#4752C4;transform:translateY(-1px)}
+/* WL LOGIN GATE */
+.wl-login-gate{background:var(--d3);border:1px solid rgba(88,101,242,.25);border-radius:12px;padding:2.5rem;text-align:center;display:none}
+.wl-login-gate.show{display:block}
+.wl-login-gate h3{font-family:var(--fd);font-size:1.6rem;font-weight:800;margin-bottom:.65rem}
+.wl-login-gate p{color:rgba(255,255,255,.42);font-size:.85rem;line-height:1.7;margin-bottom:1.5rem;max-width:400px;margin-left:auto;margin-right:auto}
+.wl-already-notice{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);border-radius:8px;padding:1.25rem 1.5rem;text-align:center;display:none;margin-top:1rem}
+.wl-already-notice.show{display:block}
+.wl-already-notice h4{color:var(--gold-l);font-family:var(--fh);font-size:1rem;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.4rem}
+.wl-already-notice p{color:rgba(255,255,255,.45);font-size:.8rem;line-height:1.65}
+/* Discord profile dropdown */
+.discord-user-menu{position:relative;display:inline-block}
+.discord-user-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:var(--d3);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.5rem;min-width:160px;display:none;z-index:1001;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.discord-user-menu:hover .discord-user-dropdown{display:block}
+.discord-dd-info{padding:.5rem .65rem;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:.35rem}
+.discord-dd-uname{font-size:.78rem;font-weight:700;color:var(--w)}
+.discord-dd-disc{font-size:.65rem;color:rgba(255,255,255,.28)}
+.discord-dd-btn{width:100%;background:none;border:none;color:rgba(255,255,255,.55);font-size:.72rem;padding:.4rem .65rem;text-align:left;cursor:pointer;border-radius:4px;font-family:var(--fb);transition:background .2s}
+.discord-dd-btn:hover{background:rgba(255,255,255,.06);color:var(--w)}
 .btn-danger{background:var(--cr-d);color:var(--w);border:none;padding:.4rem 1rem;border-radius:3px;cursor:pointer;font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:.68rem;transition:background .2s;font-family:var(--fb)}
 .btn-danger:hover{background:var(--cr)}
 
@@ -475,6 +500,25 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
     </div>
     <div class="nav-right">
       <div class="players-badge"><span class="dot-pulse"></span><span id="nav-players">0 Jogadores</span></div>
+      <div id="nav-discord-area">
+        <button class="btn-discord-login btn-sm" onclick="doDiscordLogin()" id="btn-discord-nav">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+          Login Discord
+        </button>
+        <div class="discord-user-menu" id="nav-discord-user" style="display:none">
+          <button class="discord-profile-btn" id="nav-discord-profile-btn">
+            <div class="discord-profile-av-placeholder" id="nav-discord-av">👤</div>
+            <span id="nav-discord-name">Usuário</span>
+          </button>
+          <div class="discord-user-dropdown">
+            <div class="discord-dd-info">
+              <div class="discord-dd-uname" id="dd-discord-uname">-</div>
+              <div class="discord-dd-disc" id="dd-discord-disc"></div>
+            </div>
+            <button class="discord-dd-btn" onclick="doDiscordLogout()">🚪 Sair do Discord</button>
+          </div>
+        </div>
+      </div>
       <button class="btn btn-outline btn-sm" onclick="showAdminLogin()">Admin</button>
       <a href="#whitelist" class="btn btn-primary btn-sm">Fazer WL</a>
       <button class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></button>
@@ -646,6 +690,25 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
       <h2>Allowlist <span>Crimson City</span></h2>
       <p>Responda às perguntas do nosso assistente. Após aprovação você receberá acesso ao servidor.</p>
     </div>
+
+    <!-- Login gate: shown when not logged in Discord -->
+    <div class="wl-login-gate" id="wl-login-gate">
+      <div style="font-size:3rem;margin-bottom:1rem">🔐</div>
+      <h3>Login <span style="color:#5865F2">Discord</span> Necessário</h3>
+      <p>Para fazer o Allowlist você precisa estar conectado com sua conta do Discord. Isso garante uma candidatura por conta e facilita o processo de aprovação.</p>
+      <button class="btn-discord-login" onclick="doDiscordLogin()" style="margin:0 auto;font-size:.78rem;padding:.65rem 1.6rem">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03z"/></svg>
+        Entrar com Discord
+      </button>
+    </div>
+
+    <!-- Already submitted notice -->
+    <div class="wl-already-notice" id="wl-already-notice">
+      <h4 id="wl-notice-title">⏳ Candidatura em Análise</h4>
+      <p id="wl-notice-msg">Você já possui uma candidatura em análise. Aguarde o resultado antes de enviar uma nova. Fique atento ao Discord para receber a notificação!</p>
+      <button class="btn btn-gold btn-sm" onclick="openDiscord()" style="margin-top:1rem">💬 Acompanhar no Discord</button>
+    </div>
+
     <div class="chat-window" id="chat-window">
       <div class="chat-progress" id="chat-progress" style="display:none">
         <span class="prog-text" id="prog-text">0 de 0</span>
@@ -659,7 +722,7 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
       <div class="wl-success" id="wl-success">
         <div class="wl-success-icon">✅</div>
         <h3>Candidatura Enviada!</h3>
-        <p>Sua candidatura foi registrada. Nossa equipe irá analisá-la em breve. Fique de olho no nosso Discord!</p>
+        <p>Sua candidatura foi registrada. Nossa equipe irá analisá-la em breve. Você receberá uma notificação no Discord!</p>
         <button class="btn btn-gold" onclick="openDiscord()">💬 Entrar no Discord</button>
         <a href="#home" class="btn btn-ghost btn-sm" style="margin-top:.3rem">← Voltar ao início</a>
       </div>
@@ -923,7 +986,7 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
         <div class="sub-panel" id="wl-candidaturas">
           <div class="table-wrap">
             <div class="table-head"><h3>Candidaturas</h3><span id="wl-apps-count" style="font-size:.7rem;color:rgba(255,255,255,.25)"></span></div>
-            <table><thead><tr><th>#</th><th>Data</th><th>1ª Resposta</th><th>Status</th><th>Ações</th></tr></thead>
+            <table><thead><tr><th>#</th><th>Data</th><th>1ª Resposta</th><th>Discord</th><th>Status</th><th>Ações</th></tr></thead>
             <tbody id="wl-apps-table"></tbody></table>
           </div>
         </div>
@@ -996,6 +1059,21 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
           <div class="field"><label>Mensagem de Boas-vindas do Bot WL</label><textarea id="cfg-wl-welcome" rows="3" placeholder="Olá! Bem-vindo..."></textarea></div>
           <div class="field"><label>Mensagem Final do Bot WL</label><textarea id="cfg-wl-end" rows="2" placeholder="Perfeito! Respostas registradas..."></textarea></div>
           <button class="btn btn-primary btn-sm" onclick="saveSettings()" style="margin-top:.5rem">💾 Salvar</button>
+        </div>
+
+        <div class="form-card"><h3>🤖 Integração Discord</h3>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.3);margin-bottom:1.1rem">Configure o login via Discord e o webhook para notificações de WL no seu canal.</p>
+          <div class="field"><label>Discord Client ID (OAuth2)</label><input type="text" id="cfg-discord-client-id" placeholder="Ex: 1234567890123456789"><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">Crie um app em discord.com/developers → OAuth2 → Client ID. Redirect URI: esta página (ex: https://seusite.com)</div></div>
+          <div class="field"><label>Discord Redirect URI</label><input type="text" id="cfg-discord-redirect-uri" placeholder="https://seusite.com"><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">URL exata cadastrada no portal de desenvolvedores do Discord. Adicione também no campo Redirects do app.</div></div>
+          <div class="field"><label>Webhook URL — Canal de Notificações WL</label><input type="text" id="cfg-discord-webhook" placeholder="https://discord.com/api/webhooks/..."><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">Canal Discord → Editar Canal → Integrações → Webhooks → Novo Webhook → Copiar URL.</div></div>
+          <div style="background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.2);border-radius:6px;padding:.85rem 1rem;margin-bottom:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.65">
+            <strong style="color:rgba(255,255,255,.7)">📌 Como configurar o OAuth2:</strong><br>
+            1. Acesse <strong>discord.com/developers</strong> → Seu App → OAuth2<br>
+            2. Em "Redirects" adicione a URL do seu site<br>
+            3. Scopes necessários: <code style="background:rgba(255,255,255,.08);padding:1px 4px;border-radius:3px">identify</code><br>
+            4. Cole o Client ID e a Redirect URI nos campos acima
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="saveSettings()">💾 Salvar Integração Discord</button>
         </div>
 
         <div class="form-card"><h3>🌐 Redes Sociais</h3>
@@ -1147,6 +1225,7 @@ var S = {
     name:'Crimson City RP', discord:'', players:0,
     wlWelcome:'Olá! 👋 Bem-vindo(a) ao processo de **Allowlist** da Crimson City!\n\nSou o **Crimson Bot** e vou te guiar pelo questionário. Responda com sinceridade!',
     wlEnd:'Perfeito! ✅ Todas as respostas foram registradas.\n\nNossa equipe irá analisar sua candidatura em breve. Acesse nosso **Discord** para acompanhar!',
+    discordClientId:'', discordRedirectUri:'', discordWebhook:'',
     heroEyebrow:'🇧🇷 Experiência de Roleplay Americana',
     heroLine1:'CRIMSON', heroLine2:'CITY',
     heroSub:'Construa sua história do zero em uma cidade onde cada decisão molda a sua identidade. Seja quem você quiser e deixe sua marca na cidade mais perigosa do país.',
@@ -1176,6 +1255,7 @@ var S = {
     {id:'matrix',name:'Matrix',type:'gradient',css:'linear-gradient(135deg,#000800,#001200,#000500)',del:false}
   ],
   loggedIn:false, currentUser:null,
+  discordUser:null,  // { id, username, discriminator, avatar }
   _customBgs:[]
 };
 
@@ -1325,6 +1405,9 @@ async function saveSettings(){
     socialTiktok:gv('cfg-social-tiktok'),
     socialTwitter:gv('cfg-social-twitter'),
     socialLinkedin:gv('cfg-social-linkedin'),
+    discordClientId:gv('cfg-discord-client-id'),
+    discordRedirectUri:gv('cfg-discord-redirect-uri'),
+    discordWebhook:gv('cfg-discord-webhook'),
     features:collectFeatCards()
   };
   Object.assign(S.settings,cfg);
@@ -1692,8 +1775,12 @@ window.filterRules=function(q){q=q.toLowerCase();document.querySelectorAll('.sb-
 // ═══ WHITELIST CHAT ═══
 var CS={step:-1,answers:[],done:false};
 var qOptTags=[];
-function initChatWL(){
+async function initChatWL(){
   CS={step:-1,answers:[],done:false};
+  // Gate check: login + 1-per-account
+  var ok = await checkWLGate();
+  if(!ok) return;
+
   var msgs=document.getElementById('chat-msgs');
   var suc=document.getElementById('wl-success');
   var inp=document.getElementById('chat-input-area');
@@ -1705,6 +1792,8 @@ function initChatWL(){
   var cs=document.getElementById('chat-send');if(cs)cs.disabled=false;
   if(!S.wlQuestions.length){addBotMsg('O questionário ainda não foi configurado. Tente mais tarde.');return;}
   var welcome=S.settings.wlWelcome||'Olá! Bem-vindo à Crimson City!';
+  // Personalize welcome with Discord username
+  if(S.discordUser) welcome = welcome + '\n\n👋 Olá, **' + S.discordUser.global_name + '**!';
   setTimeout(function(){addBotMsg(welcome,true);setTimeout(nextQ,1200);},600);
 }
 function nextQ(){
@@ -1728,7 +1817,19 @@ function finishWL(){
   showTyping(async function(){
     addBotMsg(endMsg);
     setTimeout(async function(){
-      var app={date:now(),answers:CS.answers,status:'pending',_order:Date.now()};
+      var app={
+        date:now(),
+        answers:CS.answers,
+        status:'pending',
+        _order:Date.now()
+      };
+      // Attach Discord user info if logged in
+      if(S.discordUser){
+        app.discordId = S.discordUser.id;
+        app.discordUsername = S.discordUser.username;
+        app.discordGlobalName = S.discordUser.global_name || S.discordUser.username;
+        app.discordAvatar = S.discordUser.avatar || null;
+      }
       try{await fsSet('wlApps',null,app);}catch(e){}
       var msgs=document.getElementById('chat-msgs');
       var suc=document.getElementById('wl-success');
@@ -1907,12 +2008,13 @@ function renderWLApps(){
   var badge=document.getElementById('wl-pending-badge');
   var pend=S.wlApps.filter(function(a){return a.status==='pending';}).length;
   if(badge)badge.textContent=pend>0?pend:'';
-  if(!S.wlApps.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhuma candidatura.</td></tr>';return;}
+  if(!S.wlApps.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;color:rgba(255,255,255,.2);padding:1.5rem">Nenhuma candidatura.</td></tr>';return;}
   tb.innerHTML=S.wlApps.map(function(app,idx){
     var fa=app.answers&&app.answers[0]?app.answers[0].a:'-';if(fa.length>28)fa=fa.slice(0,28)+'…';
     var sc={pending:'badge-gold',approved:'badge-green',rejected:'badge-red'}[app.status]||'badge-gray';
     var sl={pending:'Pendente',approved:'Aprovado',rejected:'Rejeitado'}[app.status]||app.status;
-    return '<tr><td style="color:rgba(255,255,255,.28)">#'+(idx+1)+'</td><td style="color:rgba(255,255,255,.35);font-size:.72rem;white-space:nowrap">'+esc(app.date||'-')+'</td><td>'+esc(fa)+'</td><td><span class="badge '+sc+'">'+sl+'</span></td>'
+    var dcInfo = app.discordUsername ? '<span style="color:#5865F2;font-size:.68rem">@'+esc(app.discordUsername)+'</span>' : '<span style="color:rgba(255,255,255,.2);font-size:.68rem">—</span>';
+    return '<tr><td style="color:rgba(255,255,255,.28)">#'+(idx+1)+'</td><td style="color:rgba(255,255,255,.35);font-size:.72rem;white-space:nowrap">'+esc(app.date||'-')+'</td><td>'+esc(fa)+'</td><td>'+dcInfo+'</td><td><span class="badge '+sc+'">'+sl+'</span></td>'
       +'<td><button class="action-btn" onclick="viewApp(\''+app._fid+'\')">👁</button><button class="action-btn ok" onclick="setAppSt(\''+app._fid+'\',\'approved\')">✓</button><button class="action-btn danger" onclick="setAppSt(\''+app._fid+'\',\'rejected\')">✗</button></td></tr>';
   }).join('');
 }
@@ -1920,7 +2022,19 @@ window.viewApp=function(fid){
   var app=S.wlApps.find(function(x){return x._fid===fid;});if(!app)return;
   var sc={pending:'badge-gold',approved:'badge-green',rejected:'badge-red'}[app.status]||'badge-gray';
   var sl={pending:'Pendente',approved:'Aprovado',rejected:'Rejeitado'}[app.status]||app.status;
-  document.getElementById('modal-app-content').innerHTML='<div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem"><div style="font-size:.68rem;color:rgba(255,255,255,.28)">'+esc(app.date||'-')+'</div><span class="badge '+sc+'">'+sl+'</span></div>'
+  var dcHTML = '';
+  if(app.discordUsername){
+    var avHTML = app.discordAvatar
+      ? '<img src="'+esc(app.discordAvatar)+'" style="width:32px;height:32px;border-radius:50%;object-fit:cover">'
+      : '<div style="width:32px;height:32px;border-radius:50%;background:#5865F2;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff">'+esc(app.discordUsername.charAt(0).toUpperCase())+'</div>';
+    dcHTML = '<div style="display:flex;align-items:center;gap:.7rem;background:rgba(88,101,242,.1);border:1px solid rgba(88,101,242,.2);border-radius:8px;padding:.75rem 1rem;margin-bottom:1rem">'
+      + avHTML
+      + '<div><div style="font-size:.82rem;font-weight:700;color:#7289da">@'+esc(app.discordUsername)+'</div>'
+      + '<div style="font-size:.65rem;color:rgba(255,255,255,.28)">ID: '+esc(app.discordId||'-')+'</div></div>'
+      + '</div>';
+  }
+  document.getElementById('modal-app-content').innerHTML='<div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem"><div style="font-size:.68rem;color:rgba(255,255,255,.28)">'+esc(app.date||'-')+'</div><span class="badge '+sc+'">'+sl+'</span></div>'
+    + dcHTML
     +(app.answers||[]).map(function(a){return '<div class="app-answer-item"><div class="app-answer-q">'+esc(a.q)+'</div><div class="app-answer-a">'+esc(a.a)+'</div></div>';}).join('');
   document.getElementById('modal-app-actions').innerHTML='<button class="btn btn-primary btn-sm" style="background:#22c55e;box-shadow:none" onclick="setAppSt(\''+fid+'\',\'approved\');closeModal(\'modal-app\')">✓ Aprovar</button><button class="btn btn-danger btn-sm" onclick="setAppSt(\''+fid+'\',\'rejected\');closeModal(\'modal-app\')">✗ Rejeitar</button><button class="btn btn-ghost btn-sm" onclick="setAppSt(\''+fid+'\',\'pending\');closeModal(\'modal-app\')">↺ Pendente</button>';
   document.getElementById('modal-app').classList.add('show');
@@ -2331,6 +2445,9 @@ function loadSettings(){
   f('cfg-social-tiktok',s.socialTiktok);
   f('cfg-social-twitter',s.socialTwitter);
   f('cfg-social-linkedin',s.socialLinkedin);
+  f('cfg-discord-client-id',s.discordClientId);
+  f('cfg-discord-redirect-uri',s.discordRedirectUri);
+  f('cfg-discord-webhook',s.discordWebhook);
   renderFeatEditor();
 }
 async function changePass(){
@@ -2386,8 +2503,220 @@ function refreshAdmin(){
   loadAndRenderWLApps().then(function(){updateStats();renderDashWL();});
 }
 
-// ═══ INIT ═══
+// ═══ DISCORD OAUTH ═══
+// Discord OAuth uses implicit grant (token in URL hash) — no server needed
+var DISCORD_SCOPES = 'identify';
+
+function doDiscordLogin(){
+  var clientId = S.settings.discordClientId;
+  var redirectUri = S.settings.discordRedirectUri || location.origin + location.pathname;
+  if(!clientId){
+    // Fallback: open Discord invite if Client ID not configured yet
+    toast('Configure o Client ID do Discord no painel Admin → Configurações.','err');
+    return;
+  }
+  var state = Math.random().toString(36).substr(2,12);
+  sessionStorage.setItem('dc_oauth_state', state);
+  var params = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    response_type: 'token',
+    scope: DISCORD_SCOPES,
+    state: state
+  });
+  location.href = 'https://discord.com/api/oauth2/authorize?' + params.toString();
+}
+
+function doDiscordLogout(){
+  S.discordUser = null;
+  localStorage.removeItem('dc_user');
+  updateDiscordUI();
+  // If on WL page refresh gate
+  initChatWL();
+  toast('Desconectado do Discord.','ok');
+}
+
+async function handleDiscordCallback(){
+  // Parse fragment from URL (implicit flow)
+  var hash = location.hash;
+  if(!hash || !hash.includes('access_token')) return;
+  var params = new URLSearchParams(hash.replace(/^#/,''));
+  var token = params.get('access_token');
+  var state = params.get('state');
+  // Remove fragment from URL
+  history.replaceState(null,'',location.pathname + location.search);
+  if(!token) return;
+  // Fetch user info
+  try{
+    var res = await fetch('https://discord.com/api/users/@me', {
+      headers: { Authorization: 'Bearer ' + token }
+    });
+    if(!res.ok) throw new Error('Falha ao buscar perfil Discord');
+    var user = await res.json();
+    S.discordUser = {
+      id: user.id,
+      username: user.username,
+      discriminator: user.discriminator || '0',
+      avatar: user.avatar ? 'https://cdn.discordapp.com/avatars/'+user.id+'/'+user.avatar+'.png' : null,
+      global_name: user.global_name || user.username
+    };
+    localStorage.setItem('dc_user', JSON.stringify(S.discordUser));
+    updateDiscordUI();
+    toast('Conectado como @' + S.discordUser.username + '!','ok');
+    // If currently on WL page, refresh
+    if(document.getElementById('page-whitelist').classList.contains('active')) initChatWL();
+  }catch(e){
+    console.error('Discord OAuth error:',e);
+    toast('Erro ao conectar com Discord.','err');
+  }
+}
+
+function loadDiscordUserFromStorage(){
+  var raw = localStorage.getItem('dc_user');
+  if(raw){
+    try{ S.discordUser = JSON.parse(raw); } catch(e){}
+  }
+}
+
+function updateDiscordUI(){
+  var user = S.discordUser;
+  var btnLogin = document.getElementById('btn-discord-nav');
+  var userMenu = document.getElementById('nav-discord-user');
+  if(!btnLogin || !userMenu) return;
+  if(user){
+    btnLogin.style.display = 'none';
+    userMenu.style.display = 'inline-block';
+    // Avatar
+    var av = document.getElementById('nav-discord-av');
+    if(av){
+      if(user.avatar){
+        av.innerHTML = '<img src="'+user.avatar+'" style="width:26px;height:26px;border-radius:50%;object-fit:cover">';
+        av.style.background = 'none';
+      } else {
+        av.textContent = user.username.charAt(0).toUpperCase();
+      }
+    }
+    var nameEl = document.getElementById('nav-discord-name');
+    if(nameEl) nameEl.textContent = user.global_name || user.username;
+    var ddName = document.getElementById('dd-discord-uname');
+    if(ddName) ddName.textContent = '@' + user.username;
+    var ddDisc = document.getElementById('dd-discord-disc');
+    if(ddDisc) ddDisc.textContent = user.id;
+  } else {
+    btnLogin.style.display = '';
+    userMenu.style.display = 'none';
+  }
+}
+
+// ═══ WL GATE — check Discord login + 1-per-account ═══
+async function checkWLGate(){
+  var gate = document.getElementById('wl-login-gate');
+  var notice = document.getElementById('wl-already-notice');
+  var chatWin = document.getElementById('chat-window');
+
+  gate.classList.remove('show');
+  notice.classList.remove('show');
+  if(chatWin) chatWin.style.display = '';
+
+  // 1. Must be logged in with Discord
+  if(!S.discordUser){
+    gate.classList.add('show');
+    if(chatWin) chatWin.style.display = 'none';
+    return false;
+  }
+
+  // 2. Check if already has an active WL (pending or approved)
+  try{
+    var snap = await db.collection('wlApps').where('discordId','==',S.discordUser.id).get();
+    var active = snap.docs.map(function(d){return d.data();}).filter(function(a){
+      return a.status === 'pending' || a.status === 'approved';
+    });
+    if(active.length > 0){
+      var st = active[0].status;
+      var noticeTitle = document.getElementById('wl-notice-title');
+      var noticeMsg = document.getElementById('wl-notice-msg');
+      if(st === 'approved'){
+        if(noticeTitle) noticeTitle.textContent = '✅ Candidatura Aprovada!';
+        if(noticeMsg) noticeMsg.textContent = 'Parabéns! Sua candidatura foi aprovada. Acesse o Discord para mais informações sobre como entrar no servidor.';
+      } else {
+        if(noticeTitle) noticeTitle.textContent = '⏳ Candidatura em Análise';
+        if(noticeMsg) noticeMsg.textContent = 'Você já possui uma candidatura pendente. Aguarde o resultado antes de enviar uma nova. Fique atento ao Discord!';
+      }
+      notice.classList.add('show');
+      if(chatWin) chatWin.style.display = 'none';
+      return false;
+    }
+  }catch(e){ console.warn('WL gate check error:',e); }
+
+  return true; // OK to proceed
+}
+
+// ═══ DISCORD WEBHOOK NOTIFICATION ═══
+async function sendDiscordWebhookNotification(app, status){
+  var webhook = S.settings.discordWebhook;
+  if(!webhook) return;
+  var discordUsername = app.discordUsername || 'desconhecido';
+  var discordId = app.discordId || null;
+  var mention = discordId ? '<@' + discordId + '>' : '@' + discordUsername;
+  var isApproved = status === 'approved';
+  var content, color, title;
+  if(isApproved){
+    content = 'Parabéns, você foi **APROVADO** em nossa Allowlist! ' + mention;
+    title = '✅ APROVADO na Allowlist';
+    color = 0x22c55e;
+  } else {
+    content = 'Poxa, você foi **REPROVADO** em nossa Allowlist! ' + mention;
+    title = '❌ REPROVADO na Allowlist';
+    color = 0xC41E3A;
+  }
+  var payload = {
+    content: content,
+    embeds: [{
+      title: title,
+      color: color,
+      fields: [
+        { name: 'Usuário Discord', value: '@' + discordUsername, inline: true },
+        { name: 'Data', value: app.date || '-', inline: true }
+      ],
+      footer: { text: 'Crimson City RP — Sistema de Allowlist' },
+      timestamp: new Date().toISOString()
+    }]
+  };
+  try{
+    await fetch(webhook, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  }catch(e){ console.warn('Webhook error:',e); }
+}
+
+// ═══ OVERRIDE setAppSt to fire webhook ═══
+var _origSetAppSt = window.setAppSt;
+window.setAppSt = async function(fid, st){
+  var app = S.wlApps.find(function(x){return x._fid===fid;});
+  await fsUpdate('wlApps',fid,{status:st});
+  if(app) app.status = st;
+  renderWLApps(); renderDashWL(); updateStats();
+  var l = {approved:'Aprovada! ✅', rejected:'Rejeitada.', pending:'Marcada como pendente.'}[st]||'Atualizado.';
+  toast(l, st==='approved'?'ok':'');
+  // Fire webhook on approve or reject
+  if((st === 'approved' || st === 'rejected') && app){
+    await sendDiscordWebhookNotification(app, st);
+  }
+};
+
+// ═══ LOAD ALL — init Discord OAuth handling ═══
+// (called after loadAll completes)
+function initDiscord(){
+  loadDiscordUserFromStorage();
+  updateDiscordUI();
+  handleDiscordCallback(); // handle OAuth redirect token if present
+}
+
+// ═══ LOAD ALL — main init ═══
 loadAll();
+initDiscord();
 </script>
 </body>
 </html>
