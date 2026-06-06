@@ -1062,35 +1062,17 @@ tr:last-child td{border-bottom:none}tr:hover td{background:rgba(255,255,255,.015
         </div>
 
         <div class="form-card"><h3>🤖 Integração Discord</h3>
-          <p style="font-size:.72rem;color:rgba(255,255,255,.3);margin-bottom:1.1rem">Configure o login via Discord, notificações de WL e cargo automático via N8N/Make.</p>
-
-          <div style="font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.75rem">🔑 OAuth2 — Login com Discord</div>
-          <div class="field"><label>Discord Client ID</label><input type="text" id="cfg-discord-client-id" placeholder="Ex: 1234567890123456789"><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">discord.com/developers → Seu App → OAuth2 → Client ID</div></div>
-          <div class="field"><label>Discord Redirect URI</label><input type="text" id="cfg-discord-redirect-uri" placeholder="https://seusite.com"><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">URL exata do seu site. Cadastre também em OAuth2 → Redirects no portal de devs.</div></div>
-
-          <div style="font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin:.75rem 0 .75rem">📢 Webhook — Notificações no Canal</div>
-          <div class="field"><label>Webhook URL do Canal de Notificações</label><input type="text" id="cfg-discord-webhook" placeholder="https://discord.com/api/webhooks/..."><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">Canal Discord → Editar Canal → Integrações → Webhooks → Novo Webhook → Copiar URL.</div></div>
-
-          <div style="font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin:.75rem 0 .75rem">🎖️ N8N / Make — Cargo Automático ao Aprovar</div>
-          <div class="field"><label>Webhook N8N/Make — Dar Cargo (Aprovado)</label><input type="text" id="cfg-n8n-role-webhook" placeholder="https://n8n.seusite.com/webhook/..."><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">Este webhook é chamado automaticamente quando uma WL é aprovada, enviando o Discord ID do usuário para o N8N dar o cargo.</div></div>
-          <div class="field"><label>ID do Cargo a Conceder (Role ID)</label><input type="text" id="cfg-discord-role-id" placeholder="Ex: 1234567890123456789"><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">Discord → Configurações do Servidor → Cargos → clique direito no cargo → Copiar ID (ative Modo Desenvolvedor em Configurações → Avançado).</div></div>
-          <div class="field"><label>ID do Servidor (Guild ID)</label><input type="text" id="cfg-discord-guild-id" placeholder="Ex: 9876543210987654321"><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">Clique direito no servidor → Copiar ID (com Modo Desenvolvedor ativado).</div></div>
-
-          <div style="background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.2);border-radius:6px;padding:.9rem 1rem;margin-bottom:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.8">
-            <strong style="color:rgba(255,255,255,.75)">📋 Como configurar o N8N para dar cargo:</strong><br>
-            1. Crie um workflow no N8N com trigger <strong>Webhook</strong><br>
-            2. Adicione o nó <strong>HTTP Request</strong> → método <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px">PUT</code><br>
-            3. URL: <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px">https://discord.com/api/guilds/&#123;&#123;guildId&#125;&#125;/members/&#123;&#123;discordId&#125;&#125;/roles/&#123;&#123;roleId&#125;&#125;</code><br>
-            4. Header: <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px">Authorization: Bot SEU_BOT_TOKEN</code><br>
-            5. Cole a URL do webhook do N8N no campo acima<br>
-            <br>
-            O site envia automaticamente: <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px">&#123; discordId, guildId, roleId, username &#125;</code>
+          <p style="font-size:.72rem;color:rgba(255,255,255,.3);margin-bottom:1.1rem">Configure o login via Discord e o webhook para notificações de WL no seu canal.</p>
+          <div class="field"><label>Discord Client ID (OAuth2)</label><input type="text" id="cfg-discord-client-id" placeholder="Ex: 1234567890123456789"><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">Crie um app em discord.com/developers → OAuth2 → Client ID. Redirect URI: esta página (ex: https://seusite.com)</div></div>
+          <div class="field"><label>Discord Redirect URI</label><input type="text" id="cfg-discord-redirect-uri" placeholder="https://seusite.com"><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">URL exata cadastrada no portal de desenvolvedores do Discord. Adicione também no campo Redirects do app.</div></div>
+          <div class="field"><label>Webhook URL — Canal de Notificações WL</label><input type="text" id="cfg-discord-webhook" placeholder="https://discord.com/api/webhooks/..."><div style="font-size:.65rem;color:rgba(255,255,255,.2);margin-top:.3rem">Canal Discord → Editar Canal → Integrações → Webhooks → Novo Webhook → Copiar URL.</div></div>
+          <div style="background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.2);border-radius:6px;padding:.85rem 1rem;margin-bottom:1rem;font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.65">
+            <strong style="color:rgba(255,255,255,.7)">📌 Como configurar o OAuth2:</strong><br>
+            1. Acesse <strong>discord.com/developers</strong> → Seu App → OAuth2<br>
+            2. Em "Redirects" adicione a URL do seu site<br>
+            3. Scopes necessários: <code style="background:rgba(255,255,255,.08);padding:1px 4px;border-radius:3px">identify</code><br>
+            4. Cole o Client ID e a Redirect URI nos campos acima
           </div>
-
-          <div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:6px;padding:.75rem 1rem;margin-bottom:1rem;font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.7">
-            <strong style="color:rgba(201,168,76,.8)">⚡ Make (Integromat):</strong> Crie um cenário → trigger <strong>Custom Webhook</strong> → módulo <strong>HTTP → Make a request</strong> com os mesmos parâmetros acima. O payload recebido terá os campos necessários prontos.
-          </div>
-
           <button class="btn btn-primary btn-sm" onclick="saveSettings()">💾 Salvar Integração Discord</button>
         </div>
 
@@ -1244,7 +1226,6 @@ var S = {
     wlWelcome:'Olá! 👋 Bem-vindo(a) ao processo de **Allowlist** da Crimson City!\n\nSou o **Crimson Bot** e vou te guiar pelo questionário. Responda com sinceridade!',
     wlEnd:'Perfeito! ✅ Todas as respostas foram registradas.\n\nNossa equipe irá analisar sua candidatura em breve. Acesse nosso **Discord** para acompanhar!',
     discordClientId:'', discordRedirectUri:'', discordWebhook:'',
-    n8nRoleWebhook:'', discordRoleId:'', discordGuildId:'',
     heroEyebrow:'🇧🇷 Experiência de Roleplay Americana',
     heroLine1:'CRIMSON', heroLine2:'CITY',
     heroSub:'Construa sua história do zero em uma cidade onde cada decisão molda a sua identidade. Seja quem você quiser e deixe sua marca na cidade mais perigosa do país.',
@@ -1427,9 +1408,6 @@ async function saveSettings(){
     discordClientId:gv('cfg-discord-client-id'),
     discordRedirectUri:gv('cfg-discord-redirect-uri'),
     discordWebhook:gv('cfg-discord-webhook'),
-    n8nRoleWebhook:gv('cfg-n8n-role-webhook'),
-    discordRoleId:gv('cfg-discord-role-id'),
-    discordGuildId:gv('cfg-discord-guild-id'),
     features:collectFeatCards()
   };
   Object.assign(S.settings,cfg);
@@ -2470,9 +2448,6 @@ function loadSettings(){
   f('cfg-discord-client-id',s.discordClientId);
   f('cfg-discord-redirect-uri',s.discordRedirectUri);
   f('cfg-discord-webhook',s.discordWebhook);
-  f('cfg-n8n-role-webhook',s.n8nRoleWebhook);
-  f('cfg-discord-role-id',s.discordRoleId);
-  f('cfg-discord-guild-id',s.discordGuildId);
   renderFeatEditor();
 }
 async function changePass(){
@@ -2716,48 +2691,7 @@ async function sendDiscordWebhookNotification(app, status){
   }catch(e){ console.warn('Webhook error:',e); }
 }
 
-// ═══ N8N / MAKE — ROLE WEBHOOK ═══
-async function sendN8NRoleWebhook(app){
-  var webhookUrl = S.settings.n8nRoleWebhook;
-  var roleId     = S.settings.discordRoleId;
-  var guildId    = S.settings.discordGuildId;
-
-  if(!webhookUrl){
-    console.info('N8N role webhook não configurado — pulando atribuição de cargo.');
-    return;
-  }
-  if(!app.discordId){
-    console.warn('Candidatura sem Discord ID — não é possível dar cargo automaticamente.');
-    toast('Cargo não atribuído: candidato não tem Discord vinculado.','');
-    return;
-  }
-
-  var payload = {
-    discordId:   app.discordId,
-    username:    app.discordUsername || app.discordGlobalName || 'desconhecido',
-    guildId:     guildId  || '',
-    roleId:      roleId   || '',
-    date:        app.date || '',
-    action:      'add_role'
-  };
-
-  try{
-    var res = await fetch(webhookUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if(res.ok){
-      toast('Cargo enviado para N8N! 🎖️','ok');
-    } else {
-      console.warn('N8N role webhook retornou status:', res.status);
-      toast('Aprovado! Mas o N8N retornou erro '+res.status+' ao dar cargo.','');
-    }
-  }catch(e){
-    console.error('Erro ao chamar N8N role webhook:',e);
-    toast('Aprovado! Mas houve erro de rede ao dar cargo via N8N.','');
-  }
-}
+// ═══ OVERRIDE setAppSt to fire webhook ═══
 var _origSetAppSt = window.setAppSt;
 window.setAppSt = async function(fid, st){
   var app = S.wlApps.find(function(x){return x._fid===fid;});
@@ -2766,13 +2700,9 @@ window.setAppSt = async function(fid, st){
   renderWLApps(); renderDashWL(); updateStats();
   var l = {approved:'Aprovada! ✅', rejected:'Rejeitada.', pending:'Marcada como pendente.'}[st]||'Atualizado.';
   toast(l, st==='approved'?'ok':'');
-  // Fire Discord webhook notification (approved or rejected)
+  // Fire webhook on approve or reject
   if((st === 'approved' || st === 'rejected') && app){
     await sendDiscordWebhookNotification(app, st);
-  }
-  // Fire N8N/Make role webhook on approval only
-  if(st === 'approved' && app){
-    await sendN8NRoleWebhook(app);
   }
 };
 
